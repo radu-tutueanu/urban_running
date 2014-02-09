@@ -25,20 +25,23 @@
             position: relative;
             float: left;/*pozitia butoanelor*/
         }
+
+
+
         li ul { display: none; }
         ul li a {
             display: block;
             text-decoration: none;
             color: #ffffff; /*culoarea literelor*/
-            border-top: 1px solid #ffffff;
-            padding: 5px 25px 5px 15px;
+            border-top: 1px solid #ffffff;/*pt. ambele butoane*/
+            padding: 5px 25px 5px 25px;
             background: #20B2AA; /*culoarea de fundal a butoanelor*/
             margin-left: 1px;
             white-space: nowrap;
         }
 
-
-
+     li ul { display: none; }
+  
       /*  ul li a:hover { background: #228B22; } /*Culoarea cand duci cursorul peste el*/
         li:hover ul { 
             display: block; 
@@ -51,7 +54,7 @@
             background: #20B2AA;
         }
         li:hover a { background: #228B22; }
-        li:hover li a:hover { background: #32CD32; }  
+        li:hover li a:hover { background: #32CD32; } /*verdele deschis al fiecarui buton*/ 
 }
     </style>
     <script type="text/javascript"
@@ -94,18 +97,22 @@
 <div id="bara">
 <title>Undealergam.ro - găsește-ți traseul potrivit de alergat</title>
    <ul id="meniu">
-            <li><a href="">Adaugă traseu</a></li> 
-        
-             <ul>
-                    <li><a href="">După cartier</a></li>
-                    <li><a href="">După distanță</a><li>
+            <li><a href="">Adaugă traseu</a>
+
+  		 <ul>
+                    <li><a href="">Salvează</a></li>
+                    <li><a href="">Șterge</a><li>
                 </ul>
+	     </li> 
+        
+       
             <li><a href="">Caută traseu</a> 
 
                 <ul>
                     <li><a href="">După cartier</a></li>
                     <li><a href="">După distanță</a><li>
                 </ul>
+	    </li>
 </ul>
 </div>
 
