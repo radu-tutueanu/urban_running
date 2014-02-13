@@ -8,6 +8,17 @@
       html { height: 100% }
       body { height: 100%; margin: 0; padding: 0 }
       #map-canvas { height: 100%; width: 100%; }
+
+.termeni{
+    position:fixed;
+    bottom:2px;
+    left:57%;
+   
+    margin-left:-200px;/* negative half the width */
+    font-family: Calibri;
+    font-size:12px;
+   
+}
 #meniu {
     position: absolute;
     top: 70px;
@@ -28,7 +39,7 @@
 
 
 
-        li ul { display: none; }
+     /*   li ul { display: none; }*/
         ul li a {
             display: block;
             text-decoration: none;
@@ -53,9 +64,10 @@
             font-size: 11px;
             background: #20B2AA;
         }
-        li:hover a { background: #228B22; }
+        li:hover a { background: #228B22; margin-left: 0px;}
         li:hover li a:hover { background: #32CD32; } /*verdele deschis al fiecarui buton*/ 
 }
+
     </style>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7_q4j3wbRGmQr3V-wtKZrlv7Uz_-G7Dk&sensor=true">
@@ -113,6 +125,8 @@
                     <li><a href="">După distanță</a><li>
                 </ul>
 	    </li>
+
+<a href="www.google.ro" class="termeni">Termeni și condiții</a>
 </ul>
 </div>
 
