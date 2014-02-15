@@ -32,26 +32,72 @@ position: fixed;
 
 p.form_cand{
         position:absolute;
-	top:130px;
+	top:150px;
         right:28px;
         margin: 0px;
         font-size:14px;
         font-family:Calibri;
-        color: red;
+        
 }
 
 p.form_unde{
         position:absolute;
-	top:180px;
+	top:200px;
         right:20px;
         margin: 0px;
 	font-size:14px;
         font-family:Calibri;
 }
 
+.fundal 
+{
+position: absolute;
+top: 145px;
+right: 16px;
+width: 295px;
+height: 433px;
+/*padding: 5px;
+border: 1px;
+margin: 1px;*/
+-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b8e356), color-stop(1, #a5cc52) );
+	background:-moz-linear-gradient( center top, #b8e356 5%, #a5cc52 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8e356', endColorstr='#a5cc52');
+	background-color:#b8e356;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:1px solid #83c41a;
+	display:inline-block;
+	/*color:#ffffff;
+	font-family:Calibri;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:40px;
+	line-height:40px;
+	width:100px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #86ae47;*/
+
+}
+
 p.form_circ{
         position:absolute;
-	top:230px;
+	top:250px;
         right:74px;
         margin: 0px;
 	font-size:14px;
@@ -59,7 +105,7 @@ p.form_circ{
 }
 p.form_caini{
         position:absolute;
-	top:280px;
+	top:300px;
         right:74px;
         margin: 0px;
 	font-size:14px;
@@ -67,7 +113,7 @@ p.form_caini{
 }
 p.form_lum{
         position:absolute;
-	top:330px;
+	top:350px;
         right:74px;
         margin: 0px;
 	font-size:14px;
@@ -76,7 +122,7 @@ p.form_lum{
 
 p.form_sig{
         position:absolute;
-	top:380px;
+	top:400px;
         right:40px;
         margin: 0px;
 	font-size:14px;
@@ -85,7 +131,7 @@ p.form_sig{
 
 p.form_obs{
         position:absolute;
-	top:480px;
+	top:500px;
         right:77px;
         margin: 0px;
 	font-size:14px;
@@ -221,7 +267,7 @@ p.form_obs{
 <a href="www.google.ro" class="termeni">Termeni și condiții</a>
 <a href="www.xxx.ro" class="despre">Despre noi</a>
 
- 
+<div class="fundal"></div> 
 <form>
 <p class="form_cand">Când alergi de obicei (dimineața/seara)?<br />
     <span class="wpcf7-form-control-wrap your-name"><input type="text" name="cand" value="" class="wpcf7-text wpcf7-validates-as-required" size="20" /></span> </p>
@@ -236,7 +282,7 @@ p.form_obs{
 <p class="form_sig">Te simți în siguranță alergând în zonă?<br /> Dacă nu, de ce?<br />
     <span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="30" rows="2"></textarea></span> </p>
 <p class="form_obs">Alte observații relevante.<br />
-    <span><textarea name="your-message" cols="30" rows="2"></textarea></span> </p>
+    <span font="Calibri"><textarea name="your-message" cols="30" rows="2"></textarea></span> </p>
 </form>
 
 
