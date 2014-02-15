@@ -31,9 +31,9 @@ position: fixed;
 
 
 p.form_cand{
-        position:absolute;
+        position:fixed;
 	top:150px;
-        right:28px;
+        right:72px;
         margin: 0px;
         font-size:14px;
         font-family:Calibri;
@@ -41,9 +41,9 @@ p.form_cand{
 }
 
 p.form_unde{
-        position:absolute;
+        position:fixed;
 	top:200px;
-        right:20px;
+        right:66px;
         margin: 0px;
 	font-size:14px;
         font-family:Calibri;
@@ -51,11 +51,11 @@ p.form_unde{
 
 .fundal 
 {
-position: absolute;
+position: fixed;
 top: 145px;
 right: 16px;
 width: 295px;
-height: 433px;
+height: 485px;
 /*padding: 5px;
 border: 1px;
 margin: 1px;*/
@@ -96,45 +96,59 @@ margin: 1px;*/
 }
 
 p.form_circ{
-        position:absolute;
+        position:fixed;
 	top:250px;
-        right:74px;
+        right:143px;
         margin: 0px;
 	font-size:14px;
         font-family:Calibri;
 }
-p.form_caini{
-        position:absolute;
-	top:300px;
-        right:74px;
-        margin: 0px;
-	font-size:14px;
-        font-family:Calibri;
-}
+
 p.form_lum{
-        position:absolute;
+        position:fixed;
 	top:350px;
-        right:74px;
+        right:127px;
+        margin: 0px;
+	font-size:14px;
+        font-family:Calibri;
+}
+
+p.form_caini{
+        position:fixed;
+	    top:300px;
+        float:right;
+		right: 151px;
         margin: 0px;
 	font-size:14px;
         font-family:Calibri;
 }
 
 p.form_sig{
-        position:absolute;
+        position:fixed;
 	top:400px;
-        right:40px;
+        right:38px;
         margin: 0px;
 	font-size:14px;
         font-family:Calibri;
+       
 }
 
 p.form_obs{
-        position:absolute;
+        position:fixed;
 	top:500px;
-        right:77px;
+        right:36px;
         margin: 0px;
 	font-size:14px;
+        font-family:Calibri;
+	float: left;
+}
+.nota
+{
+        position:absolute;
+		top:580px;
+        right:22px;
+        margin: 0px;
+		font-size:14px;
         font-family:Calibri;
 }
 .salv {
@@ -166,7 +180,7 @@ p.form_obs{
 	display:inline-block;
 	color:#ffffff;
 	font-family:Calibri;
-	font-size:15px;
+	font-size:17px;
 	font-weight:bold;
 	font-style:normal;
 	height:40px;
@@ -190,7 +204,7 @@ p.form_obs{
 .sterg {
         position:absolute;
 	top:70px;
-        right:15px;
+        right:17px;
         margin: 1px;
 	-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
@@ -216,7 +230,7 @@ p.form_obs{
 	display:inline-block;
 	color:#ffffff;
 	font-family:Calibri;
-	font-size:15px;
+	font-size:17px;
 	font-weight:bold;
 	font-style:normal;
 	height:40px;
@@ -269,23 +283,25 @@ p.form_obs{
 
 <div class="fundal"></div> 
 <form>
-<p class="form_cand">Când alergi de obicei (dimineața/seara)?<br />
+<p class="form_cand">Când alergi de obicei (dimineața/seara)?*<br />
     <span class="wpcf7-form-control-wrap your-name"><input type="text" name="cand" value="" class="wpcf7-text wpcf7-validates-as-required" size="20" /></span> </p>
-<p class="form_unde">Unde alergi de fel (pe trotuar/pe stradă)?<br />
+<p class="form_unde">Unde alergi de fel (pe trotuar/pe stradă)?*<br />
     <span class="wpcf7-form-control-wrap your-name"><input type="text" name="unde" value="" class="wpcf7-text wpcf7-validates-as-required" size="20" /></span> </p>
-<p class="form_circ">Traseul este intens circulat?<br />
+<p class="form_circ">Traseul este intens circulat?*<br />
     <span class="wpcf7-form-control-wrap your-name"><input type="text" name="unde" value="" class="wpcf7-text wpcf7-validates-as-required" size="20" /></span> </p>
 <p class="form_caini">Sunt câini pe traseu?<br />
     <span class="wpcf7-form-control-wrap your-name"><input type="text" name="unde" value="" class="wpcf7-text wpcf7-validates-as-required" size="20" /></span> </p>
-<p class="form_lum">Traseul este luminat noaptea?<br />
+<p class="form_lum">Traseul este luminat noaptea?*<br />
     <span class="wpcf7-form-control-wrap your-name"><input type="text" name="unde" value="" class="wpcf7-text wpcf7-validates-as-required" size="20" /></span> </p>
-<p class="form_sig">Te simți în siguranță alergând în zonă?<br /> Dacă nu, de ce?<br />
+<p class="form_sig">Te simți în siguranță alergând în zonă?*<br /> Dacă nu, de ce?<br />
     <span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="30" rows="2"></textarea></span> </p>
 <p class="form_obs">Alte observații relevante.<br />
     <span font="Calibri"><textarea name="your-message" cols="30" rows="2"></textarea></span> </p>
 </form>
+<p class="nota"><b>*Notă:</br></b> Toate câmpurile, mai puțin ultimul, sunt obligatorii.</p>
 
 
 </body>
 
 </html>
+
