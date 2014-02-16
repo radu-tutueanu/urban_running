@@ -1,5 +1,0 @@
-function calcRoute(pointsarray) {
-	if(pointsarray.length < 2 ) return;
-	document.write("<h1>This is a heading</h1>");
-	return;
-}
