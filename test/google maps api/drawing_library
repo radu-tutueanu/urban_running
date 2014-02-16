@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7_q4j3wbRGmQr3V-wtKZrlv7Uz_-G7Dk&libraries=drawing&sensor=true">
+    </script>
+    <script type="text/javascript">
+	 var map;
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng( 44.4325, 26.1039),
+          zoom: 11,
+	  panControl: false,
+  	  zoomControl: false,
+  	  mapTypeControl: false,
+  	  scaleControl: false,
+  	  streetViewControl: false,
+	  overviewMapControl: false
+        };
+       map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+      var drawingManager = new google.maps.drawing.DrawingManager();
+	drawingManager.setMap(map);
+	 var flightPlanCoordinates = [
+    		new google.maps.LatLng(44.44340087226065, 26.10806815280921),
+    		new google.maps.LatLng(44.446204281513324,26.112681552314825),
+   		new google.maps.LatLng(44.440880752949404, 26.11431233539588),
+    		new google.maps.LatLng(44.44340087226065, 26.10806815280921)
+  		];
+	  var flightPath = new google.maps.Polyline({
+    		path: flightPlanCoordinates,
+   		geodesic: true,
+    		strokeColor: '#FF0000',
+    		strokeOpacity: 1.0,
+    		strokeWeight: 2
+  		});
+  	flightPath.setMap(map);
+	}
+   
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"/>
+  </body>
+</html>
