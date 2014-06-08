@@ -1,12 +1,11 @@
-//this is were the db code lies
 
 module.exports = {
-  addUser: function () {
-    // whatever
+  addUser: function (username) {
+     console.log( 'added user' + username );
   },
   getUser: function () {
     // whatever
-  }
+  },
 
   verifyPassword: function () {
     // whatever
