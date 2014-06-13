@@ -8,9 +8,23 @@
   <body>
     <script>
       var socket = io.connect();
-      
+      var loggedIn = false;
+      function login( username, password){
+        socket.emit('login', {'username' : username, 'password' : password});
+      }
+
+      login('radu', '112');
       socket.on('date', function(data){
         $('#date').text(data.date);
+      });
+
+      socket.on('login_OK', function(data){
+        loggedIn = true;
+        $('#status').text('logged in');
+      });
+
+      socket.on('login_NOK', function(data){
+        $('#status').text('alert incorrect uname/pass');
       });
 
       $(document).ready(function(){
@@ -20,6 +34,7 @@
       });
     </script>
     <div id="date"></div>
+     <div id="status"></div>
     <textarea id="text"></textarea>
   </body>
 </html>
