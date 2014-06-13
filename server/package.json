@@ -1,0 +1,12 @@
+{
+  "name": "UndeAlergam.socket.io",
+  "version": "0.0.0",
+  "description": "Unde alergam server - varianta cu socket.io",
+  "main": "server.js",
+  "author": "Radu Tutueanu",
+  "private": true,
+  "license": "BSD",
+  "dependencies": {
+    "sockt.io": "1.0.4"
+  }
+}
