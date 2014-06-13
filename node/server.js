@@ -30,12 +30,12 @@ function parseMessage( message ){
 			clientName = atoms[1];
 			sendOK();
 		}
-			
 		else sendNOK();
 		return;
 	}
 	if (atoms[0] == "sentRoute") {
-		console.log( '%s: receiving route', clientName );
+		console.log( '%s: receiving route %s', clientName, message );
+		receiveRoute( atoms.slice(1) );
 		return;
 	}
 	if (atoms[0] == "getRoutes") {
@@ -58,7 +58,18 @@ function sendNOK(){
 	sendMessage( "login:NOK" );
 }
 
+function receiveRoute ( atoms ) {
+	coordArray = Array();
+	for (var index in atoms){
+		console.log( atoms[index] );
+		coordArray.push( atoms[index] );
+	}
+	return coordArray;
+}
+
 function sendMessage( message ){
 	console.log( '%s: sending message %s', clientName, message );
 	outerws.send( message );
 }
+
+
