@@ -14,6 +14,7 @@
       }
 
       login('radu', '112');
+      socket.emit('route', transformPath( current.markers )  );
       socket.on('date', function(data){
         $('#date').text(data.date);
       });
@@ -32,6 +33,22 @@
           socket.emit('client_data', {'letter': String.fromCharCode(e.charCode)});
         });
       });
+
+
+      function transformPath( markers ){
+        var coordinates = Array();
+
+        function addValuesToVector(value, index, array){
+          coordinates.push( value.lat() );
+          coordinates.push( value.lng() );
+    
+         }
+
+
+        markers.forEach( addValuesToVector );
+
+        return coordinates ;
+  }
     </script>
     <div id="date"></div>
      <div id="status"></div>

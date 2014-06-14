@@ -3,6 +3,7 @@ var url = require('url');
 var fs = require('fs');
 var common = require('./common')
 var server;
+var htmlDir = '/html/'
 
 server = http.createServer(function(req, res){
     // your normal server code
@@ -10,11 +11,11 @@ server = http.createServer(function(req, res){
     switch (path){
         case '/':
             res.writeHead(200, {'Content-Type': 'text/html'});
-            res.write('<h1>Hello! Try the <a href="/index.html">Main page</a></h1>');
+            res.write('<h1>Hello! Try the <a href="index.html">Main page</a></h1>');
             res.end();
             break;
         case '/index.html':
-            fs.readFile(__dirname + path, function(err, data){
+            fs.readFile(__dirname + htmlDir+ path, function(err, data){
                 if (err){
                     return send404(res);
                 }
@@ -23,6 +24,16 @@ server = http.createServer(function(req, res){
                 res.end();
             });
         break;
+        case '/place':
+            fs.readFile(__dirname + htmlDir+ "placing\ a\ marker\ when\ clicking.html", function(err, data){
+                if (err){
+                    return send404(res);
+                }
+                res.writeHead(200, {'Content-Type': path == 'json.js' ? 'text/javascript' : 'text/html'});
+                res.write(data, 'utf8');
+                res.end();
+            });
+            break;
         default: send404(res);
     }
 }),
@@ -61,8 +72,15 @@ io.sockets.on('connection', function(socket){
         }
     });
     //receiveRoute
-
+    socket.on(common.SEND_ROUTE, function(data){
+         process.stdout.write("received route\n");
+          process.stdout.write(data[0]+'');
+    });
     //routesRequest
+     socket.on(common.REQUEST_ALL_ROUTES, function(data){
+          process.stdout.write("received routes request\n");
+           socket.emit(common.SEND_ALL_ROUTES, {' narcis' : [44.4136738372583, 26.102828979492188, 44.4136738372583, 26.102828979492188, 44.41408911082398, 26.10262580215931, 44.41425818906652, 26.10299527645111]});
+    });
 });
 
 

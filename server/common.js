@@ -7,9 +7,6 @@ module.exports = {
 	REQUEST_ALL_ROUTES: "request_all_routes",
 	SEND_ROUTE_INFO:"send_route_info"
 
-
-
-
 }
 
 //TODO: this is supposed to be imported by both client and serve. 
