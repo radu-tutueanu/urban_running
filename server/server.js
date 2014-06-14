@@ -79,7 +79,9 @@ io.sockets.on('connection', function(socket){
     //routesRequest
      socket.on(common.REQUEST_ALL_ROUTES, function(data){
           process.stdout.write("received routes request\n");
-           socket.emit(common.SEND_ALL_ROUTES, {' narcis' : [44.4136738372583, 26.102828979492188, 44.4136738372583, 26.102828979492188, 44.41408911082398, 26.10262580215931, 44.41425818906652, 26.10299527645111]});
+           socket.emit(common.SEND_ALL_ROUTES, {' narcis' : [44.4136738372583, 26.102828979492188, 44.4136738372583, 26.102828979492188, 
+            44.41408911082398, 26.10262580215931, 44.41425818906652, 26.10299527645111],
+            'radu' : [ 44.4217124730134, 26.064776480197906, 44.42180059302007, 26.06495887041092, 44.42080444607848, 26.0658198595047]}); //Testing purposes; this should be taken out of the DB
     });
 });
 

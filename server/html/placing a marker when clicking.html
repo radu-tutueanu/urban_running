@@ -29,6 +29,7 @@
   function initialize() {
   var options = new Object();
   options.draggable = true;
+  options.preserveViewport = true;
   directionsDisplay = new google.maps.DirectionsRenderer(options);
   var mapOptions = {
     zoom: 11,
@@ -74,15 +75,15 @@ function calcRoute(traseu) {
 	start = traseu.markers[ 0 ];
 	end = traseu.markers[ markers_length - 1 ];
 	var request = {
-      		origin: start,
-     		destination: end,
-		waypoints: traseu.waypoints,
-      		travelMode: google.maps.TravelMode.WALKING
+          origin: start,
+          destination: end,
+          waypoints: traseu.waypoints,
+          travelMode: google.maps.TravelMode.WALKING
   		};
   	directionsService.route(request, function(response, status) {
 		 if (status != google.maps.DirectionsStatus.OK) 
    		 {
-     			//Here we'll handle the errors a bit better :P
+     			//Here we'll handle the errors a bit better 
       			alert('Directions failed: ' + status);
      			 return;
    		 }
@@ -99,15 +100,117 @@ function calcRoute(traseu) {
  	 });
 }
 
+function addLastWaypoint( traseu ){
+  var waypoint = new Object();
+    waypoint.location = traseu.markers[ traseu.markers.length - 2 ];
+    waypoint.stopover = false;
+    traseu.waypoints.push( waypoint );
+}
+
+function createAndSendRequest( traseu, printRouteInfo ){
+  start = traseu.markers[ 0 ];
+  end = traseu.markers[ markers_length - 1 ];
+  var request = {
+          origin: start,
+          destination: end,
+          waypoints: traseu.waypoints,
+          travelMode: google.maps.TravelMode.WALKING
+      };
+    if (printRouteInfo ) {
+      directionsService.route(request, handleDirectionsResponseWithPrint);
+    }
+    else {
+        directionsService.route(request, handleDirectionsResponse);
+    }
+}
+
+function handleDirectionsResponse( response, status ){
+   if (status != google.maps.DirectionsStatus.OK) 
+       {
+          //Here we'll handle the errors a bit better 
+            alert('Directions failed: ' + status);
+           return -1;
+       }
+
+    if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+          }
+      return 1;
+}
+
+
+function handleDirectionsResponseWithPrint( response, status ){
+    if(handleDirectionsResponse( response, status ) == 1){
+      // Display the distance:
+            document.getElementById('distance').innerHTML += 
+                  calcDistance(response.routes[0]) + " meters";
+
+            // Display the duration:
+            document.getElementById('duration').innerHTML += 
+                  calcDuration(response.routes[0]) + " seconds";
+    }
+
+}
+
+function calcRouteFromScratch( traseu ){
+  if( traseu.markers.length < 2 ) {
+      alert('Received bad markers from server');
+    return;
+  }
+
+  for( i =1; i < traseu.markers.length - 1; i++ ){
+      var waypoint = new Object();
+      waypoint.location = traseu.markers[ i ];
+      waypoint.stopover = false;
+      traseu.waypoints.push( waypoint );
+  }
+
+  start = traseu.markers[ 0 ];
+  end = traseu.markers[ traseu.markers.length - 1 ];
+  var request = {
+          origin: start,
+          destination: end,
+          waypoints: traseu.waypoints,
+          travelMode: google.maps.TravelMode.WALKING
+      };
+    directionsService.route(request, function(response, status) {
+     if (status != google.maps.DirectionsStatus.OK) 
+       {
+          //Here we'll handle the errors a bit better 
+            alert('Directions failed: ' + status);
+           return;
+       }
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+       }
+   });
+}
+
 
 function placeMarker(position, map) {
-  /*var marker = new google.maps.Marker({
-    position: position,
-    map: map
-  });*/
 	current.markers.push(position);
 	calcRoute(current);
- // map.panTo(position);
+}
+
+
+function processReceivedRoutes(receivedRoutesDict) {
+    for (var key in receivedRoutesDict) {
+      console.log(key);
+      traseu = vectorToTraseu( receivedRoutesDict[ key ] );
+      calcRouteFromScratch( traseu ); //TODO DRAW THEM DIFFERENTLY
+    }
+
+}
+
+function vectorToTraseu( array ){
+  var traseu = new Object();
+  traseu.markers = new Array();
+  traseu.waypoints = new Array();
+  for( i = 0; i< array.length; i+= 2 ){
+    traseu.markers.push( new google.maps.LatLng( array[ i ], array[ i+1 ] ) );
+  }
+
+  return traseu;
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
