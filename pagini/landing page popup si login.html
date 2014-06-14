@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<html lang="ro">
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+  <head>
+  <!--<link rel="stylesheet" type="text/css" href="file:///C:/Users/Narcis/Desktop/undealergam.ro\test\stil_landing_page.css">-->
+      <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100%; width: 100%; }
+.despre {
+position: fixed;
+ bottom: 2px;
+ right: 53%;
+ margin-right:-200px;<!-- /*negative half the width */-->
+ font-family: Calibri;
+ font-size:12px;
+}
+.termeni{
+    position:fixed;
+    bottom:2px;
+    left:53%;
+   
+    margin-left:-200px; <!--/* negative half the width */-->
+    font-family: Calibri;
+    font-size:12px;
+   
+}
+
+  #eroare_rasp {
+	  position:fixed;
+	  bottom:40.8%;
+      right:2.1%;
+      margin: 0px;
+	  font-size:15px; 
+      font-family:Calibri; 
+	  font-weight:bold;
+	  color: red;
+	 
+	  }
+	  
+.adauga {
+        position:absolute;
+	    top:9%;
+        right:2%;
+        margin: 1px;
+	-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b8e356), color-stop(1, #a5cc52) );
+	background:-moz-linear-gradient( center top, #b8e356 5%, #a5cc52 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8e356', endColorstr='#a5cc52');
+	background-color:#b8e356;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:1px solid #83c41a;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Calibri;
+	font-size:20px;
+	font-weight:bold;
+	font-style:normal;
+	height:50px;
+	line-height:40px;
+	width:200px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #86ae47;
+}
+
+
+.fundal 
+{
+position: absolute;
+top:200px;
+right:0%;
+width:195px;
+height:173px;
+visibility:hidden;
+-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b8e356), color-stop(1, #a5cc52) );
+	background:-moz-linear-gradient( center top, #b8e356 5%, #a5cc52 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8e356', endColorstr='#a5cc52');
+	background-color:#b8e356;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:1px solid #83c41a;
+	display:inline-block;
+
+
+}
+p.user {
+position:fixed;
+top:32%;
+right:2.5%;
+font-family: Calibri;
+font-size:14px;
+color: black;
+visibility:hidden;
+}
+p.pass {
+position:fixed;
+top:40.5%;
+right:2.5%;
+font-family: Calibri;
+font-size:14px;
+color: black;
+visibility:hidden;
+}
+.buton {
+position:fixed;
+top: 52%;
+right:2.5%;
+font-family: Calibri;
+font-size:14px;
+color: black;
+visibility:hidden;
+}
+    </style>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	    <meta charset=utf-8 />
+    <link rel="stylesheet" href="http://www.jacklmoore.com/colorbox/example1/colorbox.css" title="test"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+    </script>
+
+	<script src="http://www.jacklmoore.com/colorbox/jquery.colorbox.js"></script>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7_q4j3wbRGmQr3V-wtKZrlv7Uz_-G7Dk&sensor=true">
+    </script>
+    <script type="text/javascript">
+	
+	//funcția ce deschide fereastra de pop-up prima data
+  function openColorBox(){
+        $.colorbox({iframe:true, width:"50%", height:"53%", href: "file:///C:/Users/Narcis/Desktop/simplu.html"});
+		
+      }
+      
+     setTimeout(openColorBox, 1);
+	 
+	 var map;
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng( 44.4325, 26.1039),
+          zoom: 12
+
+        };
+       map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+      
+	
+  	flightPath.setMap(map);
+	}
+   
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+
+/*
+$(document).ready(function(){
+ $("#show").click(function(){
+    $("adauga_traseu").show(800);
+  });
+});*/
+
+
+    </script>
+	<script>
+//	var verif;
+      function openLoginBox(){
+        $.colorbox({iframe:true, width:"40%", height:"35%", href: "file:///E:/Dropbox/Start-up/undealergam.ro/in lucru/logare.html"});
+	//	window.open("file:///E:/Dropbox/Start-up/undealergam.ro/finale/complet_adauga_traseu_formular.html","_self")
+	//	jQuery.colorbox.close();
+	   // verif=1;
+      }
+
+function openLogin() {
+document.getElementById("fundal_id").style.visibility="visible";
+document.getElementById("login").style.visibility="visible";
+document.getElementById("user_id").style.visibility="visible";
+document.getElementById("pass_id").style.visibility="visible";
+document.getElementById("button_id").style.visibility="visible";
+
+}
+
+function validateLogin() {
+var len_user=document.loginForm.nume_util.value;
+var len_pass=document.loginForm.parola.value;
+if (len_user.length<1 || len_pass.length<1) {
+document.getElementById("eroare_rasp").innerHTML = "Te rugăm să completezi ambele câmpuri.";
+}
+if (len_user.length>0 && len_pass.length>0) {
+window.open("file:///E:/Dropbox/Start-up/undealergam.ro/finale/adauga_traseu_formular_validari_lichid.html#","_self");
+}
+}//închide funcția
+
+function resetForm() {
+document.getElementById("login").reset();
+}
+	</script>
+  <body onload="resetForm()">
+
+    <div id="map-canvas">
+</div>
+<!-- <div id="bara"> -->
+<title>Undealergam.ro - găsește-ți traseul potrivit de alergat</title>
+ <a href="#" class="adauga" onclick="openLogin()">Adaugă traseu</div>
+ <div class="fundal" id="fundal_id"></div>
+
+<form name="loginForm" id="login">
+<p class="user" id="user_id">Nume utilizator<br />
+    <input type="text" size="15" name="nume_util"/></p>
+<p class="pass" id="pass_id">Parola<br />
+    <input type="text" size="15" name="parola"/></p>  
+</form>
+<button type="button" class="buton" id="button_id" onclick="validateLogin()">Login</button> 
+
+<p id="eroare_rasp"><b></b></p>
+
+<a href="www.google.ro" class="termeni">Termeni și condiții</a>
+<a href="www.xxx.ro" class="despre">Despre noi</a>
+
+
+
+
+</head>
+</body>
+
+</html>
