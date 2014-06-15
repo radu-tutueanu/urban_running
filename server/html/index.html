@@ -14,7 +14,9 @@
       }
 
       login('radu', '112');
-      socket.emit('route', transformPath( current.markers )  );
+      //socket.emit('send_route', transformPath( current.markers )  ); //ok
+      socket.emit('request_all_routes');
+     
       socket.on('date', function(data){
         $('#date').text(data.date);
       });
@@ -22,6 +24,10 @@
       socket.on('login_OK', function(data){
         loggedIn = true;
         $('#status').text('logged in');
+      });
+
+       socket.on('send_all_routes', function(data){
+        processReceivedRoutes(data);
       });
 
       socket.on('login_NOK', function(data){
@@ -33,6 +39,7 @@
           socket.emit('client_data', {'letter': String.fromCharCode(e.charCode)});
         });
       });
+
 
 
       function transformPath( markers ){
