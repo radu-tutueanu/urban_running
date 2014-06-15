@@ -211,9 +211,10 @@ var len_pass=document.loginForm.parola.value;
 if (len_user.length<1 || len_pass.length<1) {
 document.getElementById("eroare_rasp").innerHTML = "Te rugăm să completezi ambele câmpuri.";
 }
-if (len_user.length>0 && len_pass.length>0) {
+if (len_user=="Narcis" && len_pass=="parola") {
 window.open("file:///E:/Dropbox/Start-up/undealergam.ro/finale/adauga_traseu_formular_validari_lichid.html#","_self");
 }
+else {document.getElementById("eroare_rasp").innerHTML = "Combinația nume de utilizator-parolă este incorectă.";}
 }//închide funcția
 
 function resetForm() {
@@ -232,8 +233,8 @@ document.getElementById("login").reset();
 <form name="loginForm" id="login">
 <p class="user" id="user_id">Nume utilizator<br />
     <input type="text" size="15" name="nume_util"/></p>
-<p class="pass" id="pass_id">Parola<br />
-    <input type="text" size="15" name="parola"/></p>  
+<p class="pass" id="pass_id">Parolă<br />
+    <input type="password" size="15" name="parola"/></p>  
 </form>
 <button type="button" class="buton" id="button_id" onclick="validateLogin()">Login</button> 
 
