@@ -27,6 +27,7 @@
       });
 
        socket.on('send_all_routes', function(data){
+        console.log("received all routes");
         processReceivedRoutes(data);
       });
 

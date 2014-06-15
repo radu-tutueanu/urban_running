@@ -163,16 +163,17 @@ function calcRouteFromScratch( traseu ){
       waypoint.stopover = false;
       traseu.waypoints.push( waypoint );
   }
-
+   console.log('drawing');
   createAndSendRequest( traseu, drawPolyFromDirectionsResponse );
   
 }
 
 function processReceivedRoutes(receivedRoutesDict) {
+  console.log('procssingRoutes');
     for (var key in receivedRoutesDict) {
       console.log(key);
       traseu = vectorToTraseu( receivedRoutesDict[ key ] );
-      calcRouteFromScratch( traseu ); //TODO DRAW THEM DIFFERENTLY
+      calcRouteFromScratch( traseu ); 
     }
 
 }
