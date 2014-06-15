@@ -1,0 +1,56 @@
+DELIMITER //
+create procedure inserare_traseu (
+in p_user varchar(30),
+in p_nume_traseu varchar(40),
+in p_dist decimal(33,30),
+in p_cand varchar(50),
+in p_unde varchar(50),
+in p_trafic int,
+in p_caini int,
+in p_lumini int,
+in p_sig varchar(2000),
+in p_obs varchar(2000),
+in p_lat1 decimal(33,30),
+in p_longit1 decimal(33,30),
+in p_lat2 decimal(33,30),
+in p_longit2 decimal(33,30),
+in p_lat3 decimal(33,30),
+in p_longit3 decimal(33,30),
+in p_lat4 decimal(33,30),
+in p_longit4 decimal(33,30),
+in p_lat5 decimal(33,30),
+in p_longit5 decimal(33,30),
+in p_lat6 decimal(33,30),
+in p_longit6 decimal(33,30),
+in p_lat7 decimal(33,30),
+in p_longit7 decimal(33,30),
+in p_lat8 decimal(33,30),
+in p_longit8 decimal(33,30),
+in p_lat9 decimal(33,30),
+in p_longit9 decimal(33,30),
+in p_lat10 decimal(33,30),
+in p_longit10 decimal(33,30)
+)
+
+begin
+declare lv_traseu bigint(20);
+declare lv_userid int; /*trebuie declare inainte de fiecare VARIABILA!!!!!*/
+
+
+SELECT AUTO_INCREMENT
+into lv_traseu
+FROM information_schema.TABLES
+WHERE TABLE_NAME = 'trasee';
+
+
+select id_utilizator
+into lv_userid 
+from utilizatori
+where user_name=p_user;
+
+insert into trasee values(lv_traseu, lv_userid,p_dist,p_nume_traseu);
+insert into detalii_traseu values (lv_traseu, p_cand, p_unde, p_trafic, p_caini, p_lumini, p_sig, p_obs);
+ insert into coordonate values (lv_traseu, p_lat1, p_longit1, p_lat2, p_longit2,p_lat3, p_longit3,p_lat4, p_longit4,p_lat5, p_longit5,
+p_lat6, p_longit6,p_lat7, p_longit7,p_lat8, p_longit8,p_lat9, p_longit9,p_lat10, p_longit10);
+end//
+DELIMITER ;

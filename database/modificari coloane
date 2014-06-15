@@ -1,0 +1,22 @@
+//modificari coloane
+alter table coordonate modify column longit1 decimal(33,30);
+alter table coordonate modify column longit2 decimal(33,30);
+alter table coordonate modify column longit3 decimal(33,30);
+alter table coordonate modify column longit4 decimal(33,30);
+alter table coordonate modify column longit5 decimal(33,30);
+alter table coordonate modify column longit6 decimal(33,30);
+alter table coordonate modify column longit7 decimal(33,30);
+alter table coordonate modify column longit8 decimal(33,30);
+alter table coordonate modify column longit9 decimal(33,30);
+alter table coordonate modify column longit10 decimal(33,30);
+////
+alter table coordonate modify column lat1 decimal(33,30);
+alter table coordonate modify column lat2 decimal(33,30);
+alter table coordonate modify column lat3 decimal(33,30);
+alter table coordonate modify column lat4 decimal(33,30);
+alter table coordonate modify column lat5 decimal(33,30);
+alter table coordonate modify column lat6 decimal(33,30);
+alter table coordonate modify column lat7 decimal(33,30);
+alter table coordonate modify column lat8 decimal(33,30);
+alter table coordonate modify column lat9 decimal(33,30);
+alter table coordonate modify column lat10 decimal(33,30);
