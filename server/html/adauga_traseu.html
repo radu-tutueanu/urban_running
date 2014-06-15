@@ -18,16 +18,16 @@
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7_q4j3wbRGmQr3V-wtKZrlv7Uz_-G7Dk&sensor=true">
   </script>
   <script type="text/javascript"> 
-  
-  
+
+
   var current ;
   initializeCurrent();
   var drawn =  new Array();
   var directionsDisplay;
   var directionsService = new google.maps.DirectionsService();
   var map;
-  
-  
+  var username = "Undefined";
+
   google.maps.event.addDomListener(window, 'load', initializeWithMarkersListener);    
 
 

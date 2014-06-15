@@ -180,8 +180,9 @@ function handleDirectionsResponse( response, status ){
   function handleDirectionsResponseWithPrint( response, status ){
   	if(handleDirectionsResponse( response, status ) == 1){
       // Display the distance:
-      document.getElementById('distance').innerHTML += 
-      calcDistance(response.routes[0]) + " meters";
+      current.distance = calcDistance(response.routes[0]);
+      document.getElementById('distance').innerHTML +=  current.distance
+       + " meters";
 
             // Display the duration:
             document.getElementById('duration').innerHTML += 
@@ -270,16 +271,34 @@ function login( socket, username, password){
 }
 
 
-function sendCurrentRoute(){
+function sendCurrentRoute(  route, routeJson ){
 
-	socket.emit('send_route', transformPath( current.markers )  );
+	routeJson['distance'] = route.distance;
+	routeJson['coordinates'] = transformPath( current.markers );
+	socket.emit('send_route', routeJson );
 
 }
 
 
+function createRouteJsonWithoutPoints(denumire, circulatie, caini, lumini, cand, unde, siguranta, observatii ){
+	routeJson = {};
+  	routeJson['username'] = username;
+  	routeJson['name'] = denumire;
+  	routeJson['trafficField'] = circulatie;
+  	routeJson['dogsField'] = caini;
+  	routeJson['lightsField'] = lumini;
+  	routeJson['whenField'] = cand;
+  	routeJson['whereField'] = unde;
+  	routeJson['safetyField'] = siguranta;
+  	routeJson['observationsField'] = observatii;
+
+  	return routeJson;
+}
+
 //validare pe butoanele radio
 function validateAndSave()
 {
+
   var len_circ=document.ContactForm.circ.length;
   var len_caini=document.ContactForm.caini.length;
   var len_lum=document.ContactForm.caini.length;
@@ -290,7 +309,9 @@ function validateAndSave()
   var cand_box=document.ContactForm.cand.value;
   var unde_box=document.ContactForm.unde.value;
   var sig_box=document.ContactForm.sig.value;
+  var obs_box = document.ContactForm.nume_obs.value;
   var i;
+
 //validare pentru întrebarea cu circulație
 for (i=0;i<len_circ;i++) {
   if (document.ContactForm.circ[i].checked) {
@@ -323,7 +344,8 @@ if (ales_circ == "" || ales_caini == "" || ales_lum == "" || cand_box.length<1 |
 //dacă toate răspunsurile sunt bifate elimin mesajul
 if (ales_circ != "" && ales_caini != "" && ales_lum != "" && cand_box.length>1 && unde_box.length>1 && sig_box.length>1 && den_box.length>1) {
   document.getElementById("eroare_rasp").innerHTML = "";
-  sendCurrentRoute();
+  routeToSend = createRouteJsonWithoutPoints ( den_box, ales_circ, ales_caini, ales_lum, cand_box, unde_box, sig_box, obs_box );
+  sendCurrentRoute( current, routeToSend );
   alert('Traseul salvat! Apăsați pe OK pentru a fi redirectionat către pagina principală.');
   window.open("/index.html","_self");
 }
