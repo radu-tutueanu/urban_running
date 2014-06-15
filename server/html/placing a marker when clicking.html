@@ -19,9 +19,11 @@
     var current = new Object();
 	current.markers = new Array();
 	current.waypoints = new Array();
+  var drawn =  new Array();
    var directionsDisplay;
    var directionsService = new google.maps.DirectionsService();
    var map;
+
 
 
 
@@ -61,43 +63,15 @@ function calcDuration(route)
 	}
 	return total;
 }
-function calcRoute(traseu) {
+function calcRoute( traseu ) {
 	var markers_length = traseu.markers.length;
 	if( markers_length < 2 ) {
 		return;
 	}
 	if( markers_length != 2 ) {
-		var waypoint = new Object();
-		waypoint.location = traseu.markers[ markers_length - 2 ];
-		waypoint.stopover = false;
-		traseu.waypoints.push( waypoint );
+		addLastWaypoint( traseu );
 	}
-	start = traseu.markers[ 0 ];
-	end = traseu.markers[ markers_length - 1 ];
-	var request = {
-          origin: start,
-          destination: end,
-          waypoints: traseu.waypoints,
-          travelMode: google.maps.TravelMode.WALKING
-  		};
-  	directionsService.route(request, function(response, status) {
-		 if (status != google.maps.DirectionsStatus.OK) 
-   		 {
-     			//Here we'll handle the errors a bit better 
-      			alert('Directions failed: ' + status);
-     			 return;
-   		 }
-    		if (status == google.maps.DirectionsStatus.OK) {
-      			directionsDisplay.setDirections(response);
-			 // Display the distance:
-         		document.getElementById('distance').innerHTML += 
-            			calcDistance(response.routes[0]) + " meters";
-
-         		// Display the duration:
-         		document.getElementById('duration').innerHTML += 
-            			calcDuration(response.routes[0]) + " seconds";
-   		 }
- 	 });
+	createAndSendRequest( traseu, handleDirectionsResponseWithPrint );
 }
 
 function addLastWaypoint( traseu ){
@@ -107,21 +81,33 @@ function addLastWaypoint( traseu ){
     traseu.waypoints.push( waypoint );
 }
 
-function createAndSendRequest( traseu, printRouteInfo ){
+function createAndSendRequest( traseu, callback ){
   start = traseu.markers[ 0 ];
-  end = traseu.markers[ markers_length - 1 ];
+  end = traseu.markers[ traseu.markers.length - 1 ];
   var request = {
           origin: start,
           destination: end,
           waypoints: traseu.waypoints,
           travelMode: google.maps.TravelMode.WALKING
       };
-    if (printRouteInfo ) {
-      directionsService.route(request, handleDirectionsResponseWithPrint);
-    }
-    else {
-        directionsService.route(request, handleDirectionsResponse);
-    }
+    
+      directionsService.route(request, callback );
+    
+}
+
+function drawPolyFromDirectionsResponse( response, status ){
+   if (status != google.maps.DirectionsStatus.OK) 
+       {
+          //Here we'll handle the errors a bit better 
+            alert('Directions failed: ' + status);
+        
+       }
+
+   else {
+            current.response = response;
+            drawRoute( response.routes[0].overview_path );
+          }
+     
 }
 
 function handleDirectionsResponse( response, status ){
@@ -132,7 +118,7 @@ function handleDirectionsResponse( response, status ){
            return -1;
        }
 
-    if (status == google.maps.DirectionsStatus.OK) {
+    else {
             directionsDisplay.setDirections(response);
           }
       return 1;
@@ -152,6 +138,19 @@ function handleDirectionsResponseWithPrint( response, status ){
 
 }
 
+function drawRoute( coordinates ){
+ var path = new google.maps.Polyline({
+    path: coordinates,
+    //geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+  drawn.push(path);
+  path.setMap(map);
+
+}
+
 function calcRouteFromScratch( traseu ){
   if( traseu.markers.length < 2 ) {
       alert('Received bad markers from server');
@@ -165,33 +164,9 @@ function calcRouteFromScratch( traseu ){
       traseu.waypoints.push( waypoint );
   }
 
-  start = traseu.markers[ 0 ];
-  end = traseu.markers[ traseu.markers.length - 1 ];
-  var request = {
-          origin: start,
-          destination: end,
-          waypoints: traseu.waypoints,
-          travelMode: google.maps.TravelMode.WALKING
-      };
-    directionsService.route(request, function(response, status) {
-     if (status != google.maps.DirectionsStatus.OK) 
-       {
-          //Here we'll handle the errors a bit better 
-            alert('Directions failed: ' + status);
-           return;
-       }
-        if (status == google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setDirections(response);
-       }
-   });
+  createAndSendRequest( traseu, drawPolyFromDirectionsResponse );
+  
 }
-
-
-function placeMarker(position, map) {
-	current.markers.push(position);
-	calcRoute(current);
-}
-
 
 function processReceivedRoutes(receivedRoutesDict) {
     for (var key in receivedRoutesDict) {
@@ -211,6 +186,30 @@ function vectorToTraseu( array ){
   }
 
   return traseu;
+}
+
+function placeMarker(position, map) {
+	current.markers.push(position);
+	calcRoute(current);
+}
+
+
+function processReceivedRoutesVariant(receivedRoutesDict) {
+    for (var key in receivedRoutesDict) {
+      console.log(key);
+      coord = vectorToCoordinates( receivedRoutesDict[ key ] );
+      drawRoute( coord ); //TODO DRAW THEM DIFFERENTLY
+    }
+
+}
+
+function vectorToCoordinates( array ){
+  var coordinates = Array()
+  for( i = 0; i< array.length; i+= 2 ){
+    coordinates.push( new google.maps.LatLng( array[ i ], array[ i+1 ] ) );
+  }
+
+  return coordinates;
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
