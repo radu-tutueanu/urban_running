@@ -4,7 +4,8 @@ new mysql.Database({
     user: 'root',
     password: 'Carlos11',
     database: 'undealergam'
-}).connect(function(error) {
+})
+.connect(function(error) {
     if (error) {
         return console.log('CONNECTION error: ' + error);
     }//call inserare_utilizator('testare','test123','1995-06-07','Iasi','Romania'); -- exemplu apel
@@ -18,7 +19,7 @@ this.query("call inserare_utilizator('test1','test2','1995-06-07','Iasi','Romani
                         //console.log(this.query);
                         return;
                 }
-                console.log(rows.length + ' ROWS inserted');
+                console.log(rows.count + ' ROWS inserted');
         });
    
 });
