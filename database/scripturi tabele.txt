@@ -1,0 +1,80 @@
+﻿--scripturi baza de date
+--1. Creare tabelă utilizatori
+create table utilizatori (
+id_utilizator INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+user_name varchar(30),
+parola varchar(25),
+data_nastere datetime,
+oras varchar(50),
+tara varchar(50),
+data_creare datetime
+);
+
+--modificare definitie coloana
+alter table utilizatori modify column data_creare datetime -- se ignoră
+--exemplu insert
+insert into utilizatori values (null,'Radu','parola1234','1990-04-11 00:00:00','Bucuresti','Romania',sysdate() )
+--modificare coloană
+alter table utilizatori modify column data_creare datetime -- se ignoră
+--adăugare restricție de unicitate pe username
+alter table utilizatori add constraint user_unic unique (user_name);
+--2. Creare tabelă trasee
+create table trasee  (
+id_traseu INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id_utilizator int,
+distanta decimal(8,3),
+nume_traseu varchar(40)
+);
+--modificare definiție coloană not null
+ALTER TABLE trasee
+modify distanta decimal(8,3) not null
+--3. Adăugare cheie externă utilizatori.id_utilizator
+alter table trasee 
+add foreign key (id_utilizator) references utilizatori (id_utilizator) 
+--populare
+insert into trasee values (null, 2, 10000) 
+insert into trasee values (null, 1, 5000) 
+
+--3. Creare tabelă detalii_traseu
+create table detalii_traseu  (
+id_traseu INT NOT NULL PRIMARY KEY,
+info_cand varchar(50) not null,
+info_unde varchar(50) not null,
+info_trafic int not null,
+info_caini int not null,
+info_lumini int not null,
+info_siguranta varchar(2000),
+info_obs varchar(2000),
+constraint chk_trafic check (info_trafic>0 and info_trafic<6),
+constraint chk_caini check (info_caini>0 and info_caini<6),
+constraint chk_lumini check (info_lumini>0 and info_lumini<6)
+);
+--populare
+insert into detalii_traseu values (2, 'Seara','Stradă',2,5,3,'E dubios uneori','Ar fi frumos să mai fie oameni normali ca mine') 
+--4. Creare tabelă coordonate
+create table coordonate  (
+id_traseu INT NOT NULL PRIMARY KEY,
+lat1 decimal(10,8),
+longit1 decimal(10,8),
+lat2 decimal(10,8),
+longit2 decimal(10,8),
+lat3 decimal(10,8),
+longit3 decimal(10,8),
+lat4 decimal(10,8),
+longit4 decimal(10,8),
+lat5 decimal(10,8),
+longit5 decimal(10,8),
+lat6 decimal(10,8),
+longit6 decimal(10,8),
+lat7 decimal(10,8),
+longit7 decimal(10,8),
+lat8 decimal(10,8),
+longit8 decimal(10,8),
+lat9 decimal(10,8),
+longit9 decimal(10,8),
+lat10 decimal(10,8),
+longit10 decimal(10,8)
+);
+
+--populare
+insert into coordonate values (1,44.4339198,26.1331991,44.4339328,26.3331991,44.4339198,26.1331991,44.4339198,26.1331991,44.4339198,26.1331991,44.4339198,26.1331991,44.4339198,26.1331991,44.4339198,26.1331991,44.4339198,26.1331991,44.4339198,26.1331991)
