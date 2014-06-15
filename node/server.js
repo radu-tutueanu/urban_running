@@ -4,21 +4,21 @@ var clientName = "John Doe";
 var clientID = null;
 
 var WebSocketServer = require('ws').Server
-  , wss = new WebSocketServer({port: 8124});
+, wss = new WebSocketServer({port: 8124});
 wss.on('connection', function(ws) {
 	console.log('client connected');
 	connected = true;
 	outerws = ws;
-    ws.on('message', parseMessage);
+	ws.on('message', parseMessage);
 
-    ws.on('data', function(chunk) {
-  console.log('got %d bytes of data %s', chunk.length, chunk);
+	ws.on('data', function(chunk) {
+		console.log('got %d bytes of data %s', chunk.length, chunk);
 	});
 
 	ws.on('end', function() {
-    console.log('client disconnected');
-  });
-    
+		console.log('client disconnected');
+	});
+	
 });
 
 

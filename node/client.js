@@ -42,14 +42,14 @@ clientName = 'JohnDoe';
 var loggedIn = false;
 
 connection.onopen = function () {
-  connection.send('getRoutes;'); 
-  testMarkers = new Array();
-testMarkers.push(44.39687266303073,26.113386154174805);
-testMarkers.push(44.39727895272829,26.109824180603027);
-testMarkers.push(44.39374490449711,6.109845638275146);
-testString = setPath( testMarkers ) ;
-console.log(testString);
-connection.send( testString );
+	connection.send('getRoutes;'); 
+	testMarkers = new Array();
+	testMarkers.push(44.39687266303073,26.113386154174805);
+	testMarkers.push(44.39727895272829,26.109824180603027);
+	testMarkers.push(44.39374490449711,6.109845638275146);
+	testString = setPath( testMarkers ) ;
+	console.log(testString);
+	connection.send( testString );
 };
 connection.onmessage = parseMessage;
 
