@@ -1,5 +1,5 @@
 function openColorBox(){
-        $.colorbox({iframe:true, width:"50%", height:"53%", href: "file:///C:/Users/Narcis/Desktop/simplu.html"});
+        $.colorbox({iframe:true, width:"50%", height:"53%", href: "/pop-up.html"});
 		
       }
       
@@ -29,28 +29,33 @@ document.getElementById("login").reset();
 }
 
 function initialize(){
-	var options = new Object();
-  options.draggable = true;
-  options.preserveViewport = true;
-  directionsDisplay = new google.maps.DirectionsRenderer(options);
+	
   var mapOptions = {
     zoom: 11,
     center: new google.maps.LatLng( 44.4325, 26.1039)
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
+  initializeDirectionsDisplay(map);
+}
+
+function initializeDirectionsDisplay( map ){
+  var options = new Object();
+  options.draggable = true;
+  options.preserveViewport = true;
+  directionsDisplay = new google.maps.DirectionsRenderer(options);
   directionsDisplay.setMap(map);
 }
 
 function initializeWithMarkersListener() {
-  intialize();
+  initialize();
 
-  if( placeMarkers == true ) {
+  
   	google.maps.event.addListener(map, 'click', function(e) {
     placeMarker(e.latLng, map);
 
   });
-}
+
 }
 
 
@@ -133,14 +138,33 @@ function drawPolyFromDirectionsResponse( response, status ){
         
             drawRoute( response.routes[0].overview_path );
           }
+
+
      
 }
+
+function resetRoute( map ){
+	initializeCurrent();
+	directionsDisplay.setMap();
+	initializeDirectionsDisplay( map );
+
+}
+
+function initializeCurrent(){ //TODO delete current route
+		current = new Object();
+		current.markers = new Array();
+		current.waypoints = new Array();
+	}
+
 
 function handleDirectionsResponse( response, status ){
    if (status != google.maps.DirectionsStatus.OK) 
        {
           //Here we'll handle the errors a bit better 
             alert('Directions failed: ' + status);
+            if(status == google.maps.DirectionsStatus.ZERO_RESULTS){
+    			initializeCurrent();
+    		}
            return -1;
        }
 
@@ -148,6 +172,8 @@ function handleDirectionsResponse( response, status ){
             directionsDisplay.setDirections(response);
           }
       return 1;
+
+    
 }
 
 
@@ -238,3 +264,14 @@ function vectorToCoordinates( array ){
 
   return coordinates;
 }
+
+ function login( socket, username, password){
+        socket.emit('login', {'username' : username, 'password' : password});
+      }
+
+
+  function sendCurrentRoute(){
+
+  	socket.emit('send_route', transformPath( current.markers )  );
+
+  }
