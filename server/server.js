@@ -46,6 +46,16 @@ server = http.createServer(function(req, res){
             res.end();
         });
         break;
+        case '/pagina_traseu.css':
+        fs.readFile(__dirname + htmlDir+ path, function(err, data){
+            if (err){
+                return send404(res);
+            }
+            res.writeHead(200, {'Content-Type':  'text/css' });
+            res.write(data, 'utf8');
+            res.end();
+        });
+        break;
         default: 
         fs.readFile(__dirname + htmlDir+ path, function(err, data){
             if (err){

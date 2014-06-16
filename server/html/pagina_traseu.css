@@ -1,0 +1,249 @@
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0 }
+#map-canvas { height: 80%; width:50%; position:fixed; top:100px; left:30px;}
+
+p.titlu{
+	position:absolute;
+	top:10px;
+	left:30px;
+	margin: 0px;
+	font-size:36px;
+	font-family:Calibri;
+	font-type:bold;
+}
+.tbl_dist	{
+	position:absolute;
+	top:55px;
+	left:30px;
+	<!--Linia asta nu influențează rama tabelului. De verificat.-->
+	width:100%;
+	height:4%;
+	border-collapse:collapse;
+	border: 5px #F4EEF1;
+	font-family:Calibri;
+	font-size:25px;
+}	
+
+p.detalii{
+
+	position:absolute;
+	top:57px;
+	left:65%;
+	margin: 0px;
+	font-size:30px;
+	font-family:Calibri;
+	font-type:bold;
+}
+
+p.form_cand{
+	position:absolute;
+	top:100px;
+	left:65%;
+	margin: 0px;
+	font-size:16px;
+	font-family:Calibri;
+
+}
+p.rasp_cand{
+	position:absolute;
+	top:100px;
+	right:205px;
+	margin: 0px;
+	font-size:16px;
+	font-family:Calibri;
+
+}
+
+p.form_unde{
+	position:absolute;
+	top:125px;
+	left:65%;
+	margin: 0px;
+	font-size:16px;
+	font-family:Calibri;
+}
+
+p.rasp_unde{
+	position:absolute;
+	top:125px;
+	right:200px;
+	margin: 0px;
+	font-size:16px;
+	font-family:Calibri;
+
+}
+
+p.form_circ{
+	position:absolute;
+	top:150px;
+	left: 65%;
+	margin: 0px;
+	font-size:16px;
+	font-family:Calibri;
+}
+
+p.rasp_circ{
+	position:absolute;
+	top:150px;
+	right:265px;
+	margin: 0px;
+	font-size:16px;
+	font-family:Calibri;
+}		
+
+p.form_caini{
+	position:absolute;
+	top:175px;
+	left:65%;
+	margin: 0px;
+	font-size:16px;
+	font-family:Calibri;
+}
+p.rasp_caini{
+	position:absolute;
+	top:175px;
+	right:265px;
+	margin: 0px;
+	font-size:16px;
+	font-family:Calibri;
+}		
+
+p.form_lumin{
+	position:absolute;
+	top:200px;
+	left: 65%;
+	margin: 0px;
+	font-size:16px;
+	font-family:Calibri;
+}		
+
+p.rasp_lumin{
+	position:absolute;
+	top:200px;
+	right:265px;
+	margin: 0px;
+	font-size:16px;
+	font-family:Calibri;
+}
+p.form_sigur{
+	position:absolute;
+	top:225px;
+	left: 65%;
+	margin: 0px;
+	font-size:16px;
+	font-family:Calibri;
+}		
+.box_sigur {
+	position:absolute;
+	top:268px;
+	right:188px;
+	font-size:14px;
+	font-family:Calibri;
+	height:110px;width:350px;border:2px solid #ccc;overflow:auto;
+
+}	
+p.form_obs{
+	position:absolute;
+	top:395px;
+	left: 65%;
+	margin: 0px;
+	font-size:16px;
+	font-family:Calibri;
+}
+.box_obs {
+	position:absolute;
+	top:421px;
+	right:186px;
+	font-size:14px;
+	font-family:Calibri;
+	height:110px;width:350px;border:2px solid #ccc;overflow:auto;
+}
+
+
+.fundal 
+{
+	position: fixed;
+	top: 60px;
+	right: 170px;
+	width: 399px;
+	height: 490px;
+/*padding: 5px;
+border: 1px;
+margin: 1px;*/
+-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+-webkit-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b8e356), color-stop(1, #a5cc52) );
+background:-moz-linear-gradient( center top, #b8e356 5%, #a5cc52 100% );
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8e356', endColorstr='#a5cc52');
+background-color:#b8e356;
+-webkit-border-top-left-radius:0px;
+-moz-border-radius-topleft:0px;
+border-top-left-radius:0px;
+-webkit-border-top-right-radius:0px;
+-moz-border-radius-topright:0px;
+border-top-right-radius:0px;
+-webkit-border-bottom-right-radius:0px;
+-moz-border-radius-bottomright:0px;
+border-bottom-right-radius:0px;
+-webkit-border-bottom-left-radius:0px;
+-moz-border-radius-bottomleft:0px;
+border-bottom-left-radius:0px;
+text-indent:0;
+border:1px solid #83c41a;
+display:inline-block;
+	/*color:#ffffff;
+	font-family:Calibri;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:40px;
+	line-height:40px;
+	width:100px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #86ae47;*/
+	
+
+}
+
+.acasa {
+	position:absolute;
+	bottom:24%;
+	right:30.5%;
+	margin: 1px;
+	-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b8e356), color-stop(1, #a5cc52) );
+	background:-moz-linear-gradient( center top, #b8e356 5%, #a5cc52 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8e356', endColorstr='#a5cc52');
+	background-color:#b8e356;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:1px solid #83c41a;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Calibri;
+	font-size:20px;
+	font-weight:bold;
+	font-style:normal;
+	height:32px;
+	line-height:40px;
+	width:100px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #86ae47;
+}
+body {background-image:url("http://www.ciclogetii.ro/wp-content/uploads/bucuresti.jpg")}
