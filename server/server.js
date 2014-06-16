@@ -5,6 +5,7 @@ var common = require('./common')
 var server;
 var routes = [];
 var htmlDir = '/html/'
+var db = require('./db');
 
 server = http.createServer(function(req, res){
     // your normal server code
@@ -116,6 +117,9 @@ function verifyPass(username, password){
 
 
 function receiveRoute ( route ) {
+    db.insertTraseu( route['username'], route['name'], route['distance'], route['whenField'], 
+        route['whereField'], route['trafficField'], route['dogsField'], route['lightsField'],
+        route['safetyField'], route['observationsField'], route['coordinates'] ) ;
     routes.push(route);
 }
 
@@ -124,7 +128,6 @@ function createAllRoutesJson() {
     for (var i = routes.length - 1; i >= 0; i--) {
         allRoutes[ routes[i]['name'] ] = routes[i]['coordinates'] ;
     };
-
     return allRoutes;
 }
 
