@@ -20,7 +20,7 @@
 	var drawn =  new Array();
 	var map;
 	var routeInfo;
-	var routeID = 9; /*DE aici schimbi id-ul rutei afisate*/
+	var routeID = parseURLParams(document.location.href).id[0]; /*DE aici schimbi id-ul rutei afisate*/
 	google.maps.event.addDomListener(window, 'load', initializeWithoutVieportPreservation);
 	</script>
 
