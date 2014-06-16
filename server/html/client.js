@@ -28,7 +28,7 @@ function resetForm() {
 	document.getElementById("login").reset();
 }
 
-function initialize(){
+function initialize( ){
 	
 	var mapOptions = {
 		zoom: 11,
@@ -39,10 +39,10 @@ function initialize(){
 	initializeDirectionsDisplay(map);
 }
 
-function initializeDirectionsDisplay( map ){
+function initializeDirectionsDisplay( map, preserveViewport = true ){
 	var options = new Object();
 	options.draggable = true;
-	options.preserveViewport = true;
+	options.preserveViewport = preserveViewport;
 	directionsDisplay = new google.maps.DirectionsRenderer(options);
 	directionsDisplay.setMap(map);
 }
@@ -56,6 +56,16 @@ function initializeWithMarkersListener() {
 
 	});
 
+}
+
+function initializeWithoutVieportPreservation( ){
+  var mapOptions = {
+    zoom: 11,
+    center: new google.maps.LatLng( 44.4325, 26.1039)
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+    mapOptions);
+  initializeDirectionsDisplay(map, false);
 }
 
 
@@ -130,18 +140,18 @@ function drawPolyFromDirectionsResponse( response, status ){
 	{
           //Here we'll handle the errors a bit better 
           alert('Directions failed: ' + status);
-      }
-      else {
-      	drawRoute( response.routes[0].overview_path );
-      }
-  }
+        }
+        else {
+         drawRoute( response.routes[0].overview_path );
+       }
+     }
 
-  function resetRoute( map ){
-  	initializeCurrent();
-  	directionsDisplay.setMap();
-  	initializeDirectionsDisplay( map );
+     function resetRoute( map ){
+       initializeCurrent();
+       directionsDisplay.setMap();
+       initializeDirectionsDisplay( map );
 
-  }
+     }
 
 function initializeCurrent(){ //TODO delete current route
 	current = new Object();
@@ -159,70 +169,72 @@ function handleDirectionsResponse( response, status ){
           	initializeCurrent();
           }
           return -1;
-      }
+        }
 
-      else {
-      	directionsDisplay.setDirections(response);
-      }
-      return 1;
-
-
-  }
+        else {
+         directionsDisplay.setDirections(response);
+       }
+       return 1;
 
 
-  function handleDirectionsResponseWithPrint( response, status ){
-  	if(handleDirectionsResponse( response, status ) == 1){
+     }
+
+
+     function handleDirectionsResponseWithPrint( response, status ){
+       if(handleDirectionsResponse( response, status ) == 1){
       // Display the distance:
       current.distance = calcDistance(response.routes[0]);
       document.getElementById('distance').innerHTML +=  current.distance
-       + " meters";
+      + " meters";
 
             // Display the duration:
             document.getElementById('duration').innerHTML += 
             calcDuration(response.routes[0]) + " seconds";
+          }
+
         }
 
-    }
-
-    function drawRoute( coordinates ){
-    	var path = new google.maps.Polyline({
-    		path: coordinates,
+        function drawRoute( coordinates ){
+         var path = new google.maps.Polyline({
+          path: coordinates,
     //geodesic: true,
     strokeColor: '#FF0000',
     strokeOpacity: 1.0,
     strokeWeight: 2
-});
-    	drawn.push(path);
-    	path.setMap(map);
+  });
+         drawn.push(path);
+         path.setMap(map);
+
+       }
+
+       function calcRouteFromScratch( traseu ){
+         if( traseu.markers.length < 2 ) {
+          alert('Received bad markers from server');
+          return;
+        }
+
+        for( i =1; i < traseu.markers.length - 1; i++ ){
+          var waypoint = new Object();
+          waypoint.location = traseu.markers[ i ];
+          waypoint.stopover = false;
+          traseu.waypoints.push( waypoint );
+        }
+        console.log('drawing');
+        createAndSendRequest( traseu, drawPolyFromDirectionsResponse );
+
+      }
+
+      function processReceivedRoutes( receivedRoutesDict ) {
+       console.log('procssingRoutes');
+       for (var key in receivedRoutesDict) {
+        console.log(key);
+        traseu = vectorToTraseu( receivedRoutesDict[ key ][ 'coordinates' ] );
+        calcRouteFromScratch( traseu ); 
+      }
 
     }
 
-    function calcRouteFromScratch( traseu ){
-    	if( traseu.markers.length < 2 ) {
-    		alert('Received bad markers from server');
-    		return;
-    	}
 
-    	for( i =1; i < traseu.markers.length - 1; i++ ){
-    		var waypoint = new Object();
-    		waypoint.location = traseu.markers[ i ];
-    		waypoint.stopover = false;
-    		traseu.waypoints.push( waypoint );
-    	}
-    	console.log('drawing');
-    	createAndSendRequest( traseu, drawPolyFromDirectionsResponse );
-
-    }
-
-    function processReceivedRoutes( receivedRoutesDict ) {
-    	console.log('procssingRoutes');
-    	for (var key in receivedRoutesDict) {
-    		console.log(key);
-    		traseu = vectorToTraseu( receivedRoutesDict[ key ][ 'coordinates' ] );
-    		calcRouteFromScratch( traseu ); 
-    	}
-
-    }
 
     function vectorToTraseu( array ){
     	var traseu = new Object();
@@ -246,17 +258,17 @@ function handleDirectionsResponse( response, status ){
     		console.log(key);
     		coord = vectorToCoordinates( receivedRoutesDict[ key ] );
       drawRoute( coord ); //TODO DRAW THEM DIFFERENTLY
+    }
+
   }
 
-}
+  function vectorToCoordinates( array ){
+   var coordinates = Array()
+   for( i = 0; i< array.length; i+= 2 ){
+    coordinates.push( new google.maps.LatLng( array[ i ], array[ i+1 ] ) );
+  }
 
-function vectorToCoordinates( array ){
-	var coordinates = Array()
-	for( i = 0; i< array.length; i+= 2 ){
-		coordinates.push( new google.maps.LatLng( array[ i ], array[ i+1 ] ) );
-	}
-
-	return coordinates;
+  return coordinates;
 }
 
 function login( socket, username, password){
@@ -275,17 +287,17 @@ function sendCurrentRoute(  route, routeJson ){
 
 function createRouteJsonWithoutPoints( denumire, circulatie, caini, lumini, cand, unde, siguranta, observatii ){
 	routeJson = {};
-  	routeJson['username'] = username;
-  	routeJson['name'] = denumire;
-  	routeJson['trafficField'] = circulatie;
-  	routeJson['dogsField'] = caini;
-  	routeJson['lightsField'] = lumini;
-  	routeJson['whenField'] = cand;
-  	routeJson['whereField'] = unde;
-  	routeJson['safetyField'] = siguranta;
-  	routeJson['observationsField'] = observatii;
+ routeJson['username'] = username;
+ routeJson['name'] = denumire;
+ routeJson['trafficField'] = circulatie;
+ routeJson['dogsField'] = caini;
+ routeJson['lightsField'] = lumini;
+ routeJson['whenField'] = cand;
+ routeJson['whereField'] = unde;
+ routeJson['safetyField'] = siguranta;
+ routeJson['observationsField'] = observatii;
 
-  	return routeJson;
+ return routeJson;
 }
 
 //validare pe butoanele radio
