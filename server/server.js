@@ -3,6 +3,7 @@ var url = require('url');
 var fs = require('fs');
 var common = require('./common')
 var server;
+var routes = [];
 var htmlDir = '/html/'
 
 server = http.createServer(function(req, res){
@@ -73,9 +74,7 @@ io.set('log level', 1);
 // define interactions with client
 io.sockets.on('connection', function(socket){
 
-   socket.emit(common.SEND_ALL_ROUTES, {' narcis' : [44.4136738372583, 26.102828979492188, 44.4136738372583, 26.102828979492188, 
-    44.41408911082398, 26.10262580215931, 44.41425818906652, 26.10299527645111],
-            'radu' : [ 44.4217124730134, 26.064776480197906, 44.42180059302007, 26.06495887041092, 44.42080444607848, 26.0658198595047]}); //Testing purposes; this should be taken out of the DB
+  socket.emit( common.SEND_ALL_ROUTES, createAllRoutesJson() );
    setInterval(function(){
     socket.emit('date', {'date': new Date()});
 }, 1000);
@@ -94,15 +93,16 @@ io.sockets.on('connection', function(socket){
     });
     //receiveRoute
     socket.on(common.SEND_ROUTE, function(data){
-     process.stdout.write("received route\n");
-     process.stdout.write(data[0]+'');
+     process.stdout.write( "received route\n" );
+     receiveRoute( data );
  });
     //routesRequest
     socket.on(common.REQUEST_ALL_ROUTES, function(data){
-      process.stdout.write("received routes request\n");
-      socket.emit(common.SEND_ALL_ROUTES, {' narcis' : [44.4136738372583, 26.102828979492188, 44.4136738372583, 26.102828979492188, 
+        process.stdout.write("received routes request\n");
+     /* socket.emit(common.SEND_ALL_ROUTES, {' narcis' : [44.4136738372583, 26.102828979492188, 44.4136738372583, 26.102828979492188, 
         44.41408911082398, 26.10262580215931, 44.41425818906652, 26.10299527645111],
-            'radu' : [ 44.4217124730134, 26.064776480197906, 44.42180059302007, 26.06495887041092, 44.42080444607848, 26.0658198595047]}); //Testing purposes; this should be taken out of the DB
+            'radu' : [ 44.4217124730134, 26.064776480197906, 44.42180059302007, 26.06495887041092, 44.42080444607848, 26.0658198595047]}); //Testing purposes; this should be taken out of the DB*/
+        socket.emit( common.SEND_ALL_ROUTES, createAllRoutesJson() );
   });
 });
 
@@ -115,13 +115,17 @@ function verifyPass(username, password){
 }
 
 
-function receiveRoute ( atoms ) {
-    coordArray = Array();
-    for (var index in atoms){
-        console.log( atoms[index] );
-        coordArray.push( atoms[index] );
-    }
-    return coordArray;
+function receiveRoute ( route ) {
+    routes.push(route);
+}
+
+function createAllRoutesJson() {
+    allRoutes = {}
+    for (var i = routes.length - 1; i >= 0; i--) {
+        allRoutes[ routes[i]['name'] ] = routes[i]['coordinates'] ;
+    };
+
+    return allRoutes;
 }
 
 

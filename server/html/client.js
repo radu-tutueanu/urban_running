@@ -19,7 +19,7 @@ function validateLogin() {
 		document.getElementById("eroare_rasp").innerHTML = "Te rugăm să completezi ambele câmpuri.";
 	}
 	if (len_user=="Narcis" && len_pass=="parola") {
-		window.open("file:///E:/Dropbox/Start-up/undealergam.ro/finale/adauga_traseu_formular_validari_lichid.html#","_self");
+		window.open("/adauga_traseu.html","_self");
 	}
 	else {document.getElementById("eroare_rasp").innerHTML = "Combinația nume de utilizator-parolă este incorectă.";}
 }//închide funcția
@@ -123,7 +123,6 @@ function createAndSendRequest( traseu, callback ){
 	};
 
 	directionsService.route(request, callback );
-
 }
 
 function drawPolyFromDirectionsResponse( response, status ){
@@ -131,16 +130,10 @@ function drawPolyFromDirectionsResponse( response, status ){
 	{
           //Here we'll handle the errors a bit better 
           alert('Directions failed: ' + status);
-
       }
-
       else {
-
       	drawRoute( response.routes[0].overview_path );
       }
-
-
-
   }
 
   function resetRoute( map ){
@@ -221,7 +214,7 @@ function handleDirectionsResponse( response, status ){
 
     }
 
-    function processReceivedRoutes(receivedRoutesDict) {
+    function processReceivedRoutes( receivedRoutesDict ) {
     	console.log('procssingRoutes');
     	for (var key in receivedRoutesDict) {
     		console.log(key);
@@ -242,13 +235,13 @@ function handleDirectionsResponse( response, status ){
     	return traseu;
     }
 
-    function placeMarker(position, map) {
+    function placeMarker( position, map ) {
     	current.markers.push(position);
     	calcRoute(current);
     }
 
 
-    function processReceivedRoutesVariant(receivedRoutesDict) {
+    function processReceivedRoutesVariant( receivedRoutesDict ) {
     	for (var key in receivedRoutesDict) {
     		console.log(key);
     		coord = vectorToCoordinates( receivedRoutesDict[ key ] );
@@ -280,7 +273,7 @@ function sendCurrentRoute(  route, routeJson ){
 }
 
 
-function createRouteJsonWithoutPoints(denumire, circulatie, caini, lumini, cand, unde, siguranta, observatii ){
+function createRouteJsonWithoutPoints( denumire, circulatie, caini, lumini, cand, unde, siguranta, observatii ){
 	routeJson = {};
   	routeJson['username'] = username;
   	routeJson['name'] = denumire;
