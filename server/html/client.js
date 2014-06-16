@@ -229,9 +229,25 @@ function handleDirectionsResponse( response, status ){
        for (var key in receivedRoutesDict) {
         console.log(key);
         traseu = vectorToTraseu( receivedRoutesDict[ key ][ 'coordinates' ] );
+        traseu.id = receivedRoutesDict[ key ][ 'id' ];
+        traseu.name = receivedRoutesDict[ key ][ 'name' ];
         calcRouteFromScratch( traseu ); 
+        createMarker( traseu );
       }
 
+    }
+
+    function createMarker( traseu ){
+      
+      traseu.marker = new google.maps.Marker({
+          position : traseu.markers[0]
+      });
+      traseu.marker.setMap(map);
+      var infowindow=new google.maps.InfoWindow({
+          content : traseu.name
+      });//asigneaza textul in casuta
+      infowindow.open( map,traseu.marker );
+      google.maps.event.addListener(traseu.marker,'click',function(){window.open("/pagina_traseu.html","_self")});
     }
 
 
