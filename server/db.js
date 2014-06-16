@@ -40,8 +40,8 @@ getTrasee: function( socket ) {
 	querry( selectAll , getRoutesCallback );
 },
 
-getInfoTraseu: function( id, infoCallBack ) {
-	selectQuerry = "select t.nume_traseu,d.info_cand, d.info_unde, d.info_trafic, d.info_caini, \
+getInfoTraseu: function( id, socket ) {
+	selectQuerry = "select t.nume_traseu, t.distanta, d.info_cand, d.info_unde, d.info_trafic, d.info_caini, \
 	d.info_lumini, d.info_siguranta,d.info_obs, c.lat1, c.longit1, c.lat2, c.longit2, c.lat3, \
 	c.longit3, c.lat4, c.longit4, c.lat5, c.longit5, c.lat6, c.longit6, c.lat7, c.longit7, c.lat8, \
 	c.longit8, c.lat9,c.longit9, c.lat10, c.longit10 from detalii_traseu d, coordonate c, \
@@ -168,7 +168,18 @@ function selectInfoCallback( error, rows, cols){
 		console.log('ERROR: ' + error);
 		return;
 	}
-	console.log(rows[0].nume_traseu+ ' ROWS returned');
+	route = {}
+	route['name'] = rows[0]['nume_traseu'];
+	route['coordinates'] = getCoordArrayFromRow( rows[0] );
+	route['distance'] = rows[0]['distanta'];
+	route['whenField'] = rows[0]['info_cand'];
+    route['whereField'] = rows[0]['info_unde'];
+    route['trafficField'] = rows[0]['info_trafic'];
+    route['dogsField'] = rows[0]['info_caini'];
+    route['lightsField'] = rows[0]['info_lumini'];
+    route['safetyField'] = rows[0]['info_siguranta'];
+    route['observationsField'] = rows[0]['info_obs'];
+    currentSocket.emit( common.SEND_ROUTE_INFO, route );
 }
 
 function querry( querryString, handler ) {

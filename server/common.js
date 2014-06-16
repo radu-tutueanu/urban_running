@@ -5,7 +5,8 @@ module.exports = {
 	SEND_ROUTE: "send_route",
 	SEND_ALL_ROUTES: "send_all_routes", // server to 
 	REQUEST_ALL_ROUTES: "request_all_routes",
-	SEND_ROUTE_INFO:"send_route_info"
+	SEND_ROUTE_INFO:"send_route_info",
+	REQUEST_ROUTE_INFO:"request_route_info",
 
 }
 

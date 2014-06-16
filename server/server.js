@@ -79,7 +79,7 @@ io.sockets.on('connection', function(socket){
   db.getTrasee(socket);
     //recieve client data
     socket.on('client_data', function(data){
-        process.stdout.write(data.letter);
+         console.log(data.letter);
     });
     //login
     socket.on(common.LOGIN, function(data){
@@ -92,14 +92,19 @@ io.sockets.on('connection', function(socket){
     });
     //receiveRoute
     socket.on(common.SEND_ROUTE, function(data){
-       process.stdout.write( "received route\n" );
+        console.log( "received route\n" );
        receiveRoute( data );
    });
     //routesRequest
     socket.on(common.REQUEST_ALL_ROUTES, function(data){
-        process.stdout.write("received routes request\n");
+        console.log("received routes request\n");
         db.getTrasee(socket);
-});
+    });
+    //routeINFORequest
+    socket.on(common.REQUEST_ROUTE_INFO, function(data){
+         console.log("received  route info request\n");
+        db.getInfoTraseu( data.id, socket );
+    });
 });
 
 
