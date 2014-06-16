@@ -1,5 +1,6 @@
 var mysql = require('db-mysql');
-
+var common = require('./common');
+var currentSocket; /* problems with multiple clients; create a  function factory*/
 
 module.exports = {
 	insertUser: function (userName, password, birthDate, city, country) {
@@ -17,7 +18,7 @@ module.exports = {
 querry( request, querryHandler );
 },
 
-	insertTraseu: function ( userName, pathName, distance, whenField, whereField, traffic, dogsField, lightsField, securityField, obsField, coordinates ) {
+insertTraseu: function ( userName, pathName, distance, whenField, whereField, traffic, dogsField, lightsField, securityField, obsField, coordinates ) {
 
 
 	request = "call inserare_traseu(";
@@ -30,8 +31,13 @@ querry( request, querryHandler );
 },
 
 
-getTrasee: function( insertCallback ) {
-	selectAll = ""
+getTrasee: function( socket ) {
+	currentSocket = socket;
+	selectAll = "select a.id_traseu, a.nume_traseu,b.lat1, b.longit1, b.lat2, b.longit2, b.lat3, b.longit3, b.lat4, b.longit4, b.lat5, b.longit5, b.lat6, b.longit6, \
+	b.lat7, b.longit7, b.lat8, b.longit8, b.lat9,b.longit9, b.lat10, b.longit10 \
+	from trasee a, coordonate b  where a.id_traseu=b.id_traseu and a.id_traseu in (select id_traseu from trasee);" ;
+
+	querry( selectAll , getRoutesCallback );
 },
 
 getInfoTraseu: function( id, infoCallBack ) {
@@ -114,6 +120,48 @@ function wrapWithSingleQuotes( word ){
 	return "'" + word + "'";
 }
 
+function getRoutesCallback( error, rows, cols ){
+	if (error) {
+		console.log('ERROR: ' + error);
+		return;
+	}
+
+	routesJson = {};
+
+	for ( var i = rows.length - 1; i >= 0; i-- ) {
+		route = rowToJsonRoute( rows[i] )
+		routesJson[route.name]= route;
+	};
+
+	currentSocket.emit( common.SEND_ALL_ROUTES, routesJson );
+}
+
+
+function rowToJsonRoute( row ) {
+	route = {}
+	route['id'] = row['id_traseu'];
+	route['name'] = row['nume_traseu'];
+
+	
+	route['coordinates'] = getCoordArrayFromRow(row);
+
+	return route;
+}
+
+function getCoordArrayFromRow( row ){
+	coordinates = [];
+
+	for (var i = 1; i < 11; i++) {
+		lat = 'lat' + i;
+		lng = 'longit' + i;
+		if(row[lat] != null) {
+			coordinates.push(row[lat]);
+			coordinates.push(row[lng]);
+		}
+		else break;
+	}
+	return coordinates;
+}
 
 function selectInfoCallback( error, rows, cols){
 	if (error) {

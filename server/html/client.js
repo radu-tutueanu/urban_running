@@ -218,7 +218,7 @@ function handleDirectionsResponse( response, status ){
     	console.log('procssingRoutes');
     	for (var key in receivedRoutesDict) {
     		console.log(key);
-    		traseu = vectorToTraseu( receivedRoutesDict[ key ] );
+    		traseu = vectorToTraseu( receivedRoutesDict[ key ][ 'coordinates' ] );
     		calcRouteFromScratch( traseu ); 
     	}
 
