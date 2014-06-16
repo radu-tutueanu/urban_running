@@ -1,0 +1,19 @@
+function initialize(){
+	var myCenter=new google.maps.LatLng( 44.4347208,26.0948655992);
+	var mapOptions = {
+		zoom: 11,
+		center: myCenter
+	};
+	map = new google.maps.Map(document.getElementById('map-canvas'),
+		mapOptions);
+  var marker=new google.maps.Marker({
+  position:myCenter
+
+  });//pozitioneaza balonul
+  marker.setMap(map);//initializeaza
+  //afisare text pe balon
+  var text="Dic, aia";
+var infowindow=new google.maps.InfoWindow({content:text});//asigneaza textul in casuta
+infowindow.open(map,marker);
+google.maps.event.addListener(marker,'click',function(){window.open("/adauga_traseu.html","_self")});
+    }    
