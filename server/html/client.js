@@ -244,13 +244,19 @@ function handleDirectionsResponse( response, status ){
           position : traseu.markers[0]
       });
       marker.setMap(map);
-      var infowindow=new google.maps.InfoWindow({
-          content : traseu.name
-      });//asigneaza textul in casuta
-      infowindow.open( map, marker );
       console.log(traseu.id);
       console.log(url);
+      
       google.maps.event.addListener(marker,'click',function(){window.open(url,"_self")});
+
+      google.maps.event.addListener(marker,'mouseover',function(){var infowindow=new google.maps.InfoWindow({
+          content : traseu.name
+      });
+      infowindow.open( map, marker );});//apare textul cand se trece cursorul peste balon
+
+      google.maps.event.addListener(marker, 'mouseout', function() {
+    infowindow.close();
+});
       
     }
 
