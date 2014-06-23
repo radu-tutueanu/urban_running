@@ -1,0 +1,9 @@
+1. Install package control 
+https://sublime.wbond.net/installation#st2
+
+2.install JsFormat
+https://github.com/jdc0589/JsFormat
+
+3.For now, use defaults.
+
+ctrl+shift+F to beautify your code - javascript only
