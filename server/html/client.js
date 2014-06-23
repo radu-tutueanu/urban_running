@@ -251,7 +251,6 @@ function handleDirectionsResponse( response, status ){
       console.log(traseu.id);
       console.log(url);
       google.maps.event.addListener(marker,'click',function(){window.open(url,"_self")});
-      
     }
 
 
