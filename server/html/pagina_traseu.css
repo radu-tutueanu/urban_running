@@ -15,8 +15,7 @@ p.titlu{
 	position:absolute;
 	top:55px;
 	left:30px;
-	<!--Linia asta nu influențează rama tabelului. De verificat.-->
-	width:100%;
+	width:10%;
 	height:4%;
 	border-collapse:collapse;
 	border: 5px #F4EEF1;
@@ -47,7 +46,7 @@ p.form_cand{
 p.rasp_cand{
 	position:absolute;
 	top:100px;
-	right:205px;
+	right:212px;
 	margin: 0px;
 	font-size:16px;
 	font-family:Calibri;
@@ -66,7 +65,7 @@ p.form_unde{
 p.rasp_unde{
 	position:absolute;
 	top:125px;
-	right:200px;
+	right:217px;
 	margin: 0px;
 	font-size:16px;
 	font-family:Calibri;

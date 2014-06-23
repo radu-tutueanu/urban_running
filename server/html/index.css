@@ -109,7 +109,7 @@ body { height: 100%; margin: 0; padding: 0 }
 p.user {
 	position:fixed;
 	top:32%;
-	right:2.5%;
+	right:2.4%;
 	font-family: Calibri;
 	font-size:14px;
 	color: black;
@@ -118,7 +118,7 @@ p.user {
 p.pass {
 	position:fixed;
 	top:40.5%;
-	right:2.5%;
+	right:2.4%;
 	font-family: Calibri;
 	font-size:14px;
 	color: black;
