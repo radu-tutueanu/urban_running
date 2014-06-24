@@ -7,3 +7,24 @@ https://github.com/jdc0589/JsFormat
 3.For now, use defaults.
 
 ctrl+shift+F to beautify your code - javascript only
+
+
+
+_________________________________________
+
+Coding conventions
+- in english
+- all comments in english
+- no hardcoded values! Variables everywhere
+
+
+functionName()
+var variableName = {}; // as descriptives as possible. Example: instead of users, use numberOfUsers
+CONSTANT = 12;
+function exampleFunction {   //always have opening curly bracket on the same line;
+	return hello; // always use ;
+}
+
+
+
+
