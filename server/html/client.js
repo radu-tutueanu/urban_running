@@ -22,9 +22,8 @@ function validateLogin() {
   var len_pass = document.loginForm.parola.value;
   if (len_user.length < 1 || len_pass.length < 1) {
     document.getElementById("eroare_rasp").innerHTML = "Te rugăm să completezi ambele câmpuri.";
-  }
-  else
- // if (len_user == "Narcis" && len_pass == "parola") {
+  } else
+  // if (len_user == "Narcis" && len_pass == "parola") {
     window.open("/adauga_traseu.html", "_self");
   /*} else {
     document.getElementById("eroare_rasp").innerHTML = "Combinația nume de utilizator-parolă este incorectă.";
