@@ -1,0 +1,1 @@
+db.trasee.insert ({denumire_traseu:"test1", detalii_traseu:[{unde:"pe strada",cand:"dimineata pe racoare",caini:1,lumini:4,circulatie:5,siguranta:"uneori ma alearga tiganii"}],coordonate: [{lat1:48.34432432,long2:38.31321312,lat1:45.3414343,long1:40.32323232}] })
