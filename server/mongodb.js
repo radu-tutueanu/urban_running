@@ -1,5 +1,8 @@
 var mongoose = require('mongoose');
+var assert = require("assert");
+
 var dbURI = 'mongodb://localhost/undealergam?keepAlive=1';
+
 
 /* Create the database connection */
 mongoose.connect(dbURI);
@@ -38,7 +41,7 @@ var Schema = mongoose.Schema;
 
 var routeSchema = new Schema({
 	id: Schema.Types.ObjectId,
-	userId: Number,
+	userId: Schema.Types.ObjectId,
 	distance: Number,
 	name: {
 		type: String,
@@ -76,7 +79,8 @@ var routeSchema = new Schema({
 			type: String,
 			trim: true
 		}
-	}
+	},
+	coordinates: [Number]
 });
 
 
@@ -106,8 +110,15 @@ var userSchema = new Schema({
 });
 
 /*Create methods for the schemas - example find*/
-/*TODO*/
+routeSchema.statics.findAll = function(callback) {
+	this.find().exec(callback);
+}
 
+routeSchema.statics.findByID = function(id, callback) {
+	this.find({
+		_id: id
+	}, callback);
+}
 /*Create models = objects we can work with*/
 var routeModel = mongoose.model('Route', routeSchema);
 var userModel = mongoose.model('User', userSchema);
@@ -116,7 +127,7 @@ var userModel = mongoose.model('User', userSchema);
 module.exports = {
 
 	createUser: function(userName, passwd, city, country) {
-		console.log("Creating user : " + userName)
+		console.log("Creating user : " + userName);
 		var properties = {
 			name: userName,
 			password: passwd,
@@ -126,6 +137,62 @@ module.exports = {
 		var user = new userModel(properties);
 		user.save(saveObjectCallback);
 
+	},
+
+	insertTraseu: function(userName, pathName, distance, whenField, whereField, trafficField, dogsField, lightsField, securityField, obsField, coordinates) {
+		console.log("Creating Route : " + pathName);
+		var properties = {
+			name: pathName,
+			distance: distance,
+			info: {
+				when: whenField,
+				where: whereField,
+				traffic: trafficField,
+				dogs: dogsField,
+				lighting: lightsField,
+				safety: securityField,
+				observations: obsField,
+
+			},
+			coordinates: coordinates
+		};
+		userModel.find({
+			name: userName
+		}, '_id', function(err, users) {
+			if (err) return console.error(err);
+			assert.equal(1, users.length, "More than one user with the same username");
+			properties.userId = users[0]._id;
+			var route = new routeModel(properties);
+			route.save(saveObjectCallback);
+		});
+	},
+
+	getTrasee: function(socket) {
+		routeModel.findAll(function(err, routes) {
+			if (err) return console.error(err);
+			console.log("routes : " + routes.length);
+		});
+	},
+
+	getInfoTraseu: function(id, socket) {
+		routeModel.findByID(id, function(err, routes) {
+			if (err) return console.error(err);
+			assert.equal(1, routes.length, "More than one route with the same id");
+			console.log("found by id : " + routes[0]);
+		});
+	},
+
+	verifyPassword: function(username, password, socket) {
+		userModel.find({
+			name: username
+		}, 'password', function(err, users) {
+			if (err) return console.error(err);
+			assert.equal(1, users.length, "More than one user with the same username");
+			if (users[0].password == password)
+				console.log("User " + username + " successfully logged in.");
+			else
+				console.log("Failed login for user "+ username);
+		});
 	},
 
 }
