@@ -191,7 +191,7 @@ module.exports = {
 			if (users[0].password == password)
 				console.log("User " + username + " successfully logged in.");
 			else
-				console.log("Failed login for user "+ username);
+				console.log("Failed login for user " + username);
 		});
 	},
 
