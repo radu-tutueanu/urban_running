@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var assert = require("assert");
+var common = require('./common');
 
 var dbURI = 'mongodb://localhost/undealergam?keepAlive=1';
 
@@ -40,7 +41,6 @@ var Schema = mongoose.Schema;
 
 
 var routeSchema = new Schema({
-	id: Schema.Types.ObjectId,
 	userId: Schema.Types.ObjectId,
 	distance: Number,
 	name: {
@@ -85,7 +85,6 @@ var routeSchema = new Schema({
 
 
 var userSchema = new Schema({
-	id: Schema.Types.ObjectId,
 	name: {
 		type: String,
 		trim: true,
@@ -139,23 +138,8 @@ module.exports = {
 
 	},
 
-	insertTraseu: function(userName, pathName, distance, whenField, whereField, trafficField, dogsField, lightsField, securityField, obsField, coordinates) {
-		console.log("Creating Route : " + pathName);
-		var properties = {
-			name: pathName,
-			distance: distance,
-			info: {
-				when: whenField,
-				where: whereField,
-				traffic: trafficField,
-				dogs: dogsField,
-				lighting: lightsField,
-				safety: securityField,
-				observations: obsField,
-
-			},
-			coordinates: coordinates
-		};
+	insertTraseu: function(userName, properties) {
+		console.log("Creating Route : " + properties.name);
 		userModel.find({
 			name: userName
 		}, '_id', function(err, users) {
@@ -170,7 +154,8 @@ module.exports = {
 	getTrasee: function(socket) {
 		routeModel.findAll(function(err, routes) {
 			if (err) return console.error(err);
-			console.log("routes : " + routes.length);
+			console.log("send no routes : " + routes.length);
+			socket.emit(common.SEND_ALL_ROUTES, routes);
 		});
 	},
 
@@ -179,6 +164,7 @@ module.exports = {
 			if (err) return console.error(err);
 			assert.equal(1, routes.length, "More than one route with the same id");
 			console.log("found by id : " + routes[0]);
+			socket.emit(common.SEND_ROUTE_INFO, routes[0]);
 		});
 	},
 

@@ -5,70 +5,82 @@ var common = require('./common')
 var server;
 var routes = [];
 var htmlDir = '/html/'
-var db = require('./db');
+var db = require('./mongodb');
 
-server = http.createServer(function(req, res){
+server = http.createServer(function(req, res) {
     // your normal server code
     var path = url.parse(req.url).pathname;
-    switch (path){
+    switch (path) {
         case '/':
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.write('<h1>Hello! Try the <a href="index.html">Main page</a></h1>');
-        res.end();
-        break;
+            res.writeHead(200, {
+                'Content-Type': 'text/html'
+            });
+            res.write('<h1>Hello! Try the <a href="index.html">Main page</a></h1>');
+            res.end();
+            break;
         case '/index.html':
-        fs.readFile(__dirname + htmlDir+ path, function(err, data){
-            if (err){
-                return send404(res);
-            }
-            res.writeHead(200, {'Content-Type': path == 'json.js' ? 'text/javascript' : 'text/html'});
-            res.write(data, 'utf8');
-            res.end();
-        });
-        break;
+            fs.readFile(__dirname + htmlDir + path, function(err, data) {
+                if (err) {
+                    return send404(res);
+                }
+                res.writeHead(200, {
+                    'Content-Type': path == 'json.js' ? 'text/javascript' : 'text/html'
+                });
+                res.write(data, 'utf8');
+                res.end();
+            });
+            break;
         case '/adauga_traseu.css':
-        fs.readFile(__dirname + htmlDir+ path, function(err, data){
-            if (err){
-                return send404(res);
-            }
-            res.writeHead(200, {'Content-Type':  'text/css' });
-            res.write(data, 'utf8');
-            res.end();
-        });
-        break;
+            fs.readFile(__dirname + htmlDir + path, function(err, data) {
+                if (err) {
+                    return send404(res);
+                }
+                res.writeHead(200, {
+                    'Content-Type': 'text/css'
+                });
+                res.write(data, 'utf8');
+                res.end();
+            });
+            break;
         case '/index.css':
-        fs.readFile(__dirname + htmlDir+ path, function(err, data){
-            if (err){
-                return send404(res);
-            }
-            res.writeHead(200, {'Content-Type':  'text/css' });
-            res.write(data, 'utf8');
-            res.end();
-        });
-        break;
+            fs.readFile(__dirname + htmlDir + path, function(err, data) {
+                if (err) {
+                    return send404(res);
+                }
+                res.writeHead(200, {
+                    'Content-Type': 'text/css'
+                });
+                res.write(data, 'utf8');
+                res.end();
+            });
+            break;
         case '/pagina_traseu.css':
-        fs.readFile(__dirname + htmlDir+ path, function(err, data){
-            if (err){
-                return send404(res);
-            }
-            res.writeHead(200, {'Content-Type':  'text/css' });
-            res.write(data, 'utf8');
-            res.end();
-        });
-        break;
-        default: 
-        fs.readFile(__dirname + htmlDir+ path, function(err, data){
-            if (err){
-                return send404(res);
-            }
-            res.writeHead(200, {'Content-Type': path == 'json.js' ? 'text/javascript' : 'text/html'});
-            res.write(data, 'utf8');
-            res.end();
-        });
+            fs.readFile(__dirname + htmlDir + path, function(err, data) {
+                if (err) {
+                    return send404(res);
+                }
+                res.writeHead(200, {
+                    'Content-Type': 'text/css'
+                });
+                res.write(data, 'utf8');
+                res.end();
+            });
+            break;
+        default:
+            fs.readFile(__dirname + htmlDir + path, function(err, data) {
+                if (err) {
+                    return send404(res);
+                }
+                res.writeHead(200, {
+                    'Content-Type': path == 'json.js' ? 'text/javascript' : 'text/html'
+                });
+                res.write(data, 'utf8');
+                res.end();
+            });
     }
 }),
 
-send404 = function(res){
+send404 = function(res) {
     res.writeHead(404);
     res.write('404');
     res.end();
@@ -83,60 +95,59 @@ var io = require('socket.io').listen(server);
 io.set('log level', 1);
 
 // define interactions with client
-io.sockets.on('connection', function(socket){
+io.sockets.on('connection', function(socket) {
 
-  //socket.emit( common.SEND_ALL_ROUTES, createAllRoutesJson() );
-  db.getTrasee(socket);
-    //recieve client data
-    socket.on('client_data', function(data){
-         console.log(data.letter);
-    });
+    //socket.emit( common.SEND_ALL_ROUTES, createAllRoutesJson() );
+    db.getTrasee(socket);
+
     //login
-    socket.on(common.LOGIN, function(data){
-        if ( verifyPass (data.username, data.password )) {
+    socket.on(common.LOGIN, function(data) {
+        if (verifyPass(data.username, data.password)) {
             socket.emit(common.LOGINOK);
-        }
-        else{
+        } else {
             socket.emit(common.LOGINNOK);
         }
     });
     //receiveRoute
-    socket.on(common.SEND_ROUTE, function(data){
-        console.log( "received route\n" );
-       receiveRoute( data );
-   });
+    socket.on(common.SEND_ROUTE, function(data) {
+        console.log("received route\n");
+        receiveRoute(data);
+    });
     //routesRequest
-    socket.on(common.REQUEST_ALL_ROUTES, function(data){
+    socket.on(common.REQUEST_ALL_ROUTES, function(data) {
         console.log("received routes request\n");
         db.getTrasee(socket);
     });
     //routeINFORequest
-    socket.on(common.REQUEST_ROUTE_INFO, function(data){
-         console.log("received  route info request\n");
-        db.getInfoTraseu( data.id, socket );
+    socket.on(common.REQUEST_ROUTE_INFO, function(data) {
+        console.log("received  route info request\n");
+        db.getInfoTraseu(data.id, socket);
     });
 });
 
 
 
-
-function verifyPass(username, password){
-    console.log( 'verifying pass for client %s', username );
+function verifyPass(username, password) {
+    console.log('verifying pass for client %s', username);
     return false;
 }
 
 
-function receiveRoute ( route ) {
-    db.insertTraseu( route['username'], route['name'], route['distance'], route['whenField'], 
+function receiveRoute(route) {
+    for (key in route){
+        db.insertTraseu( key, route[key] );
+        break;
+    }
+    /*db.insertTraseu(route['username'], route['name'], route['distance'], route['whenField'],
         route['whereField'], route['trafficField'], route['dogsField'], route['lightsField'],
-        route['safetyField'], route['observationsField'], route['coordinates'] ) ;
-    routes.push(route);
+        route['safetyField'], route['observationsField'], route['coordinates']);
+    routes.push(route);*/
 }
 
 function createAllRoutesJson() {
     allRoutes = {}
     for (var i = routes.length - 1; i >= 0; i--) {
-        allRoutes[ routes[i]['name'] ] = routes[i]['coordinates'] ;
+        allRoutes[routes[i]['name']] = routes[i]['coordinates'];
     };
     return allRoutes;
 }

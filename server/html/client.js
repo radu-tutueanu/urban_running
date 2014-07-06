@@ -223,13 +223,18 @@ function calcRouteFromScratch(traseu) {
 
 }
 
-function processReceivedRoutes(receivedRoutesDict) {
+function processReceivedRoutes(receivedRoutes) {
   console.log('procssingRoutes');
-  for (var key in receivedRoutesDict) {
-    console.log(key);
-    traseu = vectorToTraseu(receivedRoutesDict[key]['coordinates']);
-    traseu.id = receivedRoutesDict[key]['id'];
-    traseu.name = receivedRoutesDict[key]['name'];
+  for (i = 0; i < receivedRoutes.length - 1; i++) {
+    console.log(receivedRoutes[i]['name']);
+    id = receivedRoutes[i]['_id'];
+    name = receivedRoutes[i]['name'];
+    coordinates = receivedRoutes[i]['coordinates'];
+    /* TODO fix whatever is happpening here, distroying received routes from being processed*/
+    traseu = vectorToTraseu(coordinates);
+    traseu.id = id;
+    traseu.name = name;
+    console.log(receivedRoutes[i]);
     calcRouteFromScratch(traseu);
     createMarker(traseu, "/pagina_traseu.html?id=" + traseu.id);
   }
@@ -309,8 +314,8 @@ function login(socket, username, password) {
 
 function sendCurrentRoute(route, routeJson) {
 
-  routeJson['distance'] = route.distance;
-  routeJson['coordinates'] = transformPath(current.markers);
+  routeJson[username]['distance'] = route.distance;
+  routeJson[username]['coordinates'] = transformPath(current.markers);
   socket.emit('send_route', routeJson);
 
 }
@@ -318,16 +323,18 @@ function sendCurrentRoute(route, routeJson) {
 
 function createRouteJsonWithoutPoints(denumire, circulatie, caini, lumini, cand, unde, siguranta, observatii) {
   routeJson = {};
-  routeJson['username'] = username;
-  routeJson['name'] = denumire;
-  routeJson['trafficField'] = circulatie;
-  routeJson['dogsField'] = caini;
-  routeJson['lightsField'] = lumini;
-  routeJson['whenField'] = cand;
-  routeJson['whereField'] = unde;
-  routeJson['safetyField'] = siguranta;
-  routeJson['observationsField'] = observatii;
-
+  routeProperties = {};
+  routeProperties['name'] = denumire;
+  routeProperties['info'] = {
+    when: cand,
+    where: unde,
+    traffic: circulatie,
+    dogs: caini,
+    lighting: lumini,
+    safety: siguranta,
+    observations: observatii,
+  }
+  routeJson[username] =  routeProperties;
   return routeJson;
 }
 
