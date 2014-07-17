@@ -12,3 +12,18 @@ sudo apt-get install nodejs-dev # to install node-waf
 sudo apt-cache showpkg nodejs
 
 npm install socket.io
+
+
+
+windows:
+mongodb
+node.js
+python 2.7.3
+visual studio 2013 express
+npm install socket.io
+npm install mongoose
+
+for developing:
+git for windows
+tortoise svn
+sublime text
