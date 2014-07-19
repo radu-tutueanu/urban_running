@@ -6,6 +6,7 @@
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="js/client.js"></script>
+	<script src="js/domutils.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
 	<link rel="stylesheet" href="http://www.jacklmoore.com/colorbox/example1/colorbox.css" />
 	</script>
@@ -35,13 +36,13 @@
      socket.on('send_route_info', function(data){
      	console.log("received route info");
      	routeInfo = data;
-     	document.getElementsByClassName('rasp_cand')[0].innerHTML = data['whenField'];
-     	document.getElementsByClassName('rasp_unde')[0].innerHTML = data['whereField'];
-     	document.getElementsByClassName('rasp_circ')[0].innerHTML = data['trafficField'];
-     	document.getElementsByClassName('rasp_caini')[0].innerHTML = data['dogsField'];
-     	document.getElementsByClassName('rasp_lumin')[0].innerHTML = data['lightsField'];
-     	document.getElementsByClassName('box_sigur')[0].innerHTML = data['safetyField'];
-     	document.getElementsByClassName('box_obs')[0].innerHTML = data['observationsField'];
+     	document.getElementsByClassName('rasp_cand')[0].innerHTML = data['info']['when'];
+     	document.getElementsByClassName('rasp_unde')[0].innerHTML = data['info']['where'];
+     	document.getElementsByClassName('rasp_circ')[0].innerHTML = data['info']['traffic'];
+     	document.getElementsByClassName('rasp_caini')[0].innerHTML = data['info']['dogs'];
+     	document.getElementsByClassName('rasp_lumin')[0].innerHTML = data['info']['lighting'];
+     	document.getElementsByClassName('box_sigur')[0].innerHTML = data['info']['safety'];
+     	document.getElementsByClassName('box_obs')[0].innerHTML = data['info']['observations'];
      	distanceField = data['distance']/1000 + "KM";
      	document.getElementsByClassName('distance')[0].innerHTML = distanceField ;
      	document.getElementsByClassName('titlu')[0].innerHTML = data['name'];

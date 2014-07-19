@@ -29,7 +29,6 @@ server = http.createServer(function(req, res) {
     }
 
     if (cssRE.exec(path) != null) {
-        console.log("remove me\n");
         fs.readFile(__dirname + htmlDir + path, function(err, data) {
             if (err) {
                 return send404(res);
