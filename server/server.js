@@ -6,10 +6,43 @@ var server;
 var routes = [];
 var htmlDir = '/html/'
 var db = require('./mongodb');
+/* regular expressions for detecting /css/ and /js/ folders.  */
+var cssRE = /[//]css[//]/g;
+var jsRE = /[//]js[//]/g;
 
 server = http.createServer(function(req, res) {
     // your normal server code
     var path = url.parse(req.url).pathname;
+
+    if (jsRE.exec(path) != null) {
+        fs.readFile(__dirname + htmlDir + path, function(err, data) {
+            if (err) {
+                return send404(res);
+            }
+            res.writeHead(200, {
+                'Content-Type': 'application/javascript'
+            });
+            res.write(data, 'utf8');
+            res.end();
+        });
+        return;
+    }
+
+    if (cssRE.exec(path) != null) {
+        console.log("remove me\n");
+        fs.readFile(__dirname + htmlDir + path, function(err, data) {
+            if (err) {
+                return send404(res);
+            }
+            res.writeHead(200, {
+                'Content-Type': 'text/css'
+            });
+            res.write(data, 'utf8');
+            res.end();
+        });
+        return;
+    }
+
     switch (path) {
         case '/':
             res.writeHead(200, {
@@ -25,42 +58,6 @@ server = http.createServer(function(req, res) {
                 }
                 res.writeHead(200, {
                     'Content-Type': path == 'json.js' ? 'text/javascript' : 'text/html'
-                });
-                res.write(data, 'utf8');
-                res.end();
-            });
-            break;
-        case '/adauga_traseu.css':
-            fs.readFile(__dirname + htmlDir + path, function(err, data) {
-                if (err) {
-                    return send404(res);
-                }
-                res.writeHead(200, {
-                    'Content-Type': 'text/css'
-                });
-                res.write(data, 'utf8');
-                res.end();
-            });
-            break;
-        case '/index.css':
-            fs.readFile(__dirname + htmlDir + path, function(err, data) {
-                if (err) {
-                    return send404(res);
-                }
-                res.writeHead(200, {
-                    'Content-Type': 'text/css'
-                });
-                res.write(data, 'utf8');
-                res.end();
-            });
-            break;
-        case '/pagina_traseu.css':
-            fs.readFile(__dirname + htmlDir + path, function(err, data) {
-                if (err) {
-                    return send404(res);
-                }
-                res.writeHead(200, {
-                    'Content-Type': 'text/css'
                 });
                 res.write(data, 'utf8');
                 res.end();
@@ -134,8 +131,8 @@ function verifyPass(username, password) {
 
 
 function receiveRoute(route) {
-    for (key in route){
-        db.insertTraseu( key, route[key] );
+    for (key in route) {
+        db.insertTraseu(key, route[key]);
         break;
     }
     /*db.insertTraseu(route['username'], route['name'], route['distance'], route['whenField'],
