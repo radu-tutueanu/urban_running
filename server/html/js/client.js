@@ -45,7 +45,8 @@ function initialize() {
   initializeDirectionsDisplay(map);
 }
 
-function initializeDirectionsDisplay(map, preserveViewport = true) {
+function initializeDirectionsDisplay(map, preserveViewport) {
+  if(typeof(preserveViewport)==='undefined') preserveViewport = true;
   var options = new Object();
   options.draggable = true;
   options.preserveViewport = preserveViewport;
