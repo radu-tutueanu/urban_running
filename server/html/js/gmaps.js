@@ -4,19 +4,20 @@ function MapsUtilities(zoom, centerLat, centerLng, viewportPreservation, markerL
 		center: new google.maps.LatLng(centerLat, centerLng)
 	};
 	this.viewportPreservation = viewportPreservation;
-	this.initialize(viewportPreservation);
-	if (markerListerner) {
-		google.maps.event.addListener(this.map, 'click', function(e) {
-			placeMarker(e.latLng, this.map);
-		});
-
-	}
+	this.markerListerner = markerListerner
 }
+
+MapsUtilities.mapsPageUrl = "/pagina_traseu.html?id=";
 
 MapsUtilities.prototype.initialize = function() {
 	this.map = new google.maps.Map(document.getElementById('map-canvas'),
 		this.mapOptions);
-	initializeDirectionsDisplay();
+	this.initializeDirectionsDisplay();
+	if (this.markerListerner) {
+		google.maps.event.addListener(this.map, 'click', function(e) {
+			placeMarker(e.latLng, this.map);
+		});
+	}
 }
 
 MapsUtilities.prototype.initializeDirectionsDisplay = function() {
@@ -27,19 +28,19 @@ MapsUtilities.prototype.initializeDirectionsDisplay = function() {
 	this.directionsDisplay.setMap(this.map);
 }
 
-MapsUtilities.prototype.addRouteMarker = function(route, url) {
+MapsUtilities.prototype.addRouteMarker = function(route) {
 
 	var marker = new google.maps.Marker({
-		position: route.markers[0]
+		position: new google.maps.LatLng(route['coordinates'][0], route['coordinates'][1])
 	});
 	marker.setMap(this.map);
-	console.log(route.id);
+	url = MapsUtilities.mapsPageUrl + route['_id'];
 	console.log(url);
 	google.maps.event.addListener(marker, 'click', function() {
 		window.open(url, "_self")
 	});
 	marker.infowindow = new google.maps.InfoWindow({
-		content: route.name
+		content: route['name']
 	});
 
 	google.maps.event.addListener(marker, 'mouseover', function(event) {
@@ -49,4 +50,8 @@ MapsUtilities.prototype.addRouteMarker = function(route, url) {
 	google.maps.event.addListener(marker, 'mouseout', function(event) {
 		marker.infowindow.close();
 	});
+}
+
+MapsUtilities.prototype.getmap = function () {
+	return this.map;
 }

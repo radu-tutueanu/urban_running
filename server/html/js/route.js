@@ -1,4 +1,4 @@
-funtion Route() {
+function Route() {
 	this.routeJSON = {};
 	this.latLngCoordinates = [];
 }

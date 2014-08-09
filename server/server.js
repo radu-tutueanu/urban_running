@@ -14,10 +14,9 @@ var jsRE = /[//]js[//]/g;
 server = http.createServer(function(req, res) {
     // your normal server code
     var respath = url.parse(req.url).pathname;
-    filepath = path.join(__dirname + htmlDir)
-    filepath = path.join(filepath, respath)
+    filepath = path.join(__dirname + htmlDir);
+    filepath = path.join(filepath, respath);
     console.log("received client request for %s = %s\n", respath, filepath)
-
 
     if (jsRE.exec(respath) != null) {
         fs.readFile(filepath, function(err, data) {
@@ -50,7 +49,8 @@ server = http.createServer(function(req, res) {
     switch (respath) {
         case '/':
             res.writeHead(200, {
-                'Content-Type': 'text/html'
+                'Content-Type': 'text/html',
+                "Access-Control-Allow-Origin": "*"
             });
             res.write('<h1>Hello! Try the <a href="index.html">Main page</a></h1>');
             res.end();
