@@ -1,10 +1,11 @@
 var http = require('http');
 var url = require('url');
 var fs = require('fs');
+var path = require('path');
 var common = require('./common')
 var server;
 var routes = [];
-var htmlDir = '/html/'
+var htmlDir = '/html'
 var db = require('./mongodb');
 /* regular expressions for detecting /css/ and /js/ folders.  */
 var cssRE = /[//]css[//]/g;
@@ -12,10 +13,14 @@ var jsRE = /[//]js[//]/g;
 
 server = http.createServer(function(req, res) {
     // your normal server code
-    var path = url.parse(req.url).pathname;
+    var respath = url.parse(req.url).pathname;
+    filepath = path.join(__dirname + htmlDir)
+    filepath = path.join(filepath, respath)
+    console.log("received client request for %s = %s\n", respath, filepath)
 
-    if (jsRE.exec(path) != null) {
-        fs.readFile(__dirname + htmlDir + path, function(err, data) {
+
+    if (jsRE.exec(respath) != null) {
+        fs.readFile(filepath, function(err, data) {
             if (err) {
                 return send404(res);
             }
@@ -28,8 +33,8 @@ server = http.createServer(function(req, res) {
         return;
     }
 
-    if (cssRE.exec(path) != null) {
-        fs.readFile(__dirname + htmlDir + path, function(err, data) {
+    if (cssRE.exec(respath) != null) {
+        fs.readFile(filepath, function(err, data) {
             if (err) {
                 return send404(res);
             }
@@ -42,7 +47,7 @@ server = http.createServer(function(req, res) {
         return;
     }
 
-    switch (path) {
+    switch (respath) {
         case '/':
             res.writeHead(200, {
                 'Content-Type': 'text/html'
@@ -51,24 +56,24 @@ server = http.createServer(function(req, res) {
             res.end();
             break;
         case '/index.html':
-            fs.readFile(__dirname + htmlDir + path, function(err, data) {
+            fs.readFile(filepath, function(err, data) {
                 if (err) {
                     return send404(res);
                 }
                 res.writeHead(200, {
-                    'Content-Type': path == 'json.js' ? 'text/javascript' : 'text/html'
+                    'Content-Type': respath == 'json.js' ? 'text/javascript' : 'text/html'
                 });
                 res.write(data, 'utf8');
                 res.end();
             });
             break;
         default:
-            fs.readFile(__dirname + htmlDir + path, function(err, data) {
+            fs.readFile(filepath, function(err, data) {
                 if (err) {
                     return send404(res);
                 }
                 res.writeHead(200, {
-                    'Content-Type': path == 'json.js' ? 'text/javascript' : 'text/html'
+                    'Content-Type': respath == 'json.js' ? 'text/javascript' : 'text/html'
                 });
                 res.write(data, 'utf8');
                 res.end();
