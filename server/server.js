@@ -10,15 +10,16 @@ var db = require( './mongodb' );
 /* regular expressions for detecting /css/ and /js/ folders.  */
 var cssRE = /[//]css[//]/g;
 var jsRE = /[//]js[//]/g;
+var imgRE = /[//]img[//]/g;
 
 server = http.createServer( function( req, res ) {
         // your normal server code
         var respath = url.parse( req.url ).pathname;
         filepath = path.join( __dirname + htmlDir );
         filepath = path.join( filepath, respath );
-        console.log( "received client request for %s = %s\n", respath, filepath )
-
+        
         if ( jsRE.exec( respath ) != null ) {
+
             fs.readFile( filepath, function( err, data ) {
                     if ( err ) {
                         return send404( res );
@@ -33,12 +34,28 @@ server = http.createServer( function( req, res ) {
         }
 
         if ( cssRE.exec( respath ) != null ) {
+
             fs.readFile( filepath, function( err, data ) {
                     if ( err ) {
                         return send404( res );
                     }
                     res.writeHead( 200, {
                         'Content-Type': 'text/css'
+                    } );
+                    res.write( data, 'utf8' );
+                res.end();
+            } );
+            return;
+        }
+
+        if ( imgRE.exec( respath ) != null ) {
+
+            fs.readFile( filepath, function( err, data ) {
+                    if ( err ) {
+                        return send404( res );
+                    }
+                    res.writeHead( 200, {
+                        'Content-Type': 'image/gif'
                     } );
                     res.write( data, 'utf8' );
                 res.end();
