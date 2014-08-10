@@ -4,6 +4,7 @@
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
 <head>
 	<script src="/socket.io/socket.io.js"></script>
+     <script src="js/route.js"></script>
 	<script src="js/gmaps.js"></script>
      <script src="js/client.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -22,9 +23,32 @@
           utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner);
           utilities.initialize()
           client = new ClientUtilities(utilities);
+          socket = io.connect();
+          socket.on('date', function(data){
+                $('#date').text(data.date);
+               });
+
+          socket.on('login_OK', function(data){
+               loggedIn = true;
+               $('#status').text('logged in');
+          });
+
+          socket.on('send_all_routes', function(data){
+               console.log("received all routes");
+               client.processReceivedRoutes(data);
+          });
+          socket.on('send_route_info', function(data){
+               console.log("received route info");
+               routeInfo = data;
+          });
+
+          socket.on('login_NOK', function(data){
+               //handle nok
+          });
      } 
 	//funcția ce deschide fereastra de pop-up prima data
 	setTimeout(ClientUtilities.openColorBox, 500);
+     var socket;
      var zoom = 11
      var lat = 44.4325
      var lng = 26.1039
@@ -39,40 +63,7 @@
 	google.maps.event.addDomListener(window, 'load', init);
 
 	</script>
-	<script type="text/javascript">
-	var socket = io.connect();
-	var loggedIn = false;
-
-     // socket.emit('request_all_routes');
-     
-     socket.on('date', function(data){
-     	$('#date').text(data.date);
-     });
-
-     socket.on('login_OK', function(data){
-     	loggedIn = true;
-     	$('#status').text('logged in');
-     });
-
-     socket.on('send_all_routes', function(data){
-     	console.log("received all routes");
-     	client.processReceivedRoutes(data);
-     });
-     socket.on('send_route_info', function(data){
-     	console.log("received route info");
-     	routeInfo = data;
-     });
-
-     socket.on('login_NOK', function(data){
-        //handle nok
-    });
-
-     
-
-
-
-     </script>
-     <body onload="ClientUtilities.resetForm()">
+     <body>
 
      	<div id="map-canvas">
      	</div>
