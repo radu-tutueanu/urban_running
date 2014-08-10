@@ -4,9 +4,32 @@ https://sublime.wbond.net/installation#st2
 2.install JsFormat
 https://github.com/jdc0589/JsFormat
 
-3.For now, use defaults.
+3. Open preferences/Package settings/JsFormat/ Settings user:
 
-ctrl+shift+F to beautify your code - javascript only
+{
+	// exposed jsbeautifier options
+	"indent_with_tabs": true,
+	"preserve_newlines": true,
+	"max_preserve_newlines": 4,
+	"space_in_paren": true,
+	"jslint_happy": false,
+	"brace_style": "collapse",
+	"keep_array_indentation": false,
+	"keep_function_indentation": false,
+	"eval_code": false,
+	"unescape_strings": false,
+	"break_chained_methods": false,
+	"e4x": false,
+	"wrap_line_length": 0,
+
+	// jsformat options
+	"format_on_save": false,
+	"jsbeautifyrc_files": false
+}
+4.
+Add { "keys": ["ctrl+alt+f"], "command": "js_format"} to your user keybindings file. 
+
+ctrl+alt+F to beautify your code - javascript only
 
 
 
