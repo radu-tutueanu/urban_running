@@ -43,6 +43,7 @@ var Schema = mongoose.Schema;
 var routeSchema = new Schema( {
 	userId: Schema.Types.ObjectId,
 	distance: Number,
+	duration: Number,
 	name: {
 		type: String,
 		trim: true
@@ -80,7 +81,7 @@ var routeSchema = new Schema( {
 			trim: true
 		}
 	},
-	coordinates: [ Number ]
+	encodedPolyline : String
 } );
 
 
