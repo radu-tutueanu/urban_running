@@ -1,6 +1,5 @@
-function ClientUtilities( gmapsUtilities, map ){
+function ClientUtilities(gmapsUtilities){
 	self.gmapsUtilities = gmapsUtilities;
-	self.map = map;
 	self.drawnRoutes = new Array();
 }
 

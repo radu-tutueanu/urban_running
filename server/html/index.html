@@ -21,7 +21,7 @@
      function init(){
           utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner);
           utilities.initialize()
-          client = new ClientUtilities(utilities, map);
+          client = new ClientUtilities(utilities);
      } 
 	//funcția ce deschide fereastra de pop-up prima data
 	setTimeout(ClientUtilities.openColorBox, 500);
@@ -32,10 +32,8 @@
      var markerListerner = false
      var utilities;
      var client;
-	var drawn =  new Array();
 	var directionsDisplay;
 	var directionsService = new google.maps.DirectionsService();
-	var map;
 	var routeInfo;
 	var markerArray = new Array();
 	google.maps.event.addDomListener(window, 'load', init);
