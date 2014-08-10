@@ -5,12 +5,12 @@ function Route() {
 
 Route.prototype.getJSON = function() {
 	return RouteJSON;
-};
+}
 
-Route.prototype.addLatLngCoordinate( coordLatLng ) {
+Route.prototype.addLatLngCoordinate = function( coordLatLng ) {
 	this.latLngCoordinates.push( coordLatLng );
 }
 
-Route.prototype.getLatLngCoordinates( coordLatLng ) {
+Route.prototype.getLatLngCoordinates = function( coordLatLng ) {
 	return this.latLngCoordinates;
 }
