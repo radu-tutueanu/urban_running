@@ -1,21 +1,29 @@
-function MapsUtilities( zoom, centerLat, centerLng, viewportPreservation, markerListerner ) {
+var mapsUtilities;
+
+function MapsUtilities( zoom, centerLat, centerLng, viewportPreservation, markerListerner, serverSocket ) {
 	this.mapOptions = {
 		zoom: zoom,
 		center: new google.maps.LatLng( centerLat, centerLng )
 	};
 	this.viewportPreservation = viewportPreservation;
-	this.markerListerner = markerListerner
+	this.markerListerner = markerListerner;
+	this.directionsService = new google.maps.DirectionsService();
+	this.current = new Route();
+	mapsUtilities = this;
+	this.serverSocket = serverSocket;
 }
 
 MapsUtilities.mapsPageUrl = "/pagina_traseu.html?id=";
+MapsUtilities.sendHeader = "send_route";
 
 MapsUtilities.prototype.initialize = function() {
 	this.map = new google.maps.Map( document.getElementById( 'map-canvas' ),
 		this.mapOptions );
 	this.initializeDirectionsDisplay();
+	mapsutil = this;
 	if ( this.markerListerner ) {
 		google.maps.event.addListener( this.map, 'click', function( e ) {
-			placeMarker( e.latLng, this.map );
+			mapsutil.placeMarker( e.latLng );
 		} );
 	}
 }
@@ -54,4 +62,75 @@ MapsUtilities.prototype.addRouteMarker = function( route ) {
 
 MapsUtilities.prototype.getmap = function() {
 	return this.map;
+}
+
+MapsUtilities.prototype.placeMarker = function( position ) {
+	this.current.addMarker( position );
+	request = this.current.getRequest();
+	if ( request == null )
+		return;
+	this.directionsService.route( request, this.handleDirectionsResponseWithPrint );
+	//calcRoute( current );
+}
+
+MapsUtilities.prototype.reset = function() {
+	this.current.reset();
+	this.directionsDisplay.setMap();
+	this.initializeDirectionsDisplay( this.map );
+}
+
+MapsUtilities.prototype.handleDirectionsResponseWithPrint = function( response, status ) {
+	if ( mapsUtilities.handleDirectionsResponse( response, status ) == 1 ) {
+		// Display the distance:
+		distance = mapsUtilities.calcDistance( response.routes[ 0 ] );
+		document.getElementById( 'distance' ).innerHTML += distance + " meters";
+
+		// Display the duration:
+		duration = mapsUtilities.calcDuration( response.routes[ 0 ] );
+		document.getElementById( 'duration' ).innerHTML += duration + " seconds";
+	}
+}
+
+MapsUtilities.prototype.handleDirectionsResponse = function( response, status ) {
+	if ( status != google.maps.DirectionsStatus.OK ) {
+		//Here we'll handle the errors a bit better 
+		alert( 'Directions failed: ' + status );
+		if ( status == google.maps.DirectionsStatus.ZERO_RESULTS ) {
+			this.reset(); //solve
+		}
+		return -1;
+	} else {
+		this.directionsDisplay.setDirections( response );
+	}
+	return 1;
+}
+
+MapsUtilities.prototype.addToRoute = function( name, traffic, dogs, lighting, when, where, safety, observations ) {
+	this.current.setName( name );
+	this.current.setInfo( when, where, traffic, dogs, lighting, safety, observations );
+}
+MapsUtilities.prototype.sendRoute = function() {
+	mapsRoute = this.directionsDisplay.getDirections()[ 'routes' ][ 0 ]
+	this.current.setDistance( this.calcDistance( mapsRoute ) );
+	this.current.setDuration( this.calcDuration( mapsRoute ) );
+	this.current.setEncodePolyline( mapsRoute.overview_polyline );
+	routeJson = {};
+	routeJson[ username ] = this.current.getJSON;
+	this.serverSocket.emit( MapsUtilities.sendHeader, routeJson );
+}
+
+MapsUtilities.prototype.calcDistance = function( route ) {
+	var total = 0;
+	for ( var i = 0; i < route.legs.length; i++ ) {
+		total = total + route.legs[ i ].distance.value;
+	}
+	return total;
+}
+
+MapsUtilities.prototype.calcDuration = function( route ) {
+	var total = 0;
+	for ( var i = 0; i < route.legs.length; i++ ) {
+		total = total + route.legs[ i ].duration.value;
+	}
+	return total;
 }
