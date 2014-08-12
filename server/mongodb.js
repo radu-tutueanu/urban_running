@@ -41,7 +41,7 @@ var Schema = mongoose.Schema;
 
 
 var routeSchema = new Schema( {
-	userId: Schema.Types.ObjectId,
+	//userId: Schema.Types.ObjectId,
 	distance: Number,
 	duration: Number,
 	name: {
@@ -81,7 +81,7 @@ var routeSchema = new Schema( {
 			trim: true
 		}
 	},
-	encodedPolyline : String
+	encodedPolyline: String
 } );
 
 
@@ -141,15 +141,15 @@ module.exports = {
 
 	insertTraseu: function( userName, properties ) {
 		console.log( "Creating Route : " + properties.name );
-		userModel.find( {
+		/*userModel.find( {
 			name: userName
 		}, '_id', function( err, users ) {
 			if ( err ) return console.error( err );
 			assert.equal( 1, users.length, "More than one user with the same username" );
-			properties.userId = users[ 0 ]._id;
+			properties.userId = users[ 0 ]._id;*/ //no users
 			var route = new routeModel( properties );
 			route.save( saveObjectCallback );
-		} );
+		//} );
 	},
 
 	getTrasee: function( socket ) {
