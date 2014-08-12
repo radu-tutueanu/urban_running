@@ -10,7 +10,7 @@ Route.prototype.reset = function() {
 }
 
 Route.prototype.getJSON = function() {
-	return RouteJSON;
+	return this.routeJSON;
 }
 
 Route.prototype.addMarker = function( marker ) {
