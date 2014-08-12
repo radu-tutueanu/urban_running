@@ -6,11 +6,15 @@ function ClientUtilities( gmapsUtilities ) {
 ClientUtilities.prototype.processReceivedRoutes = function( receivedRoutes ) {
 	console.log( 'procssing Routes' );
 	for ( i = 0; i <= receivedRoutes.length - 1; i++ ) {
-		currentRoute = receivedRoutes[ i ];
-		path = google.maps.geometry.encoding.decodePath( currentRoute[ 'encodedPolyline' ] );
-		this.drawRoute( path );
-		self.gmapsUtilities.addRouteMarker( path[ 0 ], currentRoute );
+		this.procesSingleRoute( receivedRoutes[ i ], true );
 	}
+}
+
+ClientUtilities.prototype.procesSingleRoute = function( route, drawMarker ) {
+	path = google.maps.geometry.encoding.decodePath( route[ 'encodedPolyline' ] );
+	this.drawRoute( path );
+	if ( drawMarker )
+		self.gmapsUtilities.addRouteMarker( path[ 0 ], route );
 }
 
 ClientUtilities.prototype.arrayToLatLng = function( array ) {
