@@ -115,7 +115,7 @@ MapsUtilities.prototype.sendRoute = function() {
 	this.current.setDuration( this.calcDuration( mapsRoute ) );
 	this.current.setEncodePolyline( mapsRoute.overview_polyline );
 	routeJson = {};
-	routeJson[ username ] = this.current.getJSON;
+	routeJson[ 'username' ] = this.current.getJSON();
 	this.serverSocket.emit( MapsUtilities.sendHeader, routeJson );
 }
 
