@@ -169,13 +169,3 @@ function createAllRoutesJson() {
 	};
 	return allRoutes;
 }
-
-
-
-/*
-
-
-//send data to client
-    setInterval(function(){
-        socket.emit('date', {'date': new Date()});
-    }, 1000);*/
