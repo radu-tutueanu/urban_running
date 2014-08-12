@@ -5,33 +5,25 @@
 <head>
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 	<script src="/socket.io/socket.io.js"></script>
+	<script src="js/route.js"></script>
+	<script src="js/gmaps.js"></script>
 	<script src="js/client.js"></script>
-	<script src="js/domutils.js"></script>
-	<script src="js/mapsutils.js"></script>
-	<script src="js/routeutils.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
 	<link rel="stylesheet" href="http://www.jacklmoore.com/colorbox/example1/colorbox.css" />
 	</script>
 	<link rel="stylesheet" type="text/css" href="css/pagina_traseu.css" />
 
-	<script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7_q4j3wbRGmQr3V-wtKZrlv7Uz_-G7Dk&sensor=true">
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7_q4j3wbRGmQr3V-wtKZrlv7Uz_-G7Dk&libraries=geometry&sensor=true"></script>
 	</script>
 	<script type="text/javascript">
-	var directionsDisplay;
-	var directionsService = new google.maps.DirectionsService();
-	var drawn =  new Array();
-	var map;
-	var routeInfo;
-	var routeID = parseURLParams(document.location.href).id[0]; /*DE aici schimbi id-ul rutei afisate*/
-	google.maps.event.addDomListener(window, 'load', initializeWithoutVieportPreservation);
-	</script>
+	function init(){
+          utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner);
+          utilities.initialize()
+          client = new ClientUtilities(utilities);
+          var routeID = client.parseURLParams(document.location.href).id[0]; /*Here we load the id of the route to be shown*/
+          socket = io.connect();
 
-	<script type="text/javascript">
-	var socket = io.connect();
-	var loggedIn = false;
-
-	socket.on('connect', function(){
+    socket.on('connect', function(){
 		socket.emit('request_route_info', { id: routeID });
 	});
 	
@@ -48,12 +40,24 @@
      	distanceField = data['distance']/1000 + "KM";
      	document.getElementsByClassName('distance')[0].innerHTML = distanceField ;
      	document.getElementsByClassName('titlu')[0].innerHTML = data['name'];
-     	traseu = vectorToTraseu( data [ 'coordinates' ] );
-    	calcRouteFromScratch( traseu ); 
+    	client.procesSingleRoute( data ); 
      });
+     } 
+	
 
-     
-     </script>
+	var socket;
+    var zoom = 11
+    var lat = 44.4325
+    var lng = 26.1039
+    var viewportPreservation = false
+    var markerListerner = false
+    var utilities;
+    var client;
+	var directionsDisplay;
+	var directionsService = new google.maps.DirectionsService();
+	google.maps.event.addDomListener(window, 'load', init);
+	</script>
+
 	<body>
 
 		<div id="map-canvas">
