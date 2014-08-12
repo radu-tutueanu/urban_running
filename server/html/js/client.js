@@ -9,8 +9,7 @@ ClientUtilities.prototype.processReceivedRoutes = function( receivedRoutes ) {
 		currentRoute = receivedRoutes[ i ];
 		path = google.maps.geometry.encoding.decodePath( currentRoute[ 'encodedPolyline' ] );
 		this.drawRoute( path );
-		currentRoute[ 'coordinates' ] = path;
-		self.gmapsUtilities.addRouteMarker( currentRoute );
+		self.gmapsUtilities.addRouteMarker( path[ 0 ], currentRoute );
 	}
 }
 

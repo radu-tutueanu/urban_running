@@ -36,11 +36,10 @@ MapsUtilities.prototype.initializeDirectionsDisplay = function() {
 	this.directionsDisplay.setMap( this.map );
 }
 
-MapsUtilities.prototype.addRouteMarker = function( route ) {
+MapsUtilities.prototype.addRouteMarker = function( position, route ) {
 
 	var marker = new google.maps.Marker( {
-		position: new google.maps.LatLng( route[ 'coordinates' ][ 0 ], route[ 'coordinates' ][ 1 ] )
-	} );
+		position: position } );
 	marker.setMap( this.map );
 	url = MapsUtilities.mapsPageUrl + route[ '_id' ];
 	console.log( url );

@@ -35,6 +35,7 @@
 
           socket.on('send_all_routes', function(data){
                console.log("received all routes");
+               $(window).load();
                client.processReceivedRoutes(data);
           });
           socket.on('send_route_info', function(data){
