@@ -163,6 +163,8 @@ module.exports = {
 	getInfoTraseu: function( id, socket ) {
 		routeModel.findByID( id, function( err, routes ) {
 			if ( err ) return console.error( err );
+			console.log( "found by id : " + routes );
+			assert.notEqual(0, routes.length, "No route found" )
 			assert.equal( 1, routes.length, "More than one route with the same id" );
 			console.log( "found by id : " + routes[ 0 ] );
 			socket.emit( common.SEND_ROUTE_INFO, routes[ 0 ] );
