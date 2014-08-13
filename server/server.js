@@ -103,8 +103,8 @@ send404 = function( res ) {
 	res.write( '404' );
 	res.end();
 };
-
-server.listen( 8001 );
+console.log( " Starting server on port " + process.argv[ 2 ] )
+server.listen( process.argv[ 2 ] );
 
 // use socket.io
 var io = require( 'socket.io' ).listen( server );
