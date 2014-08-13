@@ -2,7 +2,9 @@ var mongoose = require( 'mongoose' );
 var assert = require( "assert" );
 var common = require( './common' );
 
-var dbURI = 'mongodb://localhost/undealergam?keepAlive=1';
+var dbURI = process.env.MONGOLAB_URI ||
+	'mongodb://localhost/undealergam';
+dbURI = dbURI + "?keepAlive=1"
 
 
 /* Create the database connection */
