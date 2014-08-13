@@ -11,6 +11,7 @@ function MapsUtilities( zoom, centerLat, centerLng, viewportPreservation, marker
 	this.current = new Route();
 	mapsUtilities = this;
 	this.serverSocket = serverSocket;
+	self.routesHeadMarkers = new Array();
 }
 
 MapsUtilities.mapsPageUrl = "/pagina_traseu.html?id=";
@@ -41,10 +42,9 @@ MapsUtilities.prototype.addRouteMarker = function( position, route ) {
 	var marker = new google.maps.Marker( {
 		position: position } );
 	marker.setMap( this.map );
-	url = MapsUtilities.mapsPageUrl + route[ '_id' ];
 	console.log( url );
 	google.maps.event.addListener( marker, 'click', function() {
-		window.open( url, "_self" )
+		window.open( MapsUtilities.mapsPageUrl + route[ '_id' ], "_self" )
 	} );
 	marker.infowindow = new google.maps.InfoWindow( {
 		content: route[ 'name' ]
@@ -57,6 +57,8 @@ MapsUtilities.prototype.addRouteMarker = function( position, route ) {
 	google.maps.event.addListener( marker, 'mouseout', function( event ) {
 		marker.infowindow.close();
 	} );
+
+	self.routesHeadMarkers.push(marker);
 }
 
 MapsUtilities.prototype.getmap = function() {
