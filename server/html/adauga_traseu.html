@@ -72,16 +72,16 @@ function resetForm() {
   <textarea name="textunde-textarea" id="textunde"></textarea></p>
 
   <p class="form_circ">Traseul este foarte circulat.*<br/>
-  <input type="range" name="range_circ" min="1" max="5" value="1" onchange="showValue(this.value,this.name)"/>
+  <input type="range" name="range_circ" min="1" max="5" value="0" onchange="client.showValue(this.value,this.name)"/>
   <span id="range_circ">1</span> 
   </p>
 
   <p class="form_caini">Sunt multi câini pe traseu.*<br />
-  <input type="range" name="range_caini" min="1" max="5" value="1" onchange="showValue(this.value,this.name)"/>
+  <input type="range" name="range_caini" min="1" max="5" value="0" onchange="client.showValue(this.value,this.name)"/>
   <span id="range_caini">1</span>
   </p>
   <p class="form_lum">Traseul este bine luminat.*<br />
-  <input type="range" name="range_lum" min="1" max="5" value="1" onchange="showValue(this.value,this.name)"/>
+  <input type="range" name="range_lum" min="1" max="5" value="0" onchange="client.showValue(this.value,this.name)"/>
   <span id="range_lum" class="bara_lum">1</span>
   </p>
 

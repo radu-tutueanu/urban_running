@@ -5,7 +5,7 @@ body { height: 100%; margin: 0; padding: 0 }
 
 #eroare_rasp {
 	position:absolute;
-	bottom:4%;
+	bottom:2%;
 	right:1.1%;
 	margin: 0px;
 	font-size:1.05vw;
@@ -142,8 +142,8 @@ p.expl
 
 .salv {
 	position:absolute;
-	top:5%;
-	right:8%;
+	bottom:3%;
+	right:6.5%;
 	margin: 1%;
 	-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
@@ -183,8 +183,8 @@ p.expl
 
 .sterg {
 	position:absolute;
-	top:5%;
-	right:1.5%;
+	bottom:3%;
+	right:0%;
 	margin: 1%;
 	-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
@@ -273,7 +273,7 @@ input[type=range] {
 } /*se aplica pentru toate campurile de tip "range"*/
 .acasa {
 	position:absolute;
-	bottom:6%;
+	top:8%;
 	right:1%;
 	margin: 1px;
 	-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
