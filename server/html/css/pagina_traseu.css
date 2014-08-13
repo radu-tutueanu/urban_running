@@ -1,6 +1,6 @@
 html { height: 100% }
 body { height: 100%; margin: 0; padding: 0 }
-#map-canvas { height: 80%; width:50%; position:fixed; top:100px; left:30px;}
+#map-canvas { height: 75%; width:45%; top:13%; left:4.3%;}
 		
 .tbl_dist {
  position:absolute;

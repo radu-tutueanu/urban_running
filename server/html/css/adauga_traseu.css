@@ -2,12 +2,13 @@ html { height: 100% }
 body { height: 100%; margin: 0; padding: 0 }
 #map-canvas { height: 100%; width: 100%; }
 
+
 #eroare_rasp {
-	position:fixed;
+	position:absolute;
 	bottom:4%;
 	right:1.1%;
 	margin: 0px;
-	font-size:16px; 
+	font-size:1.05vw;
 	font-family:Calibri; 
 	font-weight:bold;
 	color: red;
@@ -16,151 +17,124 @@ body { height: 100%; margin: 0; padding: 0 }
 
 p.form_denumire {
 	position: fixed;
-	top:11.3%;
-	right: 11%;
-	font-size:14px;
+	top:13.5%;
+	right: 5.4%;
+	left:79.2%;
+	font-size:1.05vw;
 	font-family:Calibri;
 }       
 p.form_cand{
-	position:fixed;
-	top:18.7%;
-	right:4.4%;
+	position:absolute;
+	top:21.7%;
+	right:0.5%;
+	left: 79.2%;
 	margin: 0px;
-	font-size:14px;
+	font-size:1.05vw;
 	font-family:Calibri;
 	
 }
 
 
 p.form_unde{
-	position:fixed;
-	top:24.2%;
-	right:4%;
+	position:absolute;
+	top:27.4%;
+	right:2.4%;
+	left:79.2%;
 	margin: 0px;
-	font-size:14px;
+	font-size:1.05vw;
+	font-family:Calibri;
+}
+
+p.form_circ{
+	position:absolute;
+	top:33.5%;
+	right:8%;
+	left:79.1%;
+	margin: 0px;
+	font-size:1.05vw;
+	font-family:Calibri;       
+}
+
+p.form_caini{
+	position:absolute;
+	top:39.7%;
+	right:9%;
+	left:79.1%;
+	margin: 0px;
+	font-size:1.05vw;
+	font-family:Calibri;
+}
+
+p.form_lum{
+	position:absolute;
+	top:46.5%;
+	right:8.5%;
+	left:79.1%;
+	margin: 0px;
+	font-size:1.05vw;
+	font-family:Calibri;
+}
+
+
+p.form_sig{
+	position:absolute;
+	top:53.2%;
+	right:3.4%;
+	left:79.1%;
+	margin: 0px;
+	font-size:1.05vw;
+	font-family:Calibri;
+	float: left;
+	
+}
+
+p.form_obs{
+	position:absolute;
+	top:66.8%;
+	right:9.7%;
+	left:79.1%;
+	margin: 0px;
+	font-size:1.05vw;
 	font-family:Calibri;
 }
 
 .fundal 
 {
-	position: fixed;
-	top:12.2%;
+	position: absolute;
+	top:14.2%;
 	right:1%;
-	width:22.7%;
-	height:75.2%;
-/*padding: 5px;
-border: 1px;
-margin: 1px;*/
--moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
--webkit-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
-background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b8e356), color-stop(1, #a5cc52) );
-background:-moz-linear-gradient( center top, #b8e356 5%, #a5cc52 100% );
-filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8e356', endColorstr='#a5cc52');
-background-color:#b8e356;
--webkit-border-top-left-radius:0px;
--moz-border-radius-topleft:0px;
-border-top-left-radius:0px;
--webkit-border-top-right-radius:0px;
--moz-border-radius-topright:0px;
-border-top-right-radius:0px;
--webkit-border-bottom-right-radius:0px;
--moz-border-radius-bottomright:0px;
-border-bottom-right-radius:0px;
--webkit-border-bottom-left-radius:0px;
--moz-border-radius-bottomleft:0px;
-border-bottom-left-radius:0px;
-text-indent:0;
-border:1px solid #83c41a;
-display:inline-block;
-	/*color:#ffffff;
-	font-family:Calibri;
-	font-size:15px;
-	font-weight:bold;
-	font-style:normal;
-	height:40px;
-	line-height:40px;
-	width:100px;
-	text-decoration:none;
-	text-align:center;
-	text-shadow:1px 1px 0px #86ae47;*/
-
-}
+	width:20.7%;
+	height:74%;
+	background-color:#b8e356;
+	opacity:0.8;
+	}
 
 p.subm {
-	position:fixed;
-	top:600px;
-	right:36px;
-	margin: 0px;
-	font-size:14px;
-	font-family:Calibri;
-	float: left;
-}
-p.form_circ{
-	position:fixed;
-	top:29.5%;
+	position:absolute;
+	top:22%;
 	right:10%;
-	margin: 0px;
-	font-size:14px;
-	font-family:Calibri;       
-}
-
-p.form_lum{
-	position:fixed;
-	top:40%;
-	right:10.8%;
-	margin: 0px;
-	font-size:14px;
-	font-family:Calibri;
-}
-
-p.form_caini{
-	position:fixed;
-	top:34.3%;
-	right:10.4%;
-	float:right;
-	margin: 0px;
-	font-size:14px;
-	font-family:Calibri;
-}
-
-p.form_sig{
-	position:fixed;
-	top:45.2%;
-	right:4.7%;
-	margin: 0px;
-	font-size:14px;
+	font-size:1.05vw;
 	font-family:Calibri;
 	
 }
 
-p.form_obs{
-	position:fixed;
-	top:64%;
-	right:7.5%;
-	margin: 0px;
-	font-size:14px;
-	font-family:Calibri;
-	float: left;
-}
 p.nota
 {
-	position:fixed;
-	bottom:15%;
-	right:1.4%;
-	margin: 0px;
-	font-size:12px;
+	position:absolute;
+	bottom:14%;
+	right:1%;
+	left:79%;
+	font-size:0.9vw;
 	font-family:Calibri;
 }
 
 p.expl
 {
 	position:absolute;
-	bottom:13%;
-	right:8.8%;
-	margin: 0px;
-	align: left;
-	font-size:12px;
+	bottom:10.5%;
+	right:7.2%;
+	left:79%;
+	font-size:0.9vw;
 	font-family:Calibri;
 }
 
@@ -170,7 +144,7 @@ p.expl
 	position:absolute;
 	top:5%;
 	right:8%;
-	margin: 10px;
+	margin: 1%;
 	-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
 	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
@@ -195,12 +169,12 @@ p.expl
 	display:inline-block;
 	color:#ffffff;
 	font-family:Calibri;
-	font-size:17px;
+	font-size:1.4vw;
 	font-weight:bold;
 	font-style:normal;
-	height:40px;
-	line-height:40px;
-	width:100px;
+	height:5%;
+	line-height:130%;
+	width:6%;
 	text-decoration:none;
 	text-align:center;
 	text-shadow:1px 1px 0px #86ae47;
@@ -209,9 +183,9 @@ p.expl
 
 .sterg {
 	position:absolute;
-	top:6.2%;
+	top:5%;
 	right:1.5%;
-	margin: 1px;
+	margin: 1%;
 	-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
 	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
@@ -236,19 +210,70 @@ p.expl
 	display:inline-block;
 	color:#ffffff;
 	font-family:Calibri;
-	font-size:17px;
+	font-size:1.4vw;
 	font-weight:bold;
 	font-style:normal;
-	height:40px;
-	line-height:40px;
-	width:100px;
+	height:5%;
+	line-height:130%;
+	width:6%;
 	text-decoration:none;
 	text-align:center;
 	text-shadow:1px 1px 0px #86ae47;
 }
+
+textarea#textden {
+width:15vw;
+height:2.1vh;
+resize: none;
+font-size:0.9vw;
+font-family: Calibri;
+overflow:auto;
+}
+
+textarea#textcand {
+width:15vw;
+height:2.1vh;
+resize: none;
+font-size:0.9vw;
+font-family: Calibri;
+overflow:auto;
+}
+
+textarea#textunde {
+width:15vw;
+height:2.1vh;
+resize: none;
+font-size:0.9vw;
+overflow:auto;
+}
+
+textarea#textsig{
+position: fixed;
+width:15%;
+height:7%;
+overflow:auto;
+resize: none;
+font-size:0.9vw;
+}
+
+textarea#textobs{
+position:fixed;
+width:15%;
+height:7%;
+overflow:auto;
+resize: none;
+font-size:0.9vw;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: silver;
+    width:9vw;
+    height:0.5vh;
+} /*se aplica pentru toate campurile de tip "range"*/
 .acasa {
 	position:absolute;
-	bottom:7%;
+	bottom:6%;
 	right:1%;
 	margin: 1px;
 	-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;

@@ -59,45 +59,40 @@ function resetForm() {
 
   <a href="#" class="salv" onclick="client.validateAndSave()">Salvează</div>
     <a href="#" class="sterg" onclick="resetForm()">Șterge</a>
-<!--<div class="test" onclick="test()">TEST_oula</div>
-  <a href="#" class="golire" onclick="resetForm()">Golește formularul</a>-->
-  <!--Nu avem nevoie de termeni și condiții pe pagina asta-->
-  <!--<a href="www.google.ro" class="termeni">Termeni și condiții</a>-->
-  <!--<a href="www.xxx.ro" class="despre">Despre noi</a>-->
 
   <div class="fundal"></div>
   <form name="ContactForm" id="Contact">
-    <p class="form_denumire">Denumire traseu*<br />
-      <input type="text" size="20" name="denumire"/></p>
-      <p class="form_cand">Când alergi de obicei (dimineața/seara)?*<br />
-        <input type="text" size="20" name="cand"/></p>
-        <p class="form_unde">Unde alergi de fel (pe trotuar/pe stradă)?*<br />
-          <span class="wpcf7-form-control-wrap your-name"><input type="text" name="unde" class="wpcf7-text wpcf7-validates-as-required" size="20" /></span> </p>
-          <p class="form_circ">Traseul este foarte circulat.*<br/>
-           <input type="radio" style="horizontal-align: bottom" size="20" name="circ" value="1"/>1  
-           <input type="radio" style="horizontal-align: bottom" size="20" name="circ" value="2"/>2 
-           <input type="radio" style="horizontal-align: bottom" size="20" name="circ" value="3"/>3
-           <input type="radio" style="horizontal-align: bottom" size="20" name="circ" value="4"/>4
-           <input type="radio" style="horizontal-align: bottom" size="20" name="circ" value="5"/>5       
-           <!--   <span class="wpcf7-form-control-wrap your-name"><input type="text" name="circ" value="" class="wpcf7-text wpcf7-validates-as-required" size="20" /></span> </p>-->
-           <p class="form_caini">Sunt multi câini pe traseu.*<br />
-             <input type="radio" style="horizontal-align: bottom" size="20" name="caini" value="1"/>1  
-             <input type="radio" style="horizontal-align: bottom" size="20" name="caini" value="2"/>2 
-             <input type="radio" style="horizontal-align: bottom" size="20" name="caini" value="3"/>3
-             <input type="radio" style="horizontal-align: bottom" size="20" name="caini"value="4"/>4
-             <input type="radio" style="horizontal-align: bottom" size="20" name="caini"value="5"/>5  
-             <!--<span class="wpcf7-form-control-wrap your-name"><input type="text" name="caini" value="" class="wpcf7-text wpcf7-validates-as-required" size="20" /></span> </p>-->
-             <p class="form_lum">Traseul este bine luminat.*<br />
-              <!-- <span class="wpcf7-form-control-wrap your-name"><input type="text" name="lum" value="" class="wpcf7-text wpcf7-validates-as-required" size="20" /></span> </p>-->
-              <input type="radio" style="horizontal-align: bottom" size="20" name="lum" value="1"/>1  
-              <input type="radio" style="horizontal-align: bottom" size="20" name="lum" value="2"/>2 
-              <input type="radio" style="horizontal-align: bottom" size="20" name="lum" value="3"/>3
-              <input type="radio" style="horizontal-align: bottom" size="20" name="lum" value="4"/>4
-              <input type="radio" style="horizontal-align: bottom" size="20" name="lum" value="5"/>5  
-              <p class="form_sig">Te simți în siguranță alergând în zonă?*<br /> Dacă nu, de ce?<br />
-                <span class="wpcf7-form-control-wrap your-message"><textarea name="sig" cols="30" rows="6"></textarea></span> </p>
-                <p class="form_obs">Alte observații relevante.<br />
-                  <span font="Calibri"><textarea name="nume_obs" cols="30" rows="6"></textarea></span> </p>
+   <p class="form_denumire">Denumire traseu*<br/>
+        <textarea name="textden-textarea" id="textden"></textarea> </p>
+      
+  <p class="form_cand">Când alergi de obicei (la prânz/seara etc.)?*<br />
+      <textarea name="textcand-textarea" id="textcand"></textarea> </p>
+    
+  <p class="form_unde">Unde alergi de fel (pe trotuar/pe stradă)?*<br />
+  <textarea name="textunde-textarea" id="textunde"></textarea></p>
+
+  <p class="form_circ">Traseul este foarte circulat.*<br/>
+  <input type="range" name="range_circ" min="1" max="5" value="1" onchange="showValue(this.value,this.name)"/>
+  <span id="range_circ">1</span> 
+  </p>
+
+  <p class="form_caini">Sunt multi câini pe traseu.*<br />
+  <input type="range" name="range_caini" min="1" max="5" value="1" onchange="showValue(this.value,this.name)"/>
+  <span id="range_caini">1</span>
+  </p>
+  <p class="form_lum">Traseul este bine luminat.*<br />
+  <input type="range" name="range_lum" min="1" max="5" value="1" onchange="showValue(this.value,this.name)"/>
+  <span id="range_lum" class="bara_lum">1</span>
+  </p>
+
+  <p class="form_sig">Te simți în siguranță alergând în zonă?*<br /> Dacă nu, de ce?<br />
+      <textarea name="textsig-textarea" id="textsig"></textarea> </p> 
+    
+  <p class="form_obs">Alte observații relevante.<br />
+      <textarea name="textobs-textarea" id="textobs"></textarea> </p>
+    
+    <p class="nota"><b>*Notă:</br></b> Toate câmpurile, mai puțin ultimul, sunt obligatorii.</p>
+  <p class="expl">1 - dezacord total. 5 - acord total.</p>
 
                 </form>
 
@@ -105,7 +100,7 @@ function resetForm() {
                 <p class="expl">1 - dezacord total. 5 - acord total.</p>
                 <a href="/index.html" class="acasa">Acasă</a>
                 <!--mesajele de eroare-->
-                <p id="eroare_rasp"><b></b></p>
+                <p id="eroare_rasp"><b>Te rugăm să completezi toate câmpurile obligatorii.</b></p>
               </body>
             </head>
             </html>
