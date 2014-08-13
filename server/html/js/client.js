@@ -71,7 +71,7 @@ ClientUtilities.prototype.validateAndSave = function() {
 	if (cand_box.length > 1 && unde_box.length > 1 && sig_box.length > 1 && den_box.length > 1 ) {
 		document.getElementById( "eroare_rasp" ).innerHTML = "";
 		
-		if (utilities.isRouteDrawn () ) {
+		if (self.gmapsUtilities.isRouteDrawn () ) {
 		self.gmapsUtilities.addToRoute( den_box, ales_circ, ales_caini, ales_lum, cand_box, unde_box, sig_box, obs_box );
 		self.gmapsUtilities.sendRoute();
 	

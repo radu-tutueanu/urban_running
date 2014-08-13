@@ -1,10 +1,13 @@
 var mapsUtilities;
 
-function MapsUtilities( zoom, centerLat, centerLng, viewportPreservation, markerListerner, serverSocket ) {
+function MapsUtilities( zoom, centerLat, centerLng, viewportPreservation, markerListerner, serverSocket, drawingCursor ) {
 	this.mapOptions = {
 		zoom: zoom,
 		center: new google.maps.LatLng( centerLat, centerLng )
 	};
+	if (drawingCursor ) {
+		this.mapOptions["draggableCursor"]="url("+ MapsUtilities.cursorUrl +"), auto";
+	}
 	this.viewportPreservation = viewportPreservation;
 	this.markerListerner = markerListerner;
 	this.directionsService = new google.maps.DirectionsService();
@@ -16,6 +19,7 @@ function MapsUtilities( zoom, centerLat, centerLng, viewportPreservation, marker
 
 MapsUtilities.mapsPageUrl = "/pagina_traseu.html?id=";
 MapsUtilities.sendHeader = "send_route";
+MapsUtilities.cursorUrl = "https://cdn1.iconfinder.com/data/icons/3d-printing-icon-set/64/Edit.png";
 
 MapsUtilities.prototype.initialize = function() {
 	this.map = new google.maps.Map( document.getElementById( 'map-canvas' ),
@@ -42,7 +46,7 @@ MapsUtilities.prototype.addRouteMarker = function( position, route ) {
 	var marker = new google.maps.Marker( {
 		position: position } );
 	marker.setMap( this.map );
-	console.log( url );
+	//console.log( url );
 	google.maps.event.addListener( marker, 'click', function() {
 		window.open( MapsUtilities.mapsPageUrl + route[ '_id' ], "_self" )
 	} );
@@ -74,7 +78,7 @@ MapsUtilities.prototype.placeMarker = function( position ) {
 	//calcRoute( current );
 }
 
-MapsUtilities.prototype.routeIsDrawn = function() {
+MapsUtilities.prototype.isRouteDrawn = function() {
 	if( this.current.getMarkersLen > 1 )
 		return true;
 	return false;

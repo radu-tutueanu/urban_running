@@ -22,7 +22,7 @@
   <script type="text/javascript"> 
 
   function init(){
-          utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner, socket);
+          utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner, socket, drawCursor);
           utilities.initialize()
           client = new ClientUtilities(utilities);
      } 
@@ -36,6 +36,7 @@
   var utilities;
   var client;
   google.maps.event.addDomListener(window, 'load', init);
+  var drawCursor = true; //so as the cursor to modify itself when over the map
 
   var username = "Undefined";
 
@@ -45,6 +46,9 @@
 function resetForm() {
   document.getElementById("Contact").reset();
   document.getElementById("eroare_rasp").innerHTML = "";
+  document.getElementById("range_circ").innerHTML = 1;
+  document.getElementById("range_caini").innerHTML = 1;
+  document.getElementById("range_lum").innerHTML = 1;
   utilities.reset();
 
 }

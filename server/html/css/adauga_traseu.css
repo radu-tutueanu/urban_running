@@ -1,6 +1,6 @@
 html { height: 100% }
 body { height: 100%; margin: 0; padding: 0 }
-#map-canvas { height: 100%; width: 100%; }
+#map-canvas { height: 100%; width: 100%; cursor:url(http://www.javascriptkit.com/dhtmltutors/cursor-hand.gif), auto;}
 
 
 #eroare_rasp {
@@ -8,7 +8,7 @@ body { height: 100%; margin: 0; padding: 0 }
 	bottom:2%;
 	right:1.1%;
 	margin: 0px;
-	font-size:1.05vw;
+	font-size:1.2vw;
 	font-family:Calibri; 
 	font-weight:bold;
 	color: red;
@@ -178,6 +178,7 @@ p.expl
 	text-decoration:none;
 	text-align:center;
 	text-shadow:1px 1px 0px #86ae47;
+
 }
 
 

@@ -17,7 +17,7 @@
 	</script>
 	<script type="text/javascript">
 	function init(){
-          utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner);
+          utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner,drawCursor);
           utilities.initialize()
           client = new ClientUtilities(utilities);
           var routeID = client.parseURLParams(document.location.href).id[0]; /*Here we load the id of the route to be shown*/
@@ -58,6 +58,7 @@
     var client;
 	var directionsDisplay;
 	var directionsService = new google.maps.DirectionsService();
+	var drawCursor = false; 
 	google.maps.event.addDomListener(window, 'load', init);
 	</script>
 

@@ -19,7 +19,7 @@
 <script type="text/javascript">
 
      function init(){
-          utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner);
+          utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner,drawCursor);
           utilities.initialize()
           client = new ClientUtilities(utilities);
           socket = io.connect();
@@ -57,6 +57,7 @@
 	var directionsService = new google.maps.DirectionsService();
 	var routeInfo;
 	var markerArray = new Array();
+     var drawCursor = false; 
 	google.maps.event.addDomListener(window, 'load', init);
 
 	</script>
