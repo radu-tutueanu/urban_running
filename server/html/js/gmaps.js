@@ -74,6 +74,12 @@ MapsUtilities.prototype.placeMarker = function( position ) {
 	//calcRoute( current );
 }
 
+MapsUtilities.prototype.routeIsDrawn = function() {
+	if( this.current.getMarkersLen > 1 )
+		return true;
+	return false;
+}
+
 MapsUtilities.prototype.reset = function() {
 	this.current.reset();
 	this.directionsDisplay.setMap();
