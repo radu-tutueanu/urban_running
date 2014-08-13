@@ -30,16 +30,19 @@
      socket.on('send_route_info', function(data){
      	console.log("received route info");
      	routeInfo = data;
-     	document.getElementsByClassName('rasp_cand')[0].innerHTML = data['info']['when'];
-     	document.getElementsByClassName('rasp_unde')[0].innerHTML = data['info']['where'];
-     	document.getElementsByClassName('rasp_circ')[0].innerHTML = data['info']['traffic'];
-     	document.getElementsByClassName('rasp_caini')[0].innerHTML = data['info']['dogs'];
-     	document.getElementsByClassName('rasp_lumin')[0].innerHTML = data['info']['lighting'];
-     	document.getElementsByClassName('box_sigur')[0].innerHTML = data['info']['safety'];
-     	document.getElementsByClassName('box_obs')[0].innerHTML = data['info']['observations'];
+     	document.getElementById("textcand").innerHTML = data['info']['when'];
+     	document.getElementById("textunde").innerHTML = data['info']['where'];
+     	document.getElementById('meter_circ').innerHTML = "Valoare = " + data['info']['traffic'];
+     	document.getElementById('meter_circ').value = data['info']['traffic'];
+     	document.getElementById('meter_caini').innerHTML = "Valoare = " + data['info']['dogs'];
+     	document.getElementById('meter_caini').value = data['info']['dogs'];
+     	document.getElementById('meter_lum').innerHTML = "Valoare = " + data['info']['lighting'];
+     	document.getElementById('meter_lum').value = data['info']['lighting'];
+     	document.getElementById("textsig").innerHTML = data['info']['safety'];
+   		document.getElementById("textobs").innerHTML = data['info']['observations'];
      	distanceField = data['distance']/1000 + "KM";
-     	document.getElementsByClassName('distance')[0].innerHTML = distanceField ;
-     	document.getElementsByClassName('titlu')[0].innerHTML = data['name'];
+     	document.getElementById('distance').innerHTML = distanceField;
+     	document.getElementById('titlu_traseu').innerHTML = "<b>"+data['name']+"</b>";
     	client.procesSingleRoute( data ); 
      });
      } 
@@ -70,40 +73,41 @@
 		<div class="fundal"></div>
 
 
-			<p class="titlu"><b>Denumire traseu excepțional de mare</b></p>
+			<p id="titlu_traseu" class="titlu"><b></b></p>
 	<p class="detalii"><b>Detalii traseu</b></p>
 
 
 	<p class="form_cand"> Când alergi de obicei?</br>
-	<textarea name="textcand-textarea" id="textcand" readonly>Vara prefer să alerg dimineața. Iarna pot alerga oricând, dar prefer seara. Mai alerg si pe miriște și pe câmp, dar doar când am chef.</textarea> </p>
+	<textarea name="textcand-textarea" id="textcand" readonly> </textarea> 
+	</p>
 
-	<p class="form_unde"> Unde alergi de fel?</p>
-	<textarea name="textunde-textarea" id="textunde" readonly>În general pe stradă. Dar uneori mă aleargă poliția, așa că o mai iau și pe trotuar și sar garduri.</textarea> 
+	<p class="form_unde"> Unde alergi de fel?</br>
+	<textarea name="textunde-textarea" id="textunde" readonly></textarea> 
+	</p>
 
-	<p class="form_circ">Traseul este foarte circulat.*<br/>
-
+	<p class="form_circ">Traseul este foarte circulat.*</br>
 	<span style="font-size:0.9vw">1</span>
-	<meter class="meter_caini" value="5" min="1" max="5">Valoare=4</meter>
+	<meter id="meter_circ" value="1" min="1" max="5">Valoare=1</meter>
 	<span style="font-size:0.9vw">5</span>
 	</p>
 
-	<p class="form_caini">Sunt multi câini pe traseu.*<br />
+	<p class="form_caini">Sunt multi câini pe traseu.*</br>
 	<span style="font-size:0.9vw">1</span>
-	<meter value="1" min="1" max="5">Valoare=1</meter>
+	<meter id="meter_caini" value="1" min="1" max="5">Valoare=1</meter>
 	<span style="font-size:0.9vw">5</span>
 	</p>
 
-	<p class="form_lum">Traseul este bine luminat.*<br />
+	<p class="form_lum">Traseul este bine luminat.*</br>
 	<span style="font-size:0.9vw">1</span>
-	<meter value="2" min="1" max="5">Valoare=2</meter>
+	<meter id="meter_lum"value="1" min="1" max="5">Valoare=1</meter>
 	<span style="font-size:0.9vw">5</span>
 	</p>
 
-	<p class="form_sig">Te simți în siguranță alergând în zonă?*<br /> Dacă nu, de ce?<br />
-	    <textarea name="textsig-textarea" id="textsig" readonly>Cum să nu!</textarea> </p> 
+	<p class="form_sig">Te simți în siguranță alergând în zonă?*</br> Dacă nu, de ce?</br>
+	<textarea name="textsig-textarea" id="textsig" readonly></textarea> </p> 
 		
-		<p class="form_obs">Alte observații relevante.<br />
-	    <textarea name="textobs-textarea" id="textobs" readonly>N-am, șefule.</textarea> </p>
+	<p class="form_obs">Alte observații relevante.</br>
+	<textarea name="textobs-textarea" id="textobs" readonly></textarea> </p>
 
 	<p class="nota"><b>*Notă:</b> 1 - dezacord total, 5 - acord total.</p>
 		
@@ -111,7 +115,7 @@
 	<table border="1" class="tbl_dist">
 	<tr>
 	<td>Distanța</td>
-	<td>10,89 KM</td>
+	<td id="distance"></td>
 	</tr>
 	</table>
 		<a href="/index.html" class="acasa">Acasă</a>
