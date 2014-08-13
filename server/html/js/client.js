@@ -115,3 +115,11 @@ ClientUtilities.prototype.showValue = function(newValue,id_range){
 //apelată când se schimbă valoarea din întrebările 4, 5, 6
 document.getElementById(id_range).innerHTML=newValue;
 }
+
+ClientUtilities.prototype.closeInfo = function() {
+	document.getElementById("info_id").style.visibility="hidden";
+	document.getElementById("fundal_info_id").style.visibility="hidden";
+	//alert("am ajuns");
+	document.getElementById("close").style.visibility="hidden";
+	//alert("am ajuns iar!");
+}

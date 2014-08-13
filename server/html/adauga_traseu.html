@@ -36,7 +36,7 @@
   var utilities;
   var client;
   google.maps.event.addDomListener(window, 'load', init);
-  var drawCursor = true; //so as the cursor to modify itself when over the map
+  var drawCursor = false; //so as the cursor to modify itself when over the map
 
   var username = "Undefined";
 
@@ -63,8 +63,12 @@ function resetForm() {
 
   <a href="#" class="salv" onclick="client.validateAndSave()">Salvează</div>
     <a href="#" class="sterg" onclick="resetForm()">Șterge</a>
+    <a href="#" class="inchide" id="close" onclick="client.closeInfo()">Închide</a>
 
   <div class="fundal"></div>
+  <div class="fundal_info" id="fundal_info_id"></div>
+  <p class="info" id="info_id">Pentru a adăuga un traseu, este necesar să-l desenezi și să completezi formularul. Pentru a desena traseul, te rugă să foloseștim creionul pus la dispoziție. Dacă ai greșit ceva, poți apăsa butonul "Șterge" - acesta golește formularul și șterge traseul.</p>  
+
   <form name="ContactForm" id="Contact">
    <p class="form_denumire">Denumire traseu*<br/>
         <textarea name="textden-textarea" id="textden"></textarea> </p>
@@ -105,6 +109,7 @@ function resetForm() {
                 <a href="/index.html" class="acasa">Acasă</a>
                 <!--mesajele de eroare-->
                 <p id="eroare_rasp"><b>Te rugăm să completezi toate câmpurile obligatorii.</b></p>
+              
               </body>
             </head>
             </html>
