@@ -70,32 +70,50 @@
 		<div class="fundal"></div>
 
 
-		<p class="titlu"><b>10 km Berceni</b></p>
-		<p class="detalii"><b>Detalii traseu</b></p>
-		<p class="form_cand">1. Când alergi de obicei?</p>
-		<p class="rasp_cand">Dimineața</p>
-		<p class="form_unde">2. Unde alergi de fel?</p>
-		<p class="rasp_unde">Pe trotuar</p>
-		<p class="form_circ">3. Traseul este intens circulat.</p>
-		<p class="rasp_circ">2</p>
-		<p class="form_caini">4. Sunt mulți câini pe traseu.</p>
-		<p class="rasp_caini">4</p>
-		<p class="form_lumin">5. Traseul este bine luminat.</p>
-		<p class="rasp_lumin">5</p>
-		<p class="form_sigur">6. Te simți în siguranță alergând în zonă?<br> Dacă nu, de ce?</p>
-		<div class="box_sigur">
-			Da, consider că acest traseu nu prezintă probleme de siguranță.
-		</div>
-		<p class="form_obs">7. Alte observații relevante.</p>
-		<div class="box_obs">
-			Recomand traseul mai ales dimineața.
-		</div>
-		<table class="tbl_dist" border="1 px" bordercolor="red" >
-			<tr>
-				<td>Distanța:</td>
-				<td class="distance">10 KM</td>
-			</tr>
-		</table>
+			<p class="titlu"><b>Denumire traseu excepțional de mare</b></p>
+	<p class="detalii"><b>Detalii traseu</b></p>
+
+
+	<p class="form_cand"> Când alergi de obicei?</br>
+	<textarea name="textcand-textarea" id="textcand" readonly>Vara prefer să alerg dimineața. Iarna pot alerga oricând, dar prefer seara. Mai alerg si pe miriște și pe câmp, dar doar când am chef.</textarea> </p>
+
+	<p class="form_unde"> Unde alergi de fel?</p>
+	<textarea name="textunde-textarea" id="textunde" readonly>În general pe stradă. Dar uneori mă aleargă poliția, așa că o mai iau și pe trotuar și sar garduri.</textarea> 
+
+	<p class="form_circ">Traseul este foarte circulat.*<br/>
+
+	<span style="font-size:0.9vw">1</span>
+	<meter class="meter_caini" value="5" min="1" max="5">Valoare=4</meter>
+	<span style="font-size:0.9vw">5</span>
+	</p>
+
+	<p class="form_caini">Sunt multi câini pe traseu.*<br />
+	<span style="font-size:0.9vw">1</span>
+	<meter value="1" min="1" max="5">Valoare=1</meter>
+	<span style="font-size:0.9vw">5</span>
+	</p>
+
+	<p class="form_lum">Traseul este bine luminat.*<br />
+	<span style="font-size:0.9vw">1</span>
+	<meter value="2" min="1" max="5">Valoare=2</meter>
+	<span style="font-size:0.9vw">5</span>
+	</p>
+
+	<p class="form_sig">Te simți în siguranță alergând în zonă?*<br /> Dacă nu, de ce?<br />
+	    <textarea name="textsig-textarea" id="textsig" readonly>Cum să nu!</textarea> </p> 
+		
+		<p class="form_obs">Alte observații relevante.<br />
+	    <textarea name="textobs-textarea" id="textobs" readonly>N-am, șefule.</textarea> </p>
+
+	<p class="nota"><b>*Notă:</b> 1 - dezacord total, 5 - acord total.</p>
+		
+
+	<table border="1" class="tbl_dist">
+	<tr>
+	<td>Distanța</td>
+	<td>10,89 KM</td>
+	</tr>
+	</table>
 		<a href="/index.html" class="acasa">Acasă</a>
 	</body>
 
