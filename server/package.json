@@ -1,5 +1,5 @@
 {
-  "name": "UndeAlergam.socket.io",
+  "name": "undealergam",
   "version": "0.0.0",
   "description": "Unde alergam server - varianta cu socket.io",
   "main": "server.js",
@@ -7,6 +7,19 @@
   "private": true,
   "license": "BSD",
   "dependencies": {
-    "sockt.io": "1.0.4"
-  }
+    "socket.io": "~1.0.6",
+    "mongoose": "~3.8.14"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://radututueanu@bitbucket.org/odyssey2020/undealergam.git"
+  },
+  "keywords": [
+    "undealergam",
+    "nodejs"
+  ]
 }
