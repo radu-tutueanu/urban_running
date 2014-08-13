@@ -147,8 +147,8 @@ module.exports = {
 			if ( err ) return console.error( err );
 			assert.equal( 1, users.length, "More than one user with the same username" );
 			properties.userId = users[ 0 ]._id;*/ //no users
-			var route = new routeModel( properties );
-			route.save( saveObjectCallback );
+		var route = new routeModel( properties );
+		route.save( saveObjectCallback );
 		//} );
 	},
 
@@ -164,8 +164,12 @@ module.exports = {
 		routeModel.findByID( id, function( err, routes ) {
 			if ( err ) return console.error( err );
 			console.log( "found by id : " + routes );
-			assert.notEqual(0, routes.length, "No route found" )
-			assert.equal( 1, routes.length, "More than one route with the same id" );
+			if ( routes.length == 0 ) {
+				console.error( "getInfoTraseu: No route found id = " + id )
+			}
+			if ( routes.length != 1 ) {
+				console.error( "getInfoTraseu: More than one route with the same id " + id );
+			}
 			console.log( "found by id : " + routes[ 0 ] );
 			socket.emit( common.SEND_ROUTE_INFO, routes[ 0 ] );
 		} );
