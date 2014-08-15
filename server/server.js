@@ -65,13 +65,17 @@ server = http.createServer( function( req, res ) {
 
 	switch ( respath ) {
 		case '/':
-			res.writeHead( 200, {
-				'Content-Type': 'text/html',
-				"Access-Control-Allow-Origin": "*"
+			filepath = path.join( filepath, "/index.html" );
+			fs.readFile( filepath, function( err, data ) {
+				if ( err ) {
+					return send404( res );
+				}
+				res.writeHead( 200, {
+					'Content-Type': respath == 'json.js' ? 'text/javascript' : 'text/html'
+				} );
+				res.write( data, 'utf8' );
+				res.end();
 			} );
-			res.write( '<h1>Hello! Try the <a href="index.html">Main page</a></h1>' );
-			res.end();
-			break;
 		case '/index.html':
 			fs.readFile( filepath, function( err, data ) {
 				if ( err ) {
