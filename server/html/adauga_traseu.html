@@ -17,22 +17,23 @@
   <link rel="stylesheet" type="text/css" href="css/adauga_traseu.css" />
 
   <script type="text/javascript"
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7_q4j3wbRGmQr3V-wtKZrlv7Uz_-G7Dk&sensor=true">
+  src="https://maps.googleapis.com/maps/api/js?v3.exp&key=AIzaSyB7_q4j3wbRGmQr3V-wtKZrlv7Uz_-G7Dk&libraries=geometry&libraries=places&sensor=true">
   </script>
   <script type="text/javascript"> 
 
   function init(){
-          utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner, socket, drawCursor);
+          utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner, socket, drawCursor, searchBoxInit);
           utilities.initialize()
           client = new ClientUtilities(utilities);
      } 
   //funcția ce deschide fereastra de pop-up prima data
   
-  var zoom = 11
-  var lat = 44.4325
-  var lng = 26.1039
-  var viewportPreservation = true
-  var markerListerner = true
+  var zoom = 11;
+  var lat = 44.4325;
+  var lng = 26.1039;
+  var viewportPreservation = true;
+  var markerListerner = true;
+  var searchBoxInit = true;
   var utilities;
   var client;
   google.maps.event.addDomListener(window, 'load', init);
@@ -55,7 +56,7 @@ function resetForm() {
 
 </script> 
 <body onload="resetForm()"> <!--resetează butoanele radio dacă se reîncarcă pagina //var e=document.getElementsByTagName('input');var i=0;while(i<e.length){if(e[i++].type=='radio'){e[i].checked=false;}} -->
-
+  <input id="pac-input" class="controls" type="text" placeholder="Search Box">
   <div id="map-canvas">
   </div>
 

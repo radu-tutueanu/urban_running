@@ -17,7 +17,7 @@
 	</script>
 	<script type="text/javascript">
 	function init(){
-          utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner,drawCursor);
+          utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner, drawCursor, searchBoxInit);
           utilities.initialize()
           client = new ClientUtilities(utilities);
           var routeID = client.parseURLParams(document.location.href).id[0]; /*Here we load the id of the route to be shown*/
@@ -49,11 +49,12 @@
 	
 
 	var socket;
-    var zoom = 11
-    var lat = 44.4325
-    var lng = 26.1039
-    var viewportPreservation = false
-    var markerListerner = false
+    var zoom = 11;
+    var lat = 44.4325;
+    var lng = 26.1039;
+    var viewportPreservation = false;
+    var markerListerner = false;
+    var searchBoxInit = false;
     var utilities;
     var client;
 	var directionsDisplay;

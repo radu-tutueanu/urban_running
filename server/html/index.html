@@ -5,8 +5,8 @@
 <head>
 	<script src="/socket.io/socket.io.js"></script>
      <script src="js/route.js"></script>
-	<script src="js/gmaps.js"></script>
      <script src="js/client.js"></script>
+     <script src="js/gmaps.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 	<meta charset=utf-8 />
@@ -14,12 +14,12 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
 	</script>
 	<script src="http://www.jacklmoore.com/colorbox/jquery.colorbox.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7_q4j3wbRGmQr3V-wtKZrlv7Uz_-G7Dk&libraries=geometry&sensor=true"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v3.exp&key=AIzaSyB7_q4j3wbRGmQr3V-wtKZrlv7Uz_-G7Dk&libraries=geometry&libraries=places&sensor=true"></script>
 </script>
 <script type="text/javascript">
 
      function init(){
-          utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner,drawCursor);
+          utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner, socket, drawCursor, true);
           utilities.initialize()
           client = new ClientUtilities(utilities);
           socket = io.connect();
@@ -46,11 +46,12 @@
 	//funcția ce deschide fereastra de pop-up prima data
 	setTimeout(ClientUtilities.openColorBox, 500);
      var socket;
-     var zoom = 11
-     var lat = 44.4325
-     var lng = 26.1039
-     var viewportPreservation = true
-     var markerListerner = false
+     var zoom = 11;
+     var lat = 44.4325;
+     var lng = 26.1039;
+     var viewportPreservation = true;
+     var markerListerner = false;
+     var searchBoxInit = true;
      var utilities;
      var client;
 	var directionsDisplay;
@@ -62,7 +63,7 @@
 
 	</script>
      <body>
-
+          <input id="pac-input" class="controls" type="text" placeholder="Search Box">
      	<div id="map-canvas">
      	</div>
      	<!-- <div id="bara"> -->
