@@ -18,7 +18,6 @@ Route.prototype.addMarker = function( marker ) {
 }
 
 Route.prototype.getMarkersLen = function() {
-	alert(this.markers.length);
 	return this.markers.length;
 }
 

@@ -74,17 +74,15 @@ MapsUtilities.prototype.placeMarker = function( position ) {
 	request = this.current.getRequest();
 	if ( request == null )
 		return;
-	this.directionsService.route( request, this.handleDirectionsResponseWithPrint );
-	//calcRoute( current );
+	/*send request to calculate route based on all markers put by user*/
+	this.directionsService.route( request, this.handleDirectionsResponseWithPrint ); 
 }
 
 MapsUtilities.prototype.isRouteDrawn = function() {
 	
-	if( this.current.getMarkersLen  > 1 ) {
-		alert("route is drawn");
+	if( this.current.getMarkersLen()  > 1 ) {
 		return true;
 	}
-	alert("NO DRAW");
 	return false;
 
 }
