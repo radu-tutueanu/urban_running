@@ -65,24 +65,22 @@ ClientUtilities.prototype.validateAndSave = function() {
 
 	if (cand_box.length < 1 || unde_box.length < 1 || sig_box.length < 1 || den_box.length < 1 ) {
 		document.getElementById( "eroare_rasp" ).innerHTML = "Te rugăm să completezi toate răspunsurile obligatorii."
+	//	alert("completeaza rasp");
 	}
-
+	else if (!self.gmapsUtilities.isRouteDrawn ()) {
+		document.getElementById( "eroare_rasp" ).innerHTML = "Te rugăm să desenezi traseul.";
+	//	alert("pe ramura de else if - not isRouteDrawn");
+	}
+	else {
 	//dacă toate răspunsurile sunt bifate elimin mesajul
-	if (cand_box.length > 1 && unde_box.length > 1 && sig_box.length > 1 && den_box.length > 1 ) {
 		document.getElementById( "eroare_rasp" ).innerHTML = "";
-		
-		if (self.gmapsUtilities.isRouteDrawn () ) {
 		self.gmapsUtilities.addToRoute( den_box, ales_circ, ales_caini, ales_lum, cand_box, unde_box, sig_box, obs_box );
 		self.gmapsUtilities.sendRoute();
 	
 		alert( 'Traseul salvat! Apăsați pe OK pentru a fi redirectionat către pagina principală.' );
-		window.open( "/index.html", "_self" ); }
-		else  {
-			document.getElementById( "eroare_rasp" ).innerHTML = "Te rugăm să desenezi traseul.";
-		}
+		window.open( "/index.html", "_self" ); 
+	}
 	
-}
-
 }
 
 ClientUtilities.prototype.parseURLParams = function(url) {

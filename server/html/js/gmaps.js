@@ -79,9 +79,14 @@ MapsUtilities.prototype.placeMarker = function( position ) {
 }
 
 MapsUtilities.prototype.isRouteDrawn = function() {
-	if( this.current.getMarkersLen > 1 )
+	
+	if( this.current.getMarkersLen  > 1 ) {
+		alert("route is drawn");
 		return true;
+	}
+	alert("NO DRAW");
 	return false;
+
 }
 
 MapsUtilities.prototype.reset = function() {
@@ -94,11 +99,11 @@ MapsUtilities.prototype.handleDirectionsResponseWithPrint = function( response, 
 	if ( mapsUtilities.handleDirectionsResponse( response, status ) == 1 ) {
 		// Display the distance:
 		distance = mapsUtilities.calcDistance( response.routes[ 0 ] );
-		document.getElementById( 'distance' ).innerHTML += distance + " meters";
+	//	document.getElementById( 'distance' ).innerHTML += distance + " meters";
 
 		// Display the duration:
 		duration = mapsUtilities.calcDuration( response.routes[ 0 ] );
-		document.getElementById( 'duration' ).innerHTML += duration + " seconds";
+	//	document.getElementById( 'duration' ).innerHTML += duration + " seconds";
 	}
 }
 
