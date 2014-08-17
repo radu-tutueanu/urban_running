@@ -1,11 +1,14 @@
-var mapsUtilities;
+var mapsUtilities; //variable use to keep a referrence to current instance of MapsUtilities class
+//TODO : check if this is really needed
 
+/* Class constructor. Inits variables used*/
 function MapsUtilities(zoom, centerLat, centerLng, viewportPreservation, markerListerner, serverSocket, drawingCursor, searchBox) {
+	log.info( "MapsUtilities init" );
+	log.debug( "MapsUtilities init", arguments );
 	this.mapOptions = {
 		zoom: zoom,
 		center: new google.maps.LatLng(centerLat, centerLng)
 	};
-	console.log(drawingCursor)
 	if (drawingCursor) {
 		this.mapOptions["draggableCursor"] = "url(" + MapsUtilities.cursorUrl + "), auto";
 	}
@@ -31,6 +34,7 @@ MapsUtilities.prototype.initialize = function() {
 	this.initializeDirectionsDisplay();
 	mapsutil = this;
 	if (this.markerListerner) {
+		log.debug("Adding on click marker for map");
 		google.maps.event.addListener(this.map, 'click', function(e) {
 			mapsutil.placeMarker(e.latLng);
 		});

@@ -121,3 +121,26 @@ ClientUtilities.prototype.closeInfo = function() {
 	document.getElementById("close").style.visibility="hidden";
 	//alert("am ajuns iar!");
 }
+
+ClientUtilities.initLogging = function( isEnabled, enablePopUp ) {
+	log = log4javascript.getLogger();
+	if( isEnabled ) { 
+		/*Set the logger level. Useful if you want to debug something
+		ALL, TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF*/
+		log.setLevel( log4javascript.Level.ALL )
+
+		if( enablePopUp ){
+			var popUpAppender = new log4javascript.PopUpAppender();
+			// Change the desired configuration options
+			popUpAppender.setFocusPopUp( true );
+			popUpAppender.setNewestMessageAtTop( true );
+			
+			// Add the appender to the logger
+			log.addAppender( popUpAppender );
+		}	
+		log.debug( "Logging enabled" );
+	}
+	else {
+		log.setLevel( log4javascript.Level.OFF );
+	}
+}

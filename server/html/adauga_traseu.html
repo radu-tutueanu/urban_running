@@ -11,6 +11,7 @@
   <script src="js/client.js"></script>
   <script src="js/route.js"></script>
   <script src="js/gmaps.js"></script>
+  <script src="js/log4javascript.js"></script>
   <script type="text/javascript">
   var socket = io.connect();
   </script>
@@ -22,6 +23,7 @@
   <script type="text/javascript"> 
 
   function init(){
+          ClientUtilities.initLogging( loggingEnabled, enablePopUp );
           utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner, socket, drawCursor, searchBoxInit);
           utilities.initialize()
           client = new ClientUtilities(utilities);
@@ -34,15 +36,16 @@
   var viewportPreservation = true;
   var markerListerner = true;
   var searchBoxInit = true;
+  var drawCursor = false; //so as the cursor to modify itself when over the map
   var utilities;
   var client;
+  //logging variables
+  var log;
+  var loggingEnabled = true;
+  var enablePopUp = true;
   google.maps.event.addDomListener(window, 'load', init);
-  var drawCursor = false; //so as the cursor to modify itself when over the map
 
   var username = "Undefined";
-
-  
-
 
 function resetForm() {
   document.getElementById("Contact").reset();
