@@ -117,6 +117,7 @@ document.getElementById(id_range).innerHTML=newValue;
 ClientUtilities.prototype.closeInfo = function() {
 	document.getElementById("info_id").style.visibility="hidden";
 	document.getElementById("fundal_info_id").style.visibility="hidden";
+	document.getElementById("dublura").style.visibility="hidden";
 	//alert("am ajuns");
 	document.getElementById("close").style.visibility="hidden";
 	//alert("am ajuns iar!");

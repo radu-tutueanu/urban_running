@@ -8,7 +8,7 @@ body { height: 100%; margin: 0; padding: 0 }
         border-radius: 2px 0 0 2px;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
-        height: 32px;
+        height: 5%;
         outline: none;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
       }
@@ -156,13 +156,28 @@ p.form_obs{
 {
 	position: absolute;
 	top:14.2%;
-	left:5%;
+	left:5.6%;
 	right:80%;
-	width:22.7%;
-	height:14%;
+	width:21.8%;
+	height:14.9%;
+	line-height:15%;
 	background-color:#b8e356;
 	opacity:0.8;
+	transition: visibility 0s linear 0.2s,opacity 0.2s linear;
 	}	
+
+.dublura { /*to solve the height problem (fundal_info too small) on Firefox*/
+	position: absolute;
+	top:29.2%;
+	left:5.6%;
+	right:80%;
+	width:21.8%;
+	height:2%;
+	line-height:15%;
+	background-color:#b8e356;
+	opacity:0.8;
+	transition: visibility 0s linear 0.2s,opacity 0.2s linear;
+}
 
 p.subm {
 	position:absolute;
@@ -196,17 +211,18 @@ p.expl
 p.info {
 		position: absolute;
 	top:12%;
-	left:5.2%;
-	right:73%;
+	left:6.1%;
+	right:73.3%;
 	font-size:1vw;
 	font-family:Calibri;
 	text-align:justify;
+	transition: visibility 0s linear 0.2s,opacity 0.2s linear;
 }
 
 
 textarea#textden {
 width:15vw;
-height:2.1vh;
+height:2.4vh;
 resize: none;
 font-size:0.9vw;
 font-family: Calibri;
@@ -215,7 +231,7 @@ overflow:auto;
 
 textarea#textcand {
 width:15vw;
-height:2.1vh;
+height:2.4vh;
 resize: none;
 font-size:0.9vw;
 font-family: Calibri;
@@ -224,9 +240,10 @@ overflow:auto;
 
 textarea#textunde {
 width:15vw;
-height:2.1vh;
+height:2.4vh;
 resize: none;
 font-size:0.9vw;
+font-family: Calibri;
 overflow:auto;
 }
 
@@ -340,8 +357,9 @@ input[type=range] {
 .inchide {
 	position:absolute;
 	top:8.8%;
-	left:23.2%;
+	left:23%;
 	margin: 1%;
+	transition: visibility 0s linear 0.2s,opacity 0.2s linear;
 	-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
 	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
