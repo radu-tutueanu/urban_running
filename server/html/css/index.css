@@ -52,7 +52,8 @@ body { height: 100%; margin: 0; padding: 0 }
 	right: 53%;
 	margin-right:-200px;<!-- /*negative half the width */-->
 	font-family: Calibri;
-	font-size:12px;
+	font-size:1.5vh;
+	text-align: justify;
 }
 .termeni{
 	position:fixed;

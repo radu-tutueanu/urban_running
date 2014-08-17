@@ -43,8 +43,8 @@ ClientUtilities.prototype.drawRoute = function( latLngPath ) {
 ClientUtilities.openColorBox = function() {
 	$.colorbox( {
 		iframe: true,
-		width: "50%",
-		height: "53%",
+		width: "60%",
+		height: "63%",
 		href: "/pop-up.html"
 	} );
 }
