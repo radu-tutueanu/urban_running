@@ -133,7 +133,7 @@ MapsUtilities.prototype.addRouteMarker = function(position, route) {
 		marker.infowindow.close();
 	});
 
-	self.routesHeadMarkers.push(marker);
+	this.routesHeadMarkers.push(marker);
 }
 
 MapsUtilities.prototype.getmap = function() {
