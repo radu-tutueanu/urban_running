@@ -40,13 +40,43 @@ ClientUtilities.prototype.drawRoute = function( latLngPath ) {
 
 /* DOM/ HTML related functions*/
 
+ClientUtilities.setCookie = function(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname+"="+cvalue+"; "+expires;
+}
+
+ClientUtilities.prototype.getCookie = function(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
 ClientUtilities.openColorBox = function() {
+var user=self.getCookie("username");
+if (user != "") {
 	$.colorbox( {
 		iframe: true,
 		width: "60%",
 		height: "63%",
 		href: "/pop-up.html"
 	} );
+}
+else {
+       user = prompt("Please enter your name:","");
+       if (user != "" && user != null) {
+           setCookie("username", user, 30);
+       }
+       }
 }
 
 ClientUtilities.prototype.validateAndSave = function() {

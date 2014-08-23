@@ -113,7 +113,7 @@ MapsUtilities.prototype.initializeSearchBox = function() {
 }
 
 MapsUtilities.prototype.addRouteMarker = function(position, route) {
-
+	var trackName =  route['name'];
 	var marker = new google.maps.Marker({
 		position: position
 	});
@@ -122,7 +122,13 @@ MapsUtilities.prototype.addRouteMarker = function(position, route) {
 		window.open(MapsUtilities.mapsPageUrl + route['_id'], "_self")
 	});
 	marker.infowindow = new google.maps.InfoWindow({
-		content: route['name']
+		//content: route['name']
+		//var trackName = route['name'];
+		
+		content: '<div style="height:1%; width: trackName.length px;">' + trackName + '</div>'//incercare de a rezolva prob cu afisarea incompleta a traseului
+		//content:'<div style="width:200px; height:100px">Some text</div>'
+
+	
 	});
 
 	google.maps.event.addListener(marker, 'mouseover', function(event) {
