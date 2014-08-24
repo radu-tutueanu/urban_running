@@ -14,7 +14,7 @@ ssh-add .ssh/id_rsa  (sau calea catre cheia ta privata)
 7. cand ai o varianta testata bine local, dai tot din git bash, folderul in care lucrezi cu master
 git push production master
 
- 
+asta impinge codul, heroku iti arata ca instaleaza toate modulele si se termina cu launching... done
  
  util: 
  
