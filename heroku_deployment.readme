@@ -1,0 +1,21 @@
+1.iti faci cont pe invite-ul meu, o sa vezi aplicatia undealergam 
+2. instalezi heroku toolbelt
+3. genrare pereche chei privat - public deschizi git bash si rulezi ssh-keygen 
+4.deschizi nodejs command prompt 
+heroku login 
+heroku keys:add (asa daca ai dat enter enter in ssh-keygen, altfel trebuie sa ii dai calea catre cheia publica) 
+5. setezi git sa foloseasca cheia respectiva ( de aici incolo folosesti git bash )
+eval $(ssh-agent)
+ssh-add -L - daca nu iti arata nimic, trebuie sa adaugi
+ssh-add .ssh/id_rsa  (sau calea catre cheia ta privata)
+6.te duci in directorul de pe bitbucket(dupa ultimul fetch + rebase) 
+ git remote add production git@heroku.com:underalergam.git 
+ 
+7. cand ai o varianta testata bine local, dai tot din git bash, folderul in care lucrezi cu master
+git push production master
+
+ 
+ 
+ util: 
+ 
+ heroku apps:info --undealergam
