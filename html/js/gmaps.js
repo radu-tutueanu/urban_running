@@ -1,6 +1,7 @@
 var mapsUtilities; //variable use to keep a referrence to current instance of MapsUtilities class
 //TODO : check if this is really needed
-
+var ROUTEOPENTAG = "<b>"
+var ROUTECLOSETAG = "</b>"
 /* Class constructor. Inits variables used*/
 function MapsUtilities(zoom, centerLat, centerLng, viewportPreservation, markerListerner, serverSocket, drawingCursor, searchBox) {
 	log.info( "MapsUtilities init" );
@@ -122,7 +123,7 @@ MapsUtilities.prototype.addRouteMarker = function(position, route) {
 		window.open(MapsUtilities.mapsPageUrl + route['_id'], "_self")
 	});
 	marker.infowindow = new google.maps.InfoWindow({
-		content: route['name']
+		content: ROUTEOPENTAG + route['name'] + ROUTECLOSETAG
 	});
 
 	google.maps.event.addListener(marker, 'mouseover', function(event) {
