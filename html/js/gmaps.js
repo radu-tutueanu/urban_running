@@ -1,6 +1,6 @@
 var mapsUtilities; //variable use to keep a referrence to current instance of MapsUtilities class
 //TODO : check if this is really needed
-var ROUTEOPENTAG = '<p style="color:black">'
+var ROUTEOPENTAG = '<p style="color:red">'
 var ROUTECLOSETAG = '</p>'
 /* Class constructor. Inits variables used*/
 function MapsUtilities(zoom, centerLat, centerLng, viewportPreservation, markerListerner, serverSocket, drawingCursor, searchBox) {
