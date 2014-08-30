@@ -47,22 +47,28 @@ body { height: 100%; margin: 0; padding: 0 }
       }
 /*search box end*/
 .despre {
-	position: fixed;
-	bottom: 2px;
-	right: 53%;
-	margin-right:-200px;<!-- /*negative half the width */-->
+	position: absolute;
+	bottom: 1%;
+	left: 40%;
 	font-family: Calibri;
-	font-size:1.5vh;
+	font-size:2vh;
 	text-align: justify;
 }
 .termeni{
-	position:fixed;
-	bottom:2px;
-	left:53%;
-	
-	margin-left:-200px; <!--/* negative half the width */-->
+	position:absolute;
+	bottom:1%;
+	right:45%;
 	font-family: Calibri;
-	font-size:12px;
+	font-size:2vh;
+	
+}
+
+.contact{
+	position:absolute;
+	bottom:1%;
+	right:38%;
+	font-family: Calibri;
+	font-size:2vh;
 	
 }
 
