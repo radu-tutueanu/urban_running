@@ -79,7 +79,7 @@ ClientUtilities.prototype.validateAndSave = function() {
 		self.gmapsUtilities.addToRoute( den_box, ales_circ, ales_caini, ales_lum, cand_box, unde_box, sig_box, obs_box );
 		self.gmapsUtilities.sendRoute();
 	
-		alert( 'Traseul salvat! Apăsați pe OK pentru a fi redirectionat către pagina principală.' );
+		alert( 'Traseu salvat! Apăsați pe OK pentru a fi redirectionat către pagina principală.' );
 		window.open( "/index.html", "_self" ); 
 	}
 	
