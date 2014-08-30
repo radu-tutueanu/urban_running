@@ -63,6 +63,7 @@ ClientUtilities.prototype.validateAndSave = function() {
 	var i;
 
 
+
 	if (cand_box.length < 1 || unde_box.length < 1 || sig_box.length < 1 || den_box.length < 1 ) {
 		document.getElementById( "eroare_rasp" ).innerHTML = "Te rugăm să completezi toate răspunsurile obligatorii."
 	//	alert("completeaza rasp");
@@ -71,6 +72,7 @@ ClientUtilities.prototype.validateAndSave = function() {
 		document.getElementById( "eroare_rasp" ).innerHTML = "Te rugăm să desenezi traseul.";
 	//	alert("pe ramura de else if - not isRouteDrawn");
 	}
+
 	else {
 	//dacă toate răspunsurile sunt bifate elimin mesajul
 		document.getElementById( "eroare_rasp" ).innerHTML = "";
