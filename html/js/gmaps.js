@@ -188,10 +188,11 @@ MapsUtilities.prototype.handleDirectionsResponseWithPrint = function(response, s
 MapsUtilities.prototype.handleDirectionsResponse = function(response, status) {
 	if (status != google.maps.DirectionsStatus.OK) {
 		//Here we'll handle the errors a bit better 
-		alert('Directions failed: ' + status);
-		if (status == google.maps.DirectionsStatus.ZERO_RESULTS) {
-			this.reset(); //solve
-		}
+		alert('A aparut o eroare la desenarea traseului!');
+		this.reset(); 
+		/*if (status == google.maps.DirectionsStatus.ZERO_RESULTS) {
+			this.reset(); 
+		}*/
 		return -1;
 	} else {
 		this.directionsDisplay.setDirections(response);
