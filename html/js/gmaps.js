@@ -4,6 +4,9 @@ var mapsUtilities; //variable use to keep a referrence to current instance of Ma
 var ROUTEOPENTAG = '<div style="font-family:Arial; font-size:13px;">'
 var ROUTECLOSETAG = '</div>'
 var ROUTE_ICON= 'img/route_64_green.png'
+var START_ROUTE_ICON = "img/flag_64_green.png"
+var START_ROUTE_ICON_SIZE = 64
+
 /* Class constructor. Inits variables used*/
 function MapsUtilities(zoom, centerLat, centerLng, viewportPreservation, markerListerner, serverSocket, drawingCursor, searchBox) {
 	log.info( "MapsUtilities init" );
@@ -31,6 +34,7 @@ MapsUtilities.sendHeader = "send_route";
 MapsUtilities.cursorUrl = "https://cdn1.iconfinder.com/data/icons/3d-printing-icon-set/64/Edit.png";
 
 
+
 MapsUtilities.prototype.initialize = function() {
 	this.map = new google.maps.Map(document.getElementById('map-canvas'),
 		this.mapOptions);
@@ -45,6 +49,12 @@ MapsUtilities.prototype.initialize = function() {
 	if( this.searchBoxInit) {
 		this.initializeSearchBox();
 	}
+	MapsUtilities.RouteStart = {
+		url: START_ROUTE_ICON,
+		size: new google.maps.Size(START_ROUTE_ICON_SIZE , START_ROUTE_ICON_SIZE),
+		origin: new google.maps.Point(0,0), 
+		anchor: new google.maps.Point(0, START_ROUTE_ICON_SIZE)
+	};
 }
 
 MapsUtilities.prototype.initializeDirectionsDisplay = function() {
@@ -144,7 +154,17 @@ MapsUtilities.prototype.getmap = function() {
 	return this.map;
 }
 
-MapsUtilities.prototype.placeMarker = function(position) {
+MapsUtilities.prototype.placeMarker = function( position ) {
+	if( this.current.getMarkersLen() == 0 ) {
+		//first marker
+		console.log("first marker");
+		var marker = new google.maps.Marker({
+			position: position,
+			icon: MapsUtilities.RouteStart,
+			position: position
+		});
+		marker.setMap(this.map);
+	}
 	this.current.addMarker(position);
 	this.request();
 }
