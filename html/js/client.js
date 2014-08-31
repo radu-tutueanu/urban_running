@@ -1,3 +1,6 @@
+__COLORS = [ '#FAEBD7', '#7FFFD4', '#0000FF', '#8A2BE2', '#A52A2A', '#5F9EA0', '#D2691E', '#FF7F50', '#6495ED', '#DC143C', '#00008B', '#008B8B', '#B8860B',
+	'#006400', '#8B008B', '#556B2F', '#8B0000', '#E9967A', '#483D8B', '#2F4F4F', '#00CED1', '#9400D3', '#1E90FF']
+
 function ClientUtilities( gmapsUtilities ) {
 	self.gmapsUtilities = gmapsUtilities;
 	self.drawnRoutes = new Array();
@@ -26,12 +29,13 @@ ClientUtilities.prototype.arrayToLatLng = function( array ) {
 }
 
 ClientUtilities.prototype.drawRoute = function( latLngPath ) {
+	color = __COLORS[ ( Math.round( Math.random() * __COLORS.length ) ) ]
 	var path = new google.maps.Polyline( {
 		path: latLngPath,
-		//geodesic: true,
-		strokeColor: '#FF0000',
-		strokeOpacity: 1.0,
-		strokeWeight: 2
+		geodesic: true,
+		strokeColor: color,
+		strokeOpacity: 0.6,
+		strokeWeight: 6
 	} );
 	self.drawnRoutes.push( path );
 	path.setMap( self.gmapsUtilities.getmap() );
