@@ -37,12 +37,12 @@ Route.prototype.addLastWaypoint = function() {
 	this.waypoints.push( waypoint );
 }
 
-Route.prototype.getRequest = function() {
+Route.prototype.getRequest = function( addWaypoint ) {
 	var markers_length = this.markers.length;
 	if ( markers_length < 2 ) {
 		return null;
 	}
-	if ( markers_length != 2 ) {
+	if ( markers_length != 2 && addWaypoint ) {
 		this.addLastWaypoint();
 	}
 	start = this.markers[ 0 ];

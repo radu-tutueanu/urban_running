@@ -147,8 +147,9 @@ MapsUtilities.prototype.placeMarker = function(position) {
 	this.request();
 }
 
-MapsUtilities.prototype.request = function() {
-	request = this.current.getRequest();
+MapsUtilities.prototype.request = function( addWaypoint ) {
+	addWaypoint = typeof addWaypoint !== 'undefined' ? addWaypoint : true;
+	request = this.current.getRequest( addWaypoint );
 	if (request == null){
 		this.directionsDisplay.setMap(null);
 		return;
@@ -231,13 +232,13 @@ MapsUtilities.prototype.calcDuration = function(route) {
 
 MapsUtilities.prototype.routeUndo = function() {
 	if( this.current.undo() ) {
-		this.request();
+		this.request( false );
 	}
 }
 
 MapsUtilities.prototype.routeRedo = function() {
 	if ( this.current.redo() ) {
-		this.request();
+		this.request( );
 	}
 }
 
