@@ -215,7 +215,7 @@ opacity:0.6;
 
 .acasa {
 	position:absolute;
-	bottom:7%;
+	bottom:7.9%;
 	right:12.8%;
 	margin: 1px;
 	-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
@@ -242,7 +242,7 @@ opacity:0.6;
 	display:inline-block;
 	color:#ffffff;
 	font-family:Calibri;
-	font-size:20px;
+	font-size:1.5vw;
 	font-weight:bold;
 	font-style:normal;
 	height:32px;

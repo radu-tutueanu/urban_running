@@ -49,27 +49,64 @@ body { height: 100%; margin: 0; padding: 0 }
 .despre {
 	position: absolute;
 	bottom: 1%;
-	left: 40%;
+	left: 31.5%;
 	font-family: Calibri;
-	font-size:2vh;
+	font-size:1.2vw;
 	text-align: justify;
+	text-decoration:none;
+	color:black;
 }
+
+.fundal_despre {
+	position:fixed;
+	bottom:0.8%;
+	left:31.2%;
+	width:6%;
+	height:3%;
+	background-color:#467fe2;
+	opacity:0.8;
+
+}
+
 .termeni{
 	position:absolute;
 	bottom:1%;
-	right:45%;
+	left:46%;
 	font-family: Calibri;
-	font-size:2vh;
-	
+	font-size:1.2vw;
+	text-decoration:none;
+	color:black;
+}
+.fundal_termeni {
+	position:fixed;
+	bottom:0.8%;
+	left:45.7%;
+	width:9.4%;
+	height:3%;
+	background-color:#467fe2;
+	opacity:0.8;
+
 }
 
 .contact{
 	position:absolute;
 	bottom:1%;
-	right:38%;
+	left:65.5%;
 	font-family: Calibri;
-	font-size:2vh;
-	
+	font-size:1.2vw;
+	text-decoration:none;
+	color:black;
+}
+
+.fundal_contact {
+	position:fixed;
+	bottom:0.8%;
+	left:65.2%;
+	width:4.5%;
+	height:3%;
+	background-color:#467fe2;
+	opacity:0.8;
+
 }
 
 #eroare_rasp {
@@ -113,7 +150,7 @@ body { height: 100%; margin: 0; padding: 0 }
 	display:inline-block;
 	color:#ffffff;
 	font-family:Calibri;
-	font-size:20px;
+	font-size:1.4vw;
 	font-weight:bold;
 	font-style:normal;
 	height:50px;
