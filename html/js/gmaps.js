@@ -144,9 +144,15 @@ MapsUtilities.prototype.getmap = function() {
 
 MapsUtilities.prototype.placeMarker = function(position) {
 	this.current.addMarker(position);
+	this.request();
+}
+
+MapsUtilities.prototype.request = function() {
 	request = this.current.getRequest();
-	if (request == null)
+	if (request == null){
+		this.directionsDisplay.setMap(null);
 		return;
+	}
 	/*send request to calculate route based on all markers put by user*/
 	this.directionsService.route(request, this.handleDirectionsResponseWithPrint);
 }
@@ -188,6 +194,7 @@ MapsUtilities.prototype.handleDirectionsResponse = function(response, status) {
 		return -1;
 	} else {
 		this.directionsDisplay.setDirections(response);
+		this.directionsDisplay.setMap( this.map );
 	}
 	return 1;
 }
@@ -221,3 +228,16 @@ MapsUtilities.prototype.calcDuration = function(route) {
 	}
 	return total;
 }
+
+MapsUtilities.prototype.routeUndo = function() {
+	if( this.current.undo() ) {
+		this.request();
+	}
+}
+
+MapsUtilities.prototype.routeRedo = function() {
+	if ( this.current.redo() ) {
+		this.request();
+	}
+}
+

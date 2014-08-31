@@ -2,6 +2,8 @@ function Route() {
 	this.routeJSON = {};
 	this.markers = new Array();
 	this.waypoints = new Array();
+	this.markerredostack = new Array();
+	this.waypointredostack = new Array();
 }
 
 Route.prototype.reset = function() {
@@ -15,6 +17,8 @@ Route.prototype.getJSON = function() {
 
 Route.prototype.addMarker = function( marker ) {
 	this.markers.push( marker );
+	this.markerredostack = new Array();
+	this.waypointredostack = new Array();
 }
 
 Route.prototype.getMarkersLen = function() {
@@ -78,4 +82,36 @@ Route.prototype.setDistance = function( distance ) {
 
 Route.prototype.setDuration = function( duration ) {
 	this.routeJSON[ 'duration' ] = duration;
+}
+
+Route.prototype.hasUndo = function() {
+	return this.markers.length > 0 ; 
+}
+
+Route.prototype.hasRedo = function() {
+	return this.markerredostack.length > 0 ; 
+}
+
+Route.prototype.undo = function() {
+	if ( !this.hasUndo() ) {
+		log.debug( "nothing to undo");
+		return false;
+	}
+	marker = this.markers.pop();
+	this.markerredostack.push( marker );
+	waypoint = this.waypoints.pop();
+	this.waypointredostack.push( waypoint );
+	return true;
+}
+
+Route.prototype.redo = function() {
+	if ( !this.hasRedo() ) {
+		log.debug( "nothing to redo" );
+		return false;
+	}
+	marker = this.markerredostack.pop();
+	this.markers.push( marker );
+	waypoint = this.waypointredostack.pop();
+	//this.waypoints.push( waypoint );
+	return true;
 }
