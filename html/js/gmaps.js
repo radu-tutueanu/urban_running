@@ -3,6 +3,7 @@ var mapsUtilities; //variable use to keep a referrence to current instance of Ma
 
 var ROUTEOPENTAG = '<div style="font-family:Arial; font-size:13px;">'
 var ROUTECLOSETAG = '</div>'
+var ROUTE_ICON= 'img/route_64_green.png'
 /* Class constructor. Inits variables used*/
 function MapsUtilities(zoom, centerLat, centerLng, viewportPreservation, markerListerner, serverSocket, drawingCursor, searchBox) {
 	log.info( "MapsUtilities init" );
@@ -117,7 +118,8 @@ MapsUtilities.prototype.initializeSearchBox = function() {
 MapsUtilities.prototype.addRouteMarker = function(position, route) {
 	//alert(realLength);
 	var marker = new google.maps.Marker({
-		position: position
+		position: position,
+		icon: ROUTE_ICON
 	});
 	marker.setMap(this.map);
 	google.maps.event.addListener(marker, 'click', function() {
