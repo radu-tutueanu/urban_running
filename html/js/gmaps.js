@@ -193,6 +193,7 @@ MapsUtilities.prototype.reset = function() {
 	this.current.reset();
 	this.directionsDisplay.setMap();
 	this.initializeDirectionsDisplay(this.map);
+	this.clearMarkers();//delete start flag
 }
 
 MapsUtilities.prototype.handleDirectionsResponseWithPrint = function(response, status) {
@@ -264,4 +265,14 @@ MapsUtilities.prototype.routeRedo = function() {
 		this.request( );
 	}
 }
+//these two functions should help eliminate the start flag when the route is deleted
+MapsUtilities.prototype.setAllMap = function (map) {
+	for (var i = 0; i<marker.length; i++) {
+		this.marker[i].setMap(map);
+	}
+}
 
+MapsUtilities.prototype.clearMarkers = function() {
+	this.current.setAllMap(null);
+	this.marker=[];
+}
