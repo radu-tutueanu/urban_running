@@ -49,7 +49,7 @@ body { height: 100%; margin: 0; padding: 0 }
 .despre {
 	position: absolute;
 	bottom: 1%;
-	left: 31.5%;
+	left: 4.5%;
 	font-family: Calibri;
 	font-size:1.2vw;
 	text-align: justify;
@@ -60,7 +60,7 @@ body { height: 100%; margin: 0; padding: 0 }
 .fundal_despre {
 	position:fixed;
 	bottom:0.8%;
-	left:31.2%;
+	left:4.2%;
 	width:6%;
 	height:3%;
 	background-color:#467fe2;
@@ -71,7 +71,7 @@ body { height: 100%; margin: 0; padding: 0 }
 .termeni{
 	position:absolute;
 	bottom:1%;
-	left:46%;
+	left:11.4%;
 	font-family: Calibri;
 	font-size:1.2vw;
 	text-decoration:none;
@@ -80,7 +80,7 @@ body { height: 100%; margin: 0; padding: 0 }
 .fundal_termeni {
 	position:fixed;
 	bottom:0.8%;
-	left:45.7%;
+	left:11.2%;
 	width:9.4%;
 	height:3%;
 	background-color:#467fe2;
@@ -91,7 +91,7 @@ body { height: 100%; margin: 0; padding: 0 }
 .contact{
 	position:absolute;
 	bottom:1%;
-	left:65.5%;
+	left:21.8%;
 	font-family: Calibri;
 	font-size:1.2vw;
 	text-decoration:none;
@@ -101,7 +101,7 @@ body { height: 100%; margin: 0; padding: 0 }
 .fundal_contact {
 	position:fixed;
 	bottom:0.8%;
-	left:65.2%;
+	left:21.5%;
 	width:4.5%;
 	height:3%;
 	background-color:#467fe2;

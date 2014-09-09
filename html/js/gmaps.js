@@ -4,7 +4,7 @@ var mapsUtilities; //variable use to keep a referrence to current instance of Ma
 var ROUTEOPENTAG = '<div style="font-family:Arial; font-size:13px;">'
 var ROUTECLOSETAG = '</div>'
 var ROUTE_ICON= 'img/route_64_green.png'
-var START_ROUTE_ICON = "img/flag_64_green.png"
+var START_ROUTE_ICON = "img/route_64_green.png"
 var START_ROUTE_ICON_SIZE = 64
 
 /* Class constructor. Inits variables used*/
