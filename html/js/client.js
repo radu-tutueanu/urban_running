@@ -1,5 +1,8 @@
 __COLORS = [ '#FAEBD7', '#7FFFD4', '#0000FF', '#8A2BE2', '#A52A2A', '#5F9EA0', '#D2691E', '#FF7F50', '#6495ED', '#DC143C', '#00008B', '#008B8B', '#B8860B',
 	'#006400', '#8B008B', '#556B2F', '#8B0000', '#E9967A', '#483D8B', '#2F4F4F', '#00CED1', '#9400D3', '#1E90FF']
+var cookieName = "wheretorun";
+var cookieValue = "street";
+var nDays = 30; //number of days after which the cookie will expire and the user will see the pop-up window again;
 
 function ClientUtilities( gmapsUtilities ) {
 	self.gmapsUtilities = gmapsUtilities;
@@ -44,7 +47,31 @@ ClientUtilities.prototype.drawRoute = function( latLngPath ) {
 
 /* DOM/ HTML related functions*/
 
+
+/*
+ClientUtilities.setCookie = function (cookieName, cookieValue, nDays) {
+	var today = new Date();
+	var expire = new Date();
+	if (nDays==null || nDays==0) nDays=1;
+	expire.setTime(today.getTime() + 3600000*24*nDays);
+	document.cookie = cookieName+"="+ encodeURI(cookieValue)
+	                + ";expires="+expire.toGMTString();
+}
+
+ClientUtilities.readCookie = function (cookieName) {
+	var theCookie=" "+document.cookie;
+	var ind=theCookie.indexOf(" "+cookieName+"=");
+	if (ind==-1) ind=theCookie.indexOf(";"+cookieName+"=");
+	if (ind==-1 || cookieName=="") return "";
+	var ind1=theCookie.indexOf(";",ind+1);
+	if (ind1==-1) ind1=theCookie.length; 
+	return decodeURIComponent(theCookie.substring(ind+cookieName.length+2,ind1));
+}*/
+
 ClientUtilities.openColorBox = function() {
+	var cook = document.cookie;
+	var index = cook.indexOf("wheretorun");
+	if (index == -1) { //does not find string
 	$.colorbox( {
 		iframe: true,
 		width: "60%",
@@ -52,6 +79,20 @@ ClientUtilities.openColorBox = function() {
 		href: "/pop-up.html"
 	} );
 }
+	document.cookie = "runcookie=wheretorun;" ;
+}
+/*
+ClientUtilities.setCookie = function() {
+	//var date = new Date();
+
+	document.cookie = "runcookie=wheretorun; expires=Tue, 09 Sep 2014 22:00:00 UTC" ;
+}
+ClientUtilities.readCookie = function () {
+	var cook = document.cookie;
+	if (cook.length > 1) return true;
+	return false;
+}*/
+
 
 ClientUtilities.prototype.validateAndSave = function() {
 //funcție ce validează câmpurile din formular
