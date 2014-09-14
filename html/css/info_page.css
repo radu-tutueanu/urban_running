@@ -1,0 +1,219 @@
+ html { min-height: 100%; position:relative; overflow: scroll }
+ body { height: 100%; width:100%; background-color: #fcf8ea}
+
+	.bara_stanga {
+		position:absolute;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+		width:20vw;
+		height:130vh;
+		overflow:auto;
+		background-color: #b8e356;
+		opacity:0.8;
+	}
+	
+	.bara_dreapta {
+		position:absolute;
+		top:0;
+		bottom:0;
+		left:80%;
+		right:0;
+		width:20vw;
+		height:130vh;
+		overflow:auto;
+		background-color: #b8e356;
+		opacity:0.8;
+	}
+	
+	.despre {
+	position: absolute;
+	top: 2%;
+	bottom: 85%;
+	left: 23%;
+	font-family: Trebuchet MS;
+	font-size: 2.8vw;
+	color: #44433b;
+	}
+	
+	.despre_parag {
+	position: absolute;
+	top: 13%;
+	bottom:85%;
+	left: 23%;
+	right:21%;
+	font-family: Calibri;
+	font-size: 1vw;
+	font-color: black;
+	text-align: justify;
+	}
+	
+	.echipa {
+	position: absolute;
+	top: 28%;
+	bottom: 85%;
+	left: 23%;
+	font-family: Trebuchet MS;
+	font-size: 2.8vw;
+	color: #44433b;
+	}
+
+	
+	.nume_radu {
+	position:absolute;
+	top:40%;
+	left: 31.5%;
+	right:10%;
+	height:15%;
+	font-family:Arial;
+	font-size:1.3vw;
+	}
+
+	
+		
+	.poza_radu {
+	position:absolute;
+	top: 43%;
+	left:23.2%;
+	width:7.5%;
+	height:15%;
+	right:60%;
+	}
+	
+	.linked_radu {
+	position:absolute;
+	top: 46%;
+	left:31.6%;
+	width:1.5%;
+	height:2.5%;
+	right:60%;
+	}
+	
+	.twt_radu {
+	position:absolute;
+	top: 46%;
+	left:33.6%;
+	width:1.5%;
+	height:2.5%;
+	right:60%;
+	}
+	
+	.desc_radu {
+	position:absolute;
+	top: 48%;
+	left:31.6%;
+	right:21%;
+	font-family: Calibri;
+	font-size: 1vw;
+	text-align: justify;
+	}
+	
+	.poza_narcis {
+	position:absolute;
+	top: 70%;
+	left:23.2%;
+	width:7.5%;
+	height:16%;
+	right:60%;
+	}
+	
+	.nume_narcis {
+	position:absolute;
+	top: 67%;
+	left: 31.5%;
+	right:10%;
+	height:15%;
+	font-family:Arial;
+	font-size:1.3vw;
+	}
+	
+	.linked_narcis {
+	position:absolute;
+	top: 73%;
+	left:31.5%;
+	width:1.5%;
+	height:2.5%;
+	right:60%;
+	}
+	
+	.twt_narcis {
+	position:absolute;
+	top: 73%;
+	left:33.5%;
+	width:1.5%;
+	height:2.5%;
+	right:60%;
+	}
+	
+	.desc_narcis {
+	position:absolute;
+	top: 74.5%;
+	bottom:30%;
+	left:31.6%;
+	right:21%;
+	font-family: Calibri;
+	font-size: 1vw;
+	text-align: justify;
+	}
+	
+
+	.titlu_contact {
+	position: absolute;
+	top: 100%;
+	left: 23%;
+	right:21%;
+	font-family: Trebuchet MS;
+	font-size: 2.8vw;
+	color: #44433b;
+	}
+
+	.contact {
+	position: absolute;
+	top: 114%;
+	left: 23%;
+	right:21%;
+	font-family: Calibri;
+	font-size: 1vw;
+	text-align: justify;
+	}
+
+	.acasa {
+	position:absolute;
+	top:123%;
+	right:21%;
+	margin: 1px;
+	-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b8e356), color-stop(1, #a5cc52) );
+	background:-moz-linear-gradient( center top, #b8e356 5%, #a5cc52 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8e356', endColorstr='#a5cc52');
+	background-color:#b8e356;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:1px solid #83c41a;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Calibri;
+	font-size:1.4vw;
+	font-weight:bold;
+	font-style:normal;
+	height:5%;
+	line-height:130%;
+	width:6%;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #86ae47;
+}
