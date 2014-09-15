@@ -9,10 +9,17 @@ function Route() {
 Route.prototype.reset = function() {
 	this.markers = new Array();
 	this.waypoints = new Array();
+	this.icon.setMap( null );
 }
 
 Route.prototype.getJSON = function() {
 	return this.routeJSON;
+}
+
+Route.prototype.addFirstMarker = function( marker, icon, map ) {
+	this.addMarker( marker );
+	this.icon = icon;
+	this.map = map;
 }
 
 Route.prototype.addMarker = function( marker ) {
@@ -101,6 +108,9 @@ Route.prototype.undo = function() {
 	this.markerredostack.push( marker );
 	waypoint = this.waypoints.pop();
 	this.waypointredostack.push( waypoint );
+	if ( this.getMarkersLen() == 0 ){
+		this.icon.setMap( null );
+	}
 	return true;
 }
 
@@ -112,6 +122,9 @@ Route.prototype.redo = function() {
 	marker = this.markerredostack.pop();
 	this.markers.push( marker );
 	waypoint = this.waypointredostack.pop();
+	if ( this.getMarkersLen() == 1 ){
+		this.icon.setMap( this.map );
+	}
 	//this.waypoints.push( waypoint );
 	return true;
 }
