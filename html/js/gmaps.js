@@ -8,9 +8,10 @@ var START_ROUTE_ICON = "img/flag_64_green.png"
 var START_ROUTE_ICON_SIZE = 64
 
 /* Class constructor. Inits variables used*/
-function MapsUtilities(zoom, centerLat, centerLng, viewportPreservation, markerListerner, serverSocket, drawingCursor, searchBox) {
+function MapsUtilities(zoom, centerLat, centerLng, viewportPreservation, markerListerner, serverSocket, drawingCursor, searchBox, centerByRoute) {
 	log.info( "MapsUtilities init" );
 	log.debug( "MapsUtilities init", arguments );
+	this.centerByRoute = typeof centerByRoute !== 'undefined' ? centerByRoute : false;
 	this.mapOptions = {
 		zoom: zoom,
 		center: new google.maps.LatLng(centerLat, centerLng)
@@ -277,4 +278,9 @@ MapsUtilities.prototype.setAllMap = function (map) {
 MapsUtilities.prototype.clearMarkers = function() {
 	this.current.setAllMap(null);
 	this.marker=[];
+}
+
+MapsUtilities.prototype.setCenter = function( centerlatLng ) {
+	if( this.centerByRoute ) 
+		this.map.setCenter( centerlatLng );
 }

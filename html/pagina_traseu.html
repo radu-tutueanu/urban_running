@@ -19,7 +19,7 @@
 	<script type="text/javascript">
 	function init(){
 		  ClientUtilities.initLogging( loggingEnabled, enablePopUp );
-          utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner, drawCursor, searchBoxInit);
+          utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner, socket, drawCursor, searchBoxInit, centerByRoute);
           utilities.initialize()
           client = new ClientUtilities(utilities);
           var routeID = client.parseURLParams(document.location.href).id[0]; /*Here we load the id of the route to be shown*/
@@ -58,6 +58,7 @@
     var markerListerner = false;
     var searchBoxInit = false;
     var drawCursor = false; //so as the cursor to modify itself when over the map
+    var centerByRoute = true;
     var utilities;
     var client;
 	//logging variables

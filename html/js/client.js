@@ -21,6 +21,7 @@ ClientUtilities.prototype.procesSingleRoute = function( route, drawMarker ) {
 	this.drawRoute( path );
 	if ( drawMarker )
 		self.gmapsUtilities.addRouteMarker( path[ 0 ], route );
+	self.gmapsUtilities.setCenter( path[ 0 ] );
 }
 
 ClientUtilities.prototype.arrayToLatLng = function( array ) {
