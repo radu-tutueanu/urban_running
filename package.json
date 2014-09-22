@@ -8,7 +8,9 @@
   "license": "BSD",
   "dependencies": {
     "socket.io": "~1.0.6",
-    "mongoose": "~3.8.14"
+    "mongoose": "~3.8.14",
+    "connect": "~3.2.0",
+    "serve-static": "~1.6.2"
   },
   "scripts": {
     "start": "node server.js"
