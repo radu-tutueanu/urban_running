@@ -177,10 +177,10 @@
 	font-size: 1vw;
 	text-align: justify;
 	}
-
+	/*new button colour : 068099; old button colour: */
 	.acasa {
 	position:absolute;
-	top:123%;
+	top:3%;
 	right:21%;
 	margin: 1px;
 	-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
