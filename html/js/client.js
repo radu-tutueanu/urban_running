@@ -46,28 +46,6 @@ ClientUtilities.prototype.drawRoute = function( latLngPath ) {
 
 }
 
-/* DOM/ HTML related functions*/
-
-
-/*
-ClientUtilities.setCookie = function (cookieName, cookieValue, nDays) {
-	var today = new Date();
-	var expire = new Date();
-	if (nDays==null || nDays==0) nDays=1;
-	expire.setTime(today.getTime() + 3600000*24*nDays);
-	document.cookie = cookieName+"="+ encodeURI(cookieValue)
-	                + ";expires="+expire.toGMTString();
-}
-
-ClientUtilities.readCookie = function (cookieName) {
-	var theCookie=" "+document.cookie;
-	var ind=theCookie.indexOf(" "+cookieName+"=");
-	if (ind==-1) ind=theCookie.indexOf(";"+cookieName+"=");
-	if (ind==-1 || cookieName=="") return "";
-	var ind1=theCookie.indexOf(";",ind+1);
-	if (ind1==-1) ind1=theCookie.length; 
-	return decodeURIComponent(theCookie.substring(ind+cookieName.length+2,ind1));
-}*/
 
 ClientUtilities.openColorBox = function() {
 	var cook = document.cookie;
@@ -82,17 +60,7 @@ ClientUtilities.openColorBox = function() {
 }
 	document.cookie = "runcookie=wheretorun;" ;
 }
-/*
-ClientUtilities.setCookie = function() {
-	//var date = new Date();
 
-	document.cookie = "runcookie=wheretorun; expires=Tue, 09 Sep 2014 22:00:00 UTC" ;
-}
-ClientUtilities.readCookie = function () {
-	var cook = document.cookie;
-	if (cook.length > 1) return true;
-	return false;
-}*/
 
 
 ClientUtilities.prototype.validateAndSave = function() {
