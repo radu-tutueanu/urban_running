@@ -48,19 +48,24 @@ ClientUtilities.prototype.drawRoute = function( latLngPath ) {
 
 
 ClientUtilities.openColorBox = function() {
+	var date, expires;
+	var days = 7;//the numer of days after which the cookie expires;
 	var cook = document.cookie;
 	var index = cook.indexOf("wheretorun");
-	if (index == -1) { //does not find string
+	if (index == -1) { //does not find string, cookie does not exist
 	$.colorbox( {
 		iframe: true,
 		width: "60%",
 		height: "63%",
 		href: "/pop-up.html"
 	} );
-}
-	document.cookie = "runcookie=wheretorun;" ;
-}
+} 
 
+	date = new Date();
+	date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+	expires = "expires=" + date.toGMTString();
+	document.cookie = "runcookie=wheretorun;" + expires;
+}
 
 
 ClientUtilities.prototype.validateAndSave = function() {
