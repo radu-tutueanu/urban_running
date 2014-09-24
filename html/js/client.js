@@ -51,7 +51,6 @@ ClientUtilities.openColorBox = function() {
 	var date, expires;
 	var days = 7;//the numer of days after which the cookie expires;
 	var cook = document.cookie;
-	var expirationCookie ;
 	var index = cook.indexOf("wheretorun");
 	if (index == -1) { //does not find string, cookie does not exist
 	$.colorbox( {
@@ -60,19 +59,28 @@ ClientUtilities.openColorBox = function() {
 		height: "63%",
 		href: "/pop-up.html"
 	} );
-} 
-	
 	date = new Date();
 	date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
 	expires = "expires=" + date.toGMTString();
-	console.log(expires);
 	document.cookie = "runcookie=wheretorun;" + expires;//set cookie
-	document.cookie = "expcookie=" + expires;//set cookie
-	console.log(expirationCookie);
+} 
+	/*else {
+	
+	}*/
 }
 
 /*"expires=Wed, 01 Oct 2014 02:29:15 GMT" client.js:68
-"expcookie=expires=Wed, 01 Oct 2014 02:29:15 GMT"*/
+"expcookie=expires=Wed, 01 Oct 2014 02:29:15 GMT"
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+*/
 ClientUtilities.prototype.validateAndSave = function() {
 //funcție ce validează câmpurile din formular
 	
