@@ -37,11 +37,6 @@
     <!-- Load LocalScroll -->
     <script type="text/javascript" src="js/jquery.localscroll-1.2.7-min.js"></script>
     <!-- prettyPhoto Initialization -->
-    <script type="text/javascript" charset="utf-8">
-          $(document).ready(function(){
-            $("a[rel^='prettyPhoto']").prettyPhoto();
-          });
-        </script>
     </head>
     <body>
     <!-- ******************** HeaderWrap ********************-->
@@ -52,9 +47,9 @@
           <div class="row">
             <div class="span12">
               <h2>Se va lansa &#238;n cur&#226;nd.</h2>
-              <form form action="/" method="post">
-              <input type="text" name="your-email" placeholder="tu@adresamail.com" class="cform-text" size="40" title="your email">
-              <input type="submit" value="&#354;ine-m&#259; la curent" class="cform-submit">
+              <form form action="/" method="post" name="EmailForm">
+              <input type="text" name="your-email" placeholder="tu@adresamail.com" class="cform-text" size="40" title="your email" id="submitEmail">
+              <input type="submit" onclick="return validateEmail()" value="&#354;ine-m&#259; la curent" class="cform-submit">
               </form>
             </div>
           </div>
@@ -81,6 +76,21 @@
       <!-- ./container -->
     </div>
     <!-- Loading the javaScript at the end of the page -->
+    <script type="text/javascript" charset="utf-8">
+          $(document).ready(function(){
+            $("a[rel^='prettyPhoto']").prettyPhoto();
+          });
+        </script>
+          <script type="text/javascript">
+        function validateEmail() {
+      var email = document.EmailForm.submitEmail.value;
+      console.log("Email: " + email + " length: " + email.length + " substr = " + email.substring(email.lastIndexOf(".")+1)  );
+      if (email.length < 1 || email.indexOf("@") < 0 || email.indexOf(".") < 0 || email.substring(email.lastIndexOf(".")+1).length <2) {
+        alert("Te rugăm să introduci o adresă de email validă.");
+        return false;
+      }
+    }
+    </script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
     <script type="text/javascript" src="js/site.js"></script>
