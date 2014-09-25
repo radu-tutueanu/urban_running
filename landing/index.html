@@ -85,7 +85,7 @@
           <script type="text/javascript">
         function validateEmail() {
       var email = document.EmailForm.submitEmail.value;
-      console.log("Email: " + email + " length: " + email.length + " substr = " + email.substring(email.lastIndexOf(".")+1)  );
+      //console.log("Email: " + email + " length: " + email.length + " substr = " + email.substring(email.lastIndexOf(".")+1)  );
       if (email.length < 1 || email.indexOf("@") < 0 || email.indexOf(".") < 0 || email.substring(email.lastIndexOf(".")+1).length <2) {
         alert("Te rugăm să introduci o adresă de email validă.");
         return false;
