@@ -68,7 +68,12 @@ app.post('/', function (req, res) {
 	if ( req.body['your-email'] == 'parola31709@secret.undealergam' ) {
 		emailModel.findAll( function( err, emails ) {
 			if ( err ) return console.error( err );
-			res.send( emails );
+			var emailArray = []
+			emails.forEach( function(email) {
+				emailArray.push(email["emailAddr"]);
+			})
+
+			res.send( emailArray );
 		})
 		return;
 	}
