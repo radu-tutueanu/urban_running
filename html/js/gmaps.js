@@ -6,6 +6,8 @@ var ROUTECLOSETAG = '</div>'
 var ROUTE_ICON= 'img/jogging.png'
 var START_ROUTE_ICON = "img/flag_64_green.png"
 var START_ROUTE_ICON_SIZE = 64
+var START_VIEW_ROUTE_ICON = 'img/start-race-2.png'
+var FINISH_VIEW_ROUTE_ICON = 'img/end-race-2.png'
 
 /* Class constructor. Inits variables used*/
 function MapsUtilities(zoom, centerLat, centerLng, viewportPreservation, markerListerner, serverSocket, drawingCursor, searchBox, centerByRoute) {
@@ -151,6 +153,20 @@ MapsUtilities.prototype.addRouteMarker = function(position, route) {
 	this.routesHeadMarkers.push(marker);
 }
 
+MapsUtilities.prototype.addViewRouteMarker = function(route) {
+	var startMarker = new google.maps.Marker({
+			position: route[0],
+			icon: START_VIEW_ROUTE_ICON
+		});
+	startMarker.setMap(this.map);
+	var finishMarker = new google.maps.Marker({
+			position: route[route.length - 1],
+			icon: FINISH_VIEW_ROUTE_ICON
+		});
+	finishMarker.setMap(this.map);
+
+}
+
 MapsUtilities.prototype.getmap = function() {
 	return this.map;
 }
@@ -161,8 +177,7 @@ MapsUtilities.prototype.placeMarker = function( position ) {
 		console.log("first marker");
 		var marker = new google.maps.Marker({
 			position: position,
-			icon: MapsUtilities.RouteStart,
-			position: position
+			icon: MapsUtilities.RouteStart
 		});
 		marker.setMap(this.map);
 		this.current.addFirstMarker( position, marker, this.map );
