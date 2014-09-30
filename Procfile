@@ -1,1 +1,1 @@
-web: node landing.js $PORT
+web: node server.js $PORT
