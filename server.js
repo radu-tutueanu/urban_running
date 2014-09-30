@@ -17,9 +17,9 @@ server = http.createServer( function( req, res ) {
 	var respath = url.parse( req.url ).pathname;
 	filepath = path.join( __dirname + htmlDir );
 	filepath = path.join( filepath, respath );
-
+	console.log(respath)
 	if ( jsRE.exec( respath ) != null ) {
-
+		jsRE.exec( respath );
 		fs.readFile( filepath, function( err, data ) {
 			if ( err ) {
 				return send404( res );
@@ -34,7 +34,7 @@ server = http.createServer( function( req, res ) {
 	}
 
 	if ( cssRE.exec( respath ) != null ) {
-
+		cssRE.exec( respath );
 		fs.readFile( filepath, function( err, data ) {
 			if ( err ) {
 				return send404( res );
@@ -49,7 +49,7 @@ server = http.createServer( function( req, res ) {
 	}
 
 	if ( imgRE.exec( respath ) != null ) {
-
+		imgRE.exec( respath );
 		fs.readFile( filepath, function( err, data ) {
 			if ( err ) {
 				return send404( res );
