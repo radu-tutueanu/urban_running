@@ -17,12 +17,13 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7_q4j3wbRGmQr3V-wtKZrlv7Uz_-G7Dk&libraries=geometry&sensor=true"></script>
 	</script>
 	<script type="text/javascript">
+	var routeID;
 	function init(){
 		  ClientUtilities.initLogging( loggingEnabled, enablePopUp );
           utilities = new MapsUtilities(zoom, lat, lng, viewportPreservation, markerListerner, socket, drawCursor, searchBoxInit, centerByRoute);
           utilities.initialize()
           client = new ClientUtilities(utilities);
-          var routeID = client.parseURLParams(document.location.href).id[0]; /*Here we load the id of the route to be shown*/
+          routeID = client.parseURLParams(document.location.href).id[0]; /*Here we load the id of the route to be shown*/
           socket = io.connect();
 
     socket.on('connect', function(){

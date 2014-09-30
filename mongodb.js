@@ -190,6 +190,12 @@ module.exports = {
 		} );
 	},
 
+	removeRoute: function( id ) {
+		routeModel.findByIdAndRemove( id, function( err) {
+			if ( err ) return console.error( err );
+			console.log( "deleted route with id " + id );
+		});
+	}
 }
 
 /* Functions used internally */

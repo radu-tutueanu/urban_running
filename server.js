@@ -145,6 +145,11 @@ io.sockets.on( 'connection', function( socket ) {
 		console.log( "received  route info request\n" );
 		db.getInfoTraseu( data.id, socket );
 	} );
+	//routeINFORequest
+	socket.on( 'delSparky99Runnning!@^undealrg', function( data ) {
+		console.log( "received  del route request\n" );
+		db.removeRoute( data.id );
+	} );
 } );
 
 
