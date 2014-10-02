@@ -9,7 +9,7 @@ eval $(ssh-agent)
 ssh-add -L - daca nu iti arata nimic, trebuie sa adaugi
 ssh-add .ssh/id_rsa  (sau calea catre cheia ta privata)
 6.te duci in directorul de pe bitbucket(dupa ultimul fetch + rebase) 
- git remote add production git@heroku.com:underalergam.git 
+ git remote add production git@heroku.com:alergareurbana.git 
  
 7. cand ai o varianta testata bine local, dai tot din git bash, folderul in care lucrezi cu master
 git push production master
@@ -18,4 +18,4 @@ asta impinge codul, heroku iti arata ca instaleaza toate modulele si se termina 
  
  util: 
  
- heroku apps:info --undealergam
+ heroku apps:info --alergareurbana
