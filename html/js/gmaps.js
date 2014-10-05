@@ -227,15 +227,20 @@ MapsUtilities.prototype.handleDirectionsResponseWithPrint = function(response, s
 }
 
 MapsUtilities.prototype.handleDirectionsResponse = function(response, status) {
-	if (status != google.maps.DirectionsStatus.OK) {
+	if (status == google.maps.DirectionsStatus.MAX_WAYPOINTS_EXCEEDED) {
 		//Here we'll handle the errors a bit better 
-		alert('A aparut o eroare la desenarea traseului!');
+		alert('Se pot defini maximum 10 puncte!');
 		this.reset(); 
 		/*if (status == google.maps.DirectionsStatus.ZERO_RESULTS) {
 			this.reset(); 
 		}*/
 		return -1;
-	} else {
+	} 
+	else if (status != google.maps.DirectionsStatus.OK) {
+		alert('A aparut o eroare la desenarea traseului!');
+		this.reset(); 
+	}
+	else {
 		this.directionsDisplay.setDirections(response);
 		this.directionsDisplay.setMap( this.map );
 	}
