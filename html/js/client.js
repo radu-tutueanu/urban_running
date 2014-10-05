@@ -59,8 +59,8 @@ ClientUtilities.openColorBox = function() {
 	if (index == -1) { //does not find string, cookie does not exist
 	$.colorbox( {
 		iframe: true,
-		width: "60%",
-		height: "63%",
+		width: "55%",
+		height: "35%",
 		href: "/pop-up.html"
 	} );
 	date = new Date();
