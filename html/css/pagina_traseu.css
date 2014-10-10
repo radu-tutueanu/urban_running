@@ -149,7 +149,7 @@ overflow:auto;
 
 textarea#textsig{
 position:fixed;
-width:15%;
+width:22vw;
 height:8%;
 overflow:auto;
 resize: none;
@@ -159,7 +159,7 @@ font-family: Calibri;
 
 textarea#textobs{
 position:fixed;
-width:15%;
+width:22vw;
 height:8%;
 overflow:auto;
 resize: none;
