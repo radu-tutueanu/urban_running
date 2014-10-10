@@ -58,9 +58,8 @@ function resetForm() {
 } /*called when the page (re)loads*/
 
 //warn user before he closes the page
-window.onbeforeunload = function(e) {
-  return 'Traseul nu a fost salvat. Sigur vrei să închizi pagina?';
-};
+
+
 </script> 
 <script type="text/javascript">
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -129,10 +128,11 @@ window.onbeforeunload = function(e) {
 
                 <p class="nota"><b>*Notă:</br></b> Toate câmpurile, mai puțin ultimul, sunt obligatorii.</p>
                 <p class="expl">1 - dezacord total. 5 - acord total.</p>
-                <a href="/index.html" class="acasa">Acasă</a>
+                <a href="/index.html" class="acasa" onclick="client.confirmClose()">Acasă</a>
                 <!--mesajele de eroare-->
                 <p id="eroare_rasp"><b>Te rugăm să completezi toate câmpurile obligatorii.</b></p>
-              
+
+       
               </body>
     
             </html>

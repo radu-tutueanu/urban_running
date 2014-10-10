@@ -115,7 +115,7 @@ ClientUtilities.prototype.validateAndSave = function() {
 		self.gmapsUtilities.addToRoute( den_box, ales_circ, ales_caini, ales_lum, cand_box, unde_box, sig_box, obs_box );
 		self.gmapsUtilities.sendRoute();
 	
-		var feedback = prompt("Mulțumim pentru efort, vei fi redirecționat către pagina principală. Ne poți spune cum ți s-a părut mecanismul de adăugare?");
+		var feedback = prompt("Mulțumim pentru efort, vei fi redirecționat către pagina principală. Cum ți s-a părut mecanismul de adăugare?");
 	//	console.log(feedback);
 	//	alert( 'Traseu salvat! Apăsați pe OK pentru a fi redirecționat către pagina principală.' );
 		window.open( "/index.html", "_self" ); 
@@ -124,6 +124,11 @@ ClientUtilities.prototype.validateAndSave = function() {
 	
 }
 
+ClientUtilities.prototype.confirmClose = function() {
+	window.onbeforeunload = function(e) {
+  return 'Traseul nu a fost salvat. Sigur vrei să închizi pagina?';
+};
+}
 ClientUtilities.prototype.parseURLParams = function(url) {
   var queryStart = url.indexOf("?") + 1,
     queryEnd = url.indexOf("#") + 1 || url.length + 1,
