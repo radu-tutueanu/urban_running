@@ -20,6 +20,8 @@ mongodb
 node.js
 python 2.7.3
 visual studio 2013 express
+execute from cmd in the folder where you have the source code:
+npm install
 npm install socket.io
 npm install mongoose
 
