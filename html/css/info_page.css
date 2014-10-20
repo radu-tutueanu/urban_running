@@ -177,6 +177,19 @@
 	font-size: 1vw;
 	text-align: justify;
 	}
+
+	.waldo {
+	position: absolute;
+	top: 130%;
+	left: 23%;
+	right:21%;
+	font-family: Calibri;
+	font-size: 1vw;
+	text-align: justify;
+	color:#fcf8ea;
+	text-decoration: none;
+	}
+
 	/*new button colour : 068099; old button colour: */
 	.acasa {
 	position:absolute;
@@ -217,3 +230,4 @@
 	text-align:center;
 	text-shadow:1px 1px 0px #86ae47;
 }
+
